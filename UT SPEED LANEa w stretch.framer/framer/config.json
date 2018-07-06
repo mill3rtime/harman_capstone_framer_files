@@ -2,23 +2,26 @@
   "orientation" : 0,
   "updateDelay" : 0.3,
   "designModeSelected" : 0,
-  "cachedDeviceHeight" : 0,
+  "cachedDeviceHeight" : 2048,
   "contentScale" : 1,
-  "cachedDeviceWidth" : 0,
+  "cachedDeviceWidth" : 1536,
   "fullScreen" : false,
   "deviceType" : "custom",
   "sharedPrototype" : true,
+  "propertyPanelToggleStates" : {
+    "Filters" : false
+  },
   "projectId" : "2AF88988-6357-4623-B18D-FDA5A1BCD01A",
   "deviceOrientation" : 0,
   "selectedHand" : "",
   "showBezel" : 0,
   "foldedCodeRanges" : [
-    "{0, 681}",
-    "{804, 553}",
-    "{1494, 294}",
-    "{1848, 972}",
-    "{5289, 196}",
-    "{5548, 124}"
+    "{0, 692}",
+    "{815, 553}",
+    "{1505, 294}",
+    "{1859, 972}",
+    "{5481, 196}",
+    "{5740, 124}"
   ],
   "deviceScale" : "fit"
 }

@@ -14,6 +14,7 @@ sketch = Framer.Importer.load("imported/Interactions_ORIGINAL@1x", scale: 1)
 # Import file "Interactions7.1v2"
 Utils.globalLayers(sketch)	
 
+#TODO JS: 
 Framer.Device.customize
 	devicePixelRatio: 1
 	screenWidth: 1536
@@ -143,8 +144,8 @@ checkEasterEgg = () ->
 
 
 canvas = new Layer
-	width: 1868
-	height: 2140
+	width: Screen.width
+	height: Screen.height
 	opacity: 0
 
 
@@ -165,15 +166,17 @@ snailSetup(circles)
 # circles.parent = mainBoard
 # circles.originX = .5
 # circles.originY = .5
-circles.bringToFront()
+# circles.bringToFront()
 
-trail.visible = false
+# trail.visible = false
 
 
+#TODO JS: look at pointer module and tablet detection
 # track movements on touch move (circle and trail)
 canvas.on Events.TouchMove, (e, layer) ->
 	touchEvent = Events.touchEvent(e)
 # 	print "map 1"
+#TODO JS: encapsulate cord tracking
 	if Utils.isPhone() || Utils.isTablet()
 		tapX = (touchEvent.clientX - layer.x)
 		tapY = touchEvent.clientY - layer.y
@@ -182,6 +185,7 @@ canvas.on Events.TouchMove, (e, layer) ->
 # 		print "not mobile"
 		tapX = (touchEvent.offsetX)
 		tapY = (touchEvent.offsetY)
+	
 
 
 #Func: setShowOnDrag
@@ -201,6 +205,7 @@ setShowOnDrag = (shape) ->
 		shape.x = tapX - trackingOffset
 		shape.y = tapY - trackingOffset
 		shape.visible = true
+		#TODO add param for visible on click
 		trail.visible = false
 		trailSwitch = true
 		
@@ -210,6 +215,8 @@ setShowOnDrag = (shape) ->
 		
 		
 		#^set flag so that when trail animation finishes and trail switch is false, you dont keep making trails below here
+		
+		#TODO put into function
 		canvas.on Events.TouchMove, (ev, layer) ->
 			if speedUpSwitch
 				y2 = tapY - trackingOffset
