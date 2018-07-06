@@ -43,43 +43,6 @@ y1 = 0
 y2 = 0
 speedUpSwitch = false
 
-# V1 Image Import
-# 
-# 
-# right_bumper = new Layer
-# 	width: 300
-# 	height: 608
-# 	scale: 0.5
-# 	image: "images/right_bumper.png"
-# 	x: 1250
-# 	y: 1345
-# 
-# 
-# left_bumper = new Layer
-# 	width: 300
-# 	height: 608
-# 	image: "images/left_bumper.png"
-# 	scale: 0.5
-# 	y: 1345
-# 	x: -38
-# 	
-# bottom_bumper = new Layer
-# 	width: 1928
-# 	height: 418
-# 	scale: 0.5
-# 	image: "images/bottom_bumper.png"
-# 	x: -196
-# 	y: 1770
-# 
-# top_bumper = new Layer
-# 	width: 1928
-# 	height: 418
-# 	scale: 0.5
-# 	image: "images/top_bumper.png"
-# 	x: -196
-# 	y: -46
-# 	
-# 
 
 
 
@@ -158,24 +121,14 @@ trail = new Layer
 	height: 160
 	width: 120
 	opacity: 0.3
-# 	x: Align.center
-# 	y: Align.center()
 
 snailSetup(trail)
 snailSetup(circles)
-# circles.parent = mainBoard
-# circles.originX = .5
-# circles.originY = .5
-# circles.bringToFront()
-
-# trail.visible = false
-
 
 #TODO JS: look at pointer module and tablet detection
 # track movements on touch move (circle and trail)
 canvas.on Events.TouchMove, (e, layer) ->
 	touchEvent = Events.touchEvent(e)
-# 	print "map 1"
 #TODO JS: encapsulate cord tracking
 	if Utils.isPhone() || Utils.isTablet()
 		tapX = (touchEvent.clientX - layer.x)
@@ -193,7 +146,6 @@ setShowOnDrag = (shape) ->
 	# circles but hide trail, it appears in wrong palce (top left)
 	canvas.on Events.TouchStart, (e, layer) ->
 		touchEvent = Events.touchEvent(e)
-# 		print "map 2"
 		if Utils.isPhone() || Utils.isTablet()
 				tapX = (touchEvent.clientX - layer.x)
 				tapY = touchEvent.clientY - layer.y
@@ -253,10 +205,8 @@ setShowOnDrag = (shape) ->
 			if tapY > -300 & tapY < 300
 			
 				easterEggCounter += 1
-# 				print "easter egg number " + easterEggCounter		
 	#UGH HAVE TO LISTEN FOR CLICKS HERE			
 				checkEasterEgg()
-				#checkLowerCrest
 				
 		
 
@@ -269,9 +219,6 @@ trail.draggable.momentum = false
 trail.bounce = false
 trail.draggable.overdrag = false
 
-# circle.onTap ->
-# 	circle.stateCycle()
-# 	print circle.x
 		
 trail.states =
 	in:
@@ -302,7 +249,7 @@ trail.on "change:y", ->
 # 		layerArray.push trail2
 		trail1.y = (trail1.y + trail.height *2)
 		trail2.y = (trail1.y *.9)
-		trail2.x += (trail2.width*1.5)  
+		trail2.x += (trail2.width*1.5)
 		trail1.animate
 			properties: scale: 0.3, opacity: 0, backgroundColor: 					"#D8D8D8" 
 			delay: 0.3
