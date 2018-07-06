@@ -1,0 +1,1041 @@
+{
+  "version" : 21,
+  "root" : {
+    "id" : "SqBe_1bzI",
+    "__class" : "CanvasNode",
+    "parentid" : null,
+    "children" : [
+      {
+        "radius" : 0,
+        "brightness" : 100,
+        "hueRotateEnabled" : 0,
+        "children" : [
+          {
+            "radius" : 0,
+            "brightness" : 100,
+            "hueRotateEnabled" : 0,
+            "children" : [
+              {
+                "sepiaEnabled" : 0,
+                "editable" : false,
+                "rotation" : -90,
+                "blurType" : "layer",
+                "__class" : "TextNode",
+                "id" : "wKfSm9uUF",
+                "saturateEnabled" : 0,
+                "grayscale" : 0,
+                "hueRotateEnabled" : 0,
+                "widthFactor" : null,
+                "opacity" : 1,
+                "contrastEnabled" : 0,
+                "locked" : false,
+                "left" : -229,
+                "styledText" : {
+                  "cached" : {
+                    "size" : {
+                      "width" : 569,
+                      "height" : 72
+                    },
+                    "os" : "10_12",
+                    "width" : 0,
+                    "html" : "<span data-offset-key=\"fndok-0-0\" style=\"tab-size:4;font-family:&quot;ProximaNova-Regular&quot;, &quot;Proxima Nova&quot;, serif;-webkit-text-fill-color:rgb(213, 240, 255);font-size:60px;letter-spacing:10.0px;line-height:1.2;font-weight:400\"><span data-text=\"true\">TAKE THE TURN<\/span><\/span>"
+                  },
+                  "entityMap" : {
+
+                  },
+                  "blocks" : [
+                    {
+                      "depth" : 0,
+                      "inlineStyleRanges" : [
+                        {
+                          "style" : "COLOR:rgb(213, 240, 255)",
+                          "length" : 13,
+                          "offset" : 0
+                        },
+                        {
+                          "style" : "SIZE:60",
+                          "length" : 13,
+                          "offset" : 0
+                        },
+                        {
+                          "style" : "LETTERSPACING:10.0",
+                          "length" : 13,
+                          "offset" : 0
+                        },
+                        {
+                          "style" : "ALIGN:left",
+                          "length" : 13,
+                          "offset" : 0
+                        },
+                        {
+                          "style" : "FONT:ProximaNova-Regular",
+                          "length" : 13,
+                          "offset" : 0
+                        }
+                      ],
+                      "entityRanges" : [
+
+                      ],
+                      "data" : {
+                        "emptyStyle" : [
+                          "COLOR:rgb(213, 240, 255)",
+                          "SIZE:60",
+                          "LETTERSPACING:10.0",
+                          "ALIGN:left",
+                          "FONT:ProximaNova-Regular"
+                        ]
+                      },
+                      "text" : "TAKE THE TURN",
+                      "key" : "fndok",
+                      "type" : "unstyled"
+                    }
+                  ],
+                  "__class" : "StyledTextDraft"
+                },
+                "blendingMode" : "normal",
+                "invert" : 0,
+                "sepia" : 0,
+                "centerAnchorX" : 0,
+                "blurEnabled" : 1,
+                "shadows" : [
+
+                ],
+                "parentid" : "uJBNK0DTF",
+                "brightnessEnabled" : 0,
+                "exportOptions" : [
+
+                ],
+                "name" : "TAKE THE TURN",
+                "saturate" : 100,
+                "height" : 72,
+                "blendingEnabled" : 0,
+                "top" : 410,
+                "constraintsLocked" : false,
+                "right" : null,
+                "visible" : true,
+                "centerAnchorY" : 0,
+                "contrast" : 100,
+                "grayScaleEnabled" : 0,
+                "hueRotate" : 0,
+                "heightFactor" : null,
+                "targetName" : null,
+                "bottom" : null,
+                "blur" : 32,
+                "autoSize" : true,
+                "invertEnabled" : 0,
+                "width" : 569,
+                "brightness" : 100
+              },
+              {
+                "sepiaEnabled" : 0,
+                "editable" : false,
+                "rotation" : -90,
+                "blurType" : "layer",
+                "__class" : "TextNode",
+                "id" : "zx1nGvp_a",
+                "saturateEnabled" : 0,
+                "grayscale" : 0,
+                "hueRotateEnabled" : 0,
+                "widthFactor" : null,
+                "opacity" : 1,
+                "contrastEnabled" : 0,
+                "locked" : false,
+                "left" : null,
+                "styledText" : {
+                  "cached" : {
+                    "size" : {
+                      "width" : 569,
+                      "height" : 72
+                    },
+                    "os" : "10_12",
+                    "width" : 0,
+                    "html" : "<span data-offset-key=\"fndok-0-0\" style=\"tab-size:4;font-family:&quot;ProximaNova-Regular&quot;, &quot;Proxima Nova&quot;, serif;-webkit-text-fill-color:rgb(213, 240, 255);font-size:60px;letter-spacing:10.0px;line-height:1.2;font-weight:400\"><span data-text=\"true\">TAKE THE TURN<\/span><\/span>"
+                  },
+                  "entityMap" : {
+
+                  },
+                  "blocks" : [
+                    {
+                      "depth" : 0,
+                      "inlineStyleRanges" : [
+                        {
+                          "style" : "COLOR:rgb(213, 240, 255)",
+                          "length" : 13,
+                          "offset" : 0
+                        },
+                        {
+                          "style" : "SIZE:60",
+                          "length" : 13,
+                          "offset" : 0
+                        },
+                        {
+                          "style" : "LETTERSPACING:10.0",
+                          "length" : 13,
+                          "offset" : 0
+                        },
+                        {
+                          "style" : "ALIGN:left",
+                          "length" : 13,
+                          "offset" : 0
+                        },
+                        {
+                          "style" : "FONT:ProximaNova-Regular",
+                          "length" : 13,
+                          "offset" : 0
+                        }
+                      ],
+                      "entityRanges" : [
+
+                      ],
+                      "data" : {
+                        "emptyStyle" : [
+                          "COLOR:rgb(213, 240, 255)",
+                          "SIZE:60",
+                          "LETTERSPACING:10.0",
+                          "ALIGN:left",
+                          "FONT:ProximaNova-Regular"
+                        ]
+                      },
+                      "text" : "TAKE THE TURN",
+                      "key" : "fndok",
+                      "type" : "unstyled"
+                    }
+                  ],
+                  "__class" : "StyledTextDraft"
+                },
+                "blendingMode" : "normal",
+                "invert" : 0,
+                "sepia" : 0,
+                "centerAnchorX" : 0.5954545454545455,
+                "blurEnabled" : 1,
+                "shadows" : [
+
+                ],
+                "parentid" : "uJBNK0DTF",
+                "brightnessEnabled" : 0,
+                "exportOptions" : [
+
+                ],
+                "name" : "TAKE THE TURN",
+                "saturate" : 100,
+                "height" : 72,
+                "blendingEnabled" : 0,
+                "top" : null,
+                "constraintsLocked" : false,
+                "right" : null,
+                "visible" : true,
+                "centerAnchorY" : 0.5,
+                "contrast" : 100,
+                "grayScaleEnabled" : 0,
+                "hueRotate" : 0,
+                "heightFactor" : null,
+                "targetName" : null,
+                "bottom" : null,
+                "blur" : 32,
+                "autoSize" : true,
+                "invertEnabled" : 0,
+                "width" : 569,
+                "brightness" : 100
+              },
+              {
+                "sepiaEnabled" : 0,
+                "editable" : false,
+                "rotation" : -90,
+                "blurType" : "layer",
+                "__class" : "TextNode",
+                "id" : "N9jCEm2CF",
+                "saturateEnabled" : 0,
+                "grayscale" : 0,
+                "hueRotateEnabled" : 0,
+                "widthFactor" : null,
+                "opacity" : 1,
+                "contrastEnabled" : 0,
+                "locked" : false,
+                "left" : -229,
+                "styledText" : {
+                  "cached" : {
+                    "size" : {
+                      "width" : 569,
+                      "height" : 72
+                    },
+                    "os" : "10_12",
+                    "width" : 0,
+                    "html" : "<span data-offset-key=\"fndok-0-0\" style=\"tab-size:4;font-family:&quot;ProximaNova-Regular&quot;, &quot;Proxima Nova&quot;, serif;-webkit-text-fill-color:rgb(213, 240, 255);font-size:60px;letter-spacing:10.0px;line-height:1.2;font-weight:400\"><span data-text=\"true\">TAKE THE TURN<\/span><\/span>"
+                  },
+                  "entityMap" : {
+
+                  },
+                  "blocks" : [
+                    {
+                      "depth" : 0,
+                      "inlineStyleRanges" : [
+                        {
+                          "style" : "COLOR:rgb(213, 240, 255)",
+                          "length" : 13,
+                          "offset" : 0
+                        },
+                        {
+                          "style" : "SIZE:60",
+                          "length" : 13,
+                          "offset" : 0
+                        },
+                        {
+                          "style" : "LETTERSPACING:10.0",
+                          "length" : 13,
+                          "offset" : 0
+                        },
+                        {
+                          "style" : "ALIGN:left",
+                          "length" : 13,
+                          "offset" : 0
+                        },
+                        {
+                          "style" : "FONT:ProximaNova-Regular",
+                          "length" : 13,
+                          "offset" : 0
+                        }
+                      ],
+                      "entityRanges" : [
+
+                      ],
+                      "data" : {
+                        "emptyStyle" : [
+                          "COLOR:rgb(213, 240, 255)",
+                          "SIZE:60",
+                          "LETTERSPACING:10.0",
+                          "ALIGN:left",
+                          "FONT:ProximaNova-Regular"
+                        ]
+                      },
+                      "text" : "TAKE THE TURN",
+                      "key" : "fndok",
+                      "type" : "unstyled"
+                    }
+                  ],
+                  "__class" : "StyledTextDraft"
+                },
+                "blendingMode" : "normal",
+                "invert" : 0,
+                "sepia" : 0,
+                "centerAnchorX" : 0,
+                "blurEnabled" : 0,
+                "shadows" : [
+
+                ],
+                "parentid" : "uJBNK0DTF",
+                "brightnessEnabled" : 0,
+                "exportOptions" : [
+
+                ],
+                "name" : "TAKE THE TURN",
+                "saturate" : 100,
+                "height" : 72,
+                "blendingEnabled" : 0,
+                "top" : 410,
+                "constraintsLocked" : false,
+                "right" : null,
+                "visible" : false,
+                "centerAnchorY" : 0,
+                "contrast" : 100,
+                "grayScaleEnabled" : 0,
+                "hueRotate" : 0,
+                "heightFactor" : null,
+                "targetName" : null,
+                "bottom" : null,
+                "blur" : 12,
+                "autoSize" : true,
+                "invertEnabled" : 0,
+                "width" : 569,
+                "brightness" : 100
+              }
+            ],
+            "centerAnchorX" : 0.4993489583333333,
+            "id" : "uJBNK0DTF",
+            "exportOptions" : [
+
+            ],
+            "exportIncludesBackground" : true,
+            "grayScaleEnabled" : 0,
+            "fillImagePixelHeight" : null,
+            "fillImagePixelWidth" : null,
+            "constraintsLocked" : false,
+            "fillImageResize" : "fill",
+            "blurType" : "layer",
+            "fillColor" : "rgba(255,255,255,1)",
+            "widthFactor" : null,
+            "blendingEnabled" : 0,
+            "grayscale" : 0,
+            "top" : null,
+            "saturate" : 100,
+            "left" : null,
+            "locked" : false,
+            "sepiaEnabled" : 0,
+            "fillGradient" : {
+              "end" : "rgba(0,0,0,0)",
+              "alpha" : 1,
+              "angle" : 0,
+              "__class" : "LinearGradient",
+              "start" : "black"
+            },
+            "blur" : 0,
+            "radiusTopLeft" : 0,
+            "sepia" : 0,
+            "borderColor" : "#222",
+            "rotation" : -270,
+            "borderLeft" : 1,
+            "fillEnabled" : false,
+            "right" : null,
+            "opacity" : 0.5,
+            "name" : "Turn",
+            "blendingMode" : "normal",
+            "contrast" : 100,
+            "centerAnchorY" : 0.947265625,
+            "height" : 892,
+            "borderWidth" : 1,
+            "radiusIsRelative" : false,
+            "hueRotate" : 0,
+            "borderStyle" : "solid",
+            "brightnessEnabled" : 0,
+            "borderPerSide" : false,
+            "saturateEnabled" : 0,
+            "aspectRatioLocked" : false,
+            "borderRight" : 1,
+            "parentid" : "YKZNW85GC",
+            "intrinsicWidth" : null,
+            "radiusBottomLeft" : 0,
+            "boxShadows" : [
+
+            ],
+            "contrastEnabled" : 0,
+            "borderEnabled" : 0,
+            "radiusPerCorner" : false,
+            "radiusTopRight" : 0,
+            "invert" : 0,
+            "__class" : "FrameNode",
+            "fillImage" : null,
+            "clip" : false,
+            "fillType" : "color",
+            "visible" : false,
+            "invertEnabled" : 0,
+            "heightFactor" : null,
+            "width" : 110,
+            "intrinsicHeight" : null,
+            "borderBottom" : 1,
+            "deviceType" : null,
+            "bottom" : -338,
+            "borderTop" : 1,
+            "targetName" : null,
+            "radiusBottomRight" : 0,
+            "blurEnabled" : 1
+          },
+          {
+            "rotation" : 0,
+            "fillImagePixelHeight" : null,
+            "id" : "OQQdJzfWu",
+            "fillImage" : null,
+            "fillColor" : "rgba(0,170,255,0.5)",
+            "aspectRatioLocked" : false,
+            "strokeWidth" : 3,
+            "__class" : "PathNode",
+            "fillImageResize" : "fill",
+            "opacity" : 1,
+            "locked" : false,
+            "fillGradient" : {
+              "end" : "rgba(0,182,238,0)",
+              "alpha" : 1,
+              "angle" : 0,
+              "__class" : "LinearGradient",
+              "start" : "rgba(0,220,248,0.149513134057971)"
+            },
+            "strokeDashOffset" : 0,
+            "boxShadows" : [
+
+            ],
+            "fillType" : "gradient",
+            "strokeEnabled" : 0,
+            "lineJoin" : "miter",
+            "fillEnabled" : true,
+            "parentid" : "YKZNW85GC",
+            "strokeDashArray" : "0",
+            "exportOptions" : [
+
+            ],
+            "name" : "background-glow",
+            "height" : 2048,
+            "fillImagePixelWidth" : null,
+            "pathSegments" : [
+              {
+                "x" : 0,
+                "handleInX" : 0,
+                "radius" : 0,
+                "y" : 0,
+                "handleOutY" : 0,
+                "handleOutX" : 0,
+                "handleInY" : 0,
+                "__class" : "PathSegment",
+                "handleMirroring" : "straight"
+              },
+              {
+                "x" : 1543,
+                "handleInX" : 0,
+                "radius" : 0,
+                "y" : 0,
+                "handleOutY" : 0,
+                "handleOutX" : 0,
+                "handleInY" : 0,
+                "__class" : "PathSegment",
+                "handleMirroring" : "straight"
+              },
+              {
+                "x" : 1543,
+                "handleInX" : 0,
+                "radius" : 0,
+                "y" : 2048,
+                "handleOutY" : 0,
+                "handleOutX" : 0,
+                "handleInY" : 0,
+                "__class" : "PathSegment",
+                "handleMirroring" : "straight"
+              },
+              {
+                "x" : 0,
+                "handleInX" : 0,
+                "radius" : 0,
+                "y" : 2048,
+                "handleOutY" : 0,
+                "handleOutX" : 0,
+                "handleInY" : 0,
+                "__class" : "PathSegment",
+                "handleMirroring" : "straight"
+              }
+            ],
+            "lineCap" : "butt",
+            "strokeColor" : "rgba(0,182,238,1)",
+            "strokeAlignment" : "center",
+            "strokeMiterLimit" : 10,
+            "visible" : true,
+            "pathClosed" : true,
+            "targetName" : null,
+            "x" : 0,
+            "width" : 1543,
+            "y" : 0
+          },
+          {
+            "rotation" : -270,
+            "fillImagePixelHeight" : null,
+            "id" : "e8PlcDuV6",
+            "fillImage" : null,
+            "fillColor" : "rgba(25,25,25,1)",
+            "aspectRatioLocked" : false,
+            "strokeWidth" : 1,
+            "__class" : "PathNode",
+            "fillImageResize" : "fill",
+            "opacity" : 1,
+            "locked" : false,
+            "fillGradient" : {
+              "end" : "rgba(0,0,0,0)",
+              "alpha" : 1,
+              "angle" : 0,
+              "__class" : "LinearGradient",
+              "start" : "black"
+            },
+            "strokeDashOffset" : 0,
+            "boxShadows" : [
+
+            ],
+            "fillType" : "color",
+            "strokeEnabled" : 0,
+            "lineJoin" : "miter",
+            "fillEnabled" : true,
+            "parentid" : "YKZNW85GC",
+            "strokeDashArray" : "0",
+            "exportOptions" : [
+
+            ],
+            "name" : "Background",
+            "height" : 1566,
+            "fillImagePixelWidth" : null,
+            "pathSegments" : [
+              {
+                "x" : 0,
+                "handleInX" : 0,
+                "radius" : 0,
+                "y" : 0,
+                "handleOutY" : 0,
+                "handleOutX" : 0,
+                "handleInY" : 0,
+                "__class" : "PathSegment",
+                "handleMirroring" : "straight"
+              },
+              {
+                "x" : 2784,
+                "handleInX" : 0,
+                "radius" : 0,
+                "y" : 0,
+                "handleOutY" : 0,
+                "handleOutX" : 0,
+                "handleInY" : 0,
+                "__class" : "PathSegment",
+                "handleMirroring" : "straight"
+              },
+              {
+                "x" : 2784,
+                "handleInX" : 0,
+                "radius" : 0,
+                "y" : 1566,
+                "handleOutY" : 0,
+                "handleOutX" : 0,
+                "handleInY" : 0,
+                "__class" : "PathSegment",
+                "handleMirroring" : "straight"
+              },
+              {
+                "x" : 0,
+                "handleInX" : 0,
+                "radius" : 0,
+                "y" : 1566,
+                "handleOutY" : 0,
+                "handleOutX" : 0,
+                "handleInY" : 0,
+                "__class" : "PathSegment",
+                "handleMirroring" : "straight"
+              }
+            ],
+            "lineCap" : "butt",
+            "strokeColor" : "rgba(151,151,151,1)",
+            "strokeAlignment" : "inside",
+            "strokeMiterLimit" : 10,
+            "visible" : true,
+            "pathClosed" : true,
+            "targetName" : null,
+            "x" : -609,
+            "width" : 2784,
+            "y" : 241
+          },
+          {
+            "radius" : 0,
+            "brightness" : 100,
+            "hueRotateEnabled" : 0,
+            "children" : [
+
+            ],
+            "centerAnchorX" : 0.4996744791666667,
+            "id" : "H48wig11R",
+            "exportOptions" : [
+
+            ],
+            "exportIncludesBackground" : true,
+            "grayScaleEnabled" : 0,
+            "fillImagePixelHeight" : 494,
+            "fillImagePixelWidth" : 1536,
+            "constraintsLocked" : false,
+            "fillImageResize" : "fill",
+            "blurType" : "layer",
+            "fillColor" : "rgba(255,255,255,1)",
+            "widthFactor" : null,
+            "blendingEnabled" : 0,
+            "grayscale" : 0,
+            "top" : null,
+            "saturate" : 100,
+            "left" : 0,
+            "locked" : false,
+            "sepiaEnabled" : 0,
+            "fillGradient" : {
+              "end" : "rgba(0,0,0,0)",
+              "alpha" : 1,
+              "angle" : 0,
+              "__class" : "LinearGradient",
+              "start" : "black"
+            },
+            "blur" : 12,
+            "radiusTopLeft" : 0,
+            "sepia" : 0,
+            "borderColor" : "#222",
+            "rotation" : 0,
+            "borderLeft" : 1,
+            "fillEnabled" : true,
+            "right" : 1,
+            "opacity" : 1,
+            "name" : "bottomCrest",
+            "blendingMode" : "normal",
+            "contrast" : 100,
+            "centerAnchorY" : 0.87548828125,
+            "height" : 494,
+            "borderWidth" : 1,
+            "radiusIsRelative" : false,
+            "hueRotate" : 0,
+            "borderStyle" : "solid",
+            "brightnessEnabled" : 0,
+            "borderPerSide" : false,
+            "saturateEnabled" : 0,
+            "aspectRatioLocked" : true,
+            "borderRight" : 1,
+            "parentid" : "YKZNW85GC",
+            "intrinsicWidth" : 768,
+            "radiusBottomLeft" : 0,
+            "boxShadows" : [
+
+            ],
+            "contrastEnabled" : 0,
+            "borderEnabled" : 0,
+            "radiusPerCorner" : false,
+            "radiusTopRight" : 0,
+            "invert" : 0,
+            "__class" : "FrameNode",
+            "fillImage" : "Xz5nxFJf6XZhVru0B8TF2245jSBx7rIVh9R2KEUd6OouAWgycGVMlEwNMGyON6fC2aEBPJa92T8SCv4khg.png",
+            "clip" : false,
+            "fillType" : "image",
+            "visible" : true,
+            "invertEnabled" : 0,
+            "heightFactor" : null,
+            "width" : 1535,
+            "intrinsicHeight" : 247,
+            "borderBottom" : 1,
+            "deviceType" : null,
+            "bottom" : 8,
+            "borderTop" : 1,
+            "targetName" : "bottomCrest",
+            "radiusBottomRight" : 0,
+            "blurEnabled" : 0
+          },
+          {
+            "radius" : 0,
+            "brightness" : 100,
+            "hueRotateEnabled" : 0,
+            "children" : [
+
+            ],
+            "centerAnchorX" : 0.4775390625,
+            "id" : "S7vAfKJND",
+            "exportOptions" : [
+
+            ],
+            "exportIncludesBackground" : true,
+            "grayScaleEnabled" : 0,
+            "fillImagePixelHeight" : 252,
+            "fillImagePixelWidth" : 1052,
+            "constraintsLocked" : false,
+            "fillImageResize" : "fill",
+            "blurType" : "layer",
+            "fillColor" : "rgba(255,255,255,1)",
+            "widthFactor" : null,
+            "blendingEnabled" : 0,
+            "grayscale" : 0,
+            "top" : null,
+            "saturate" : 100,
+            "left" : 352.5,
+            "locked" : false,
+            "sepiaEnabled" : 0,
+            "fillGradient" : {
+              "end" : "rgba(0,0,0,0)",
+              "alpha" : 1,
+              "angle" : 0,
+              "__class" : "LinearGradient",
+              "start" : "black"
+            },
+            "blur" : 12,
+            "radiusTopLeft" : 0,
+            "sepia" : 0,
+            "borderColor" : "#222",
+            "rotation" : 0,
+            "borderLeft" : 1,
+            "fillEnabled" : true,
+            "right" : null,
+            "opacity" : 1,
+            "name" : "turn",
+            "blendingMode" : "normal",
+            "contrast" : 100,
+            "centerAnchorY" : 0.911376953125,
+            "height" : 183,
+            "borderWidth" : 1,
+            "radiusIsRelative" : false,
+            "hueRotate" : 0,
+            "borderStyle" : "solid",
+            "brightnessEnabled" : 0,
+            "borderPerSide" : false,
+            "saturateEnabled" : 0,
+            "aspectRatioLocked" : true,
+            "borderRight" : 1,
+            "parentid" : "YKZNW85GC",
+            "intrinsicWidth" : 526,
+            "radiusBottomLeft" : 0,
+            "boxShadows" : [
+
+            ],
+            "contrastEnabled" : 0,
+            "borderEnabled" : 0,
+            "radiusPerCorner" : false,
+            "radiusTopRight" : 0,
+            "invert" : 0,
+            "__class" : "FrameNode",
+            "fillImage" : "QqVBaz5NHqjrCqp4DPK0WtNx0R9iDwCPjH56OAchp6N2sXGuDBEJfYmud7h4SSz20sIJqJQHbMJCdRhPw.png",
+            "clip" : false,
+            "fillType" : "image",
+            "visible" : true,
+            "invertEnabled" : 0,
+            "heightFactor" : null,
+            "width" : 762,
+            "intrinsicHeight" : 126,
+            "borderBottom" : 1,
+            "deviceType" : null,
+            "bottom" : 90,
+            "borderTop" : 1,
+            "targetName" : null,
+            "radiusBottomRight" : 0,
+            "blurEnabled" : 0
+          },
+          {
+            "radius" : 0,
+            "brightness" : 100,
+            "hueRotateEnabled" : 0,
+            "children" : [
+
+            ],
+            "centerAnchorX" : 0.5,
+            "id" : "fr89OgK6n",
+            "exportOptions" : [
+
+            ],
+            "exportIncludesBackground" : true,
+            "grayScaleEnabled" : 0,
+            "fillImagePixelHeight" : 494,
+            "fillImagePixelWidth" : 1536,
+            "constraintsLocked" : false,
+            "fillImageResize" : "fill",
+            "blurType" : "layer",
+            "fillColor" : "rgba(255,255,255,1)",
+            "widthFactor" : null,
+            "blendingEnabled" : 0,
+            "grayscale" : 0,
+            "top" : 0,
+            "saturate" : 100,
+            "left" : 0,
+            "locked" : false,
+            "sepiaEnabled" : 0,
+            "fillGradient" : {
+              "end" : "rgba(0,0,0,0)",
+              "alpha" : 1,
+              "angle" : 0,
+              "__class" : "LinearGradient",
+              "start" : "black"
+            },
+            "blur" : 12,
+            "radiusTopLeft" : 0,
+            "sepia" : 0,
+            "borderColor" : "#222",
+            "rotation" : 0,
+            "borderLeft" : 1,
+            "fillEnabled" : true,
+            "right" : 0,
+            "opacity" : 1,
+            "name" : "topCrest",
+            "blendingMode" : "normal",
+            "contrast" : 100,
+            "centerAnchorY" : 0.12060546875,
+            "height" : 494,
+            "borderWidth" : 1,
+            "radiusIsRelative" : false,
+            "hueRotate" : 0,
+            "borderStyle" : "solid",
+            "brightnessEnabled" : 0,
+            "borderPerSide" : false,
+            "saturateEnabled" : 0,
+            "aspectRatioLocked" : true,
+            "borderRight" : 1,
+            "parentid" : "YKZNW85GC",
+            "intrinsicWidth" : 768,
+            "radiusBottomLeft" : 0,
+            "boxShadows" : [
+
+            ],
+            "contrastEnabled" : 0,
+            "borderEnabled" : 0,
+            "radiusPerCorner" : false,
+            "radiusTopRight" : 0,
+            "invert" : 0,
+            "__class" : "FrameNode",
+            "fillImage" : "SULR7PjONMbOscj2VlKYcPpEcuZNl07CZ9pFFclTIU0Yujnbhqy8PR54t6mYoXo9C11snJt6sYTQppE8kXNdw.png",
+            "clip" : false,
+            "fillType" : "image",
+            "visible" : true,
+            "invertEnabled" : 0,
+            "heightFactor" : null,
+            "width" : 1536,
+            "intrinsicHeight" : 247,
+            "borderBottom" : 1,
+            "deviceType" : null,
+            "bottom" : null,
+            "borderTop" : 1,
+            "targetName" : "topCrest",
+            "radiusBottomRight" : 0,
+            "blurEnabled" : 0
+          },
+          {
+            "radius" : 0,
+            "brightness" : 100,
+            "hueRotateEnabled" : 0,
+            "children" : [
+
+            ],
+            "centerAnchorX" : 0.5,
+            "id" : "eQUWla3XH",
+            "exportOptions" : [
+
+            ],
+            "exportIncludesBackground" : true,
+            "grayScaleEnabled" : 0,
+            "fillImagePixelHeight" : 2048,
+            "fillImagePixelWidth" : 1536,
+            "constraintsLocked" : false,
+            "fillImageResize" : "fill",
+            "blurType" : "layer",
+            "fillColor" : "rgba(255,255,255,1)",
+            "widthFactor" : null,
+            "blendingEnabled" : 0,
+            "grayscale" : 0,
+            "top" : 0,
+            "saturate" : 100,
+            "left" : 0,
+            "locked" : false,
+            "sepiaEnabled" : 0,
+            "fillGradient" : {
+              "end" : "rgba(0,0,0,0)",
+              "alpha" : 1,
+              "angle" : 0,
+              "__class" : "LinearGradient",
+              "start" : "black"
+            },
+            "blur" : 12,
+            "radiusTopLeft" : 0,
+            "sepia" : 0,
+            "borderColor" : "#222",
+            "rotation" : 0,
+            "borderLeft" : 1,
+            "fillEnabled" : true,
+            "right" : 0,
+            "opacity" : 0,
+            "name" : "flood",
+            "blendingMode" : "normal",
+            "contrast" : 100,
+            "centerAnchorY" : 0.5,
+            "height" : 2048,
+            "borderWidth" : 1,
+            "radiusIsRelative" : false,
+            "hueRotate" : 0,
+            "borderStyle" : "solid",
+            "brightnessEnabled" : 0,
+            "borderPerSide" : false,
+            "saturateEnabled" : 0,
+            "aspectRatioLocked" : true,
+            "borderRight" : 1,
+            "parentid" : "YKZNW85GC",
+            "intrinsicWidth" : 768,
+            "radiusBottomLeft" : 0,
+            "boxShadows" : [
+
+            ],
+            "contrastEnabled" : 0,
+            "borderEnabled" : 0,
+            "radiusPerCorner" : false,
+            "radiusTopRight" : 0,
+            "invert" : 0,
+            "__class" : "FrameNode",
+            "fillImage" : "aA74fI3M862N683SwsnfiOhqhYOKoXKwxEkxQggJFsypZpsB7EnVEhXfcfBPjM6DlVde8o9LGGSh59v7meg.png",
+            "clip" : false,
+            "fillType" : "image",
+            "visible" : true,
+            "invertEnabled" : 0,
+            "heightFactor" : null,
+            "width" : 1536,
+            "intrinsicHeight" : 1024,
+            "borderBottom" : 1,
+            "deviceType" : null,
+            "bottom" : null,
+            "borderTop" : 1,
+            "targetName" : "flood",
+            "radiusBottomRight" : 0,
+            "blurEnabled" : 0
+          }
+        ],
+        "centerAnchorX" : 0,
+        "id" : "YKZNW85GC",
+        "exportOptions" : [
+
+        ],
+        "exportIncludesBackground" : true,
+        "grayScaleEnabled" : 0,
+        "fillImagePixelHeight" : null,
+        "fillImagePixelWidth" : null,
+        "constraintsLocked" : false,
+        "fillImageResize" : "fill",
+        "blurType" : "layer",
+        "fillColor" : "rgba(255,255,255,1)",
+        "widthFactor" : null,
+        "blendingEnabled" : 0,
+        "grayscale" : 0,
+        "top" : 0,
+        "saturate" : 100,
+        "left" : 0,
+        "locked" : false,
+        "sepiaEnabled" : 0,
+        "fillGradient" : {
+          "end" : "rgba(0,0,0,0)",
+          "alpha" : 1,
+          "angle" : 0,
+          "__class" : "LinearGradient",
+          "start" : "black"
+        },
+        "blur" : 12,
+        "radiusTopLeft" : 0,
+        "sepia" : 0,
+        "borderColor" : "#222",
+        "rotation" : 0,
+        "borderLeft" : 1,
+        "fillEnabled" : false,
+        "right" : null,
+        "opacity" : 1,
+        "name" : "iPad",
+        "blendingMode" : "normal",
+        "contrast" : 100,
+        "centerAnchorY" : 0,
+        "height" : 2048,
+        "borderWidth" : 1,
+        "radiusIsRelative" : false,
+        "hueRotate" : 0,
+        "borderStyle" : "solid",
+        "brightnessEnabled" : 0,
+        "borderPerSide" : false,
+        "saturateEnabled" : 0,
+        "aspectRatioLocked" : false,
+        "borderRight" : 1,
+        "parentid" : "SqBe_1bzI",
+        "intrinsicWidth" : null,
+        "radiusBottomLeft" : 0,
+        "boxShadows" : [
+
+        ],
+        "contrastEnabled" : 0,
+        "borderEnabled" : 0,
+        "radiusPerCorner" : false,
+        "radiusTopRight" : 0,
+        "invert" : 0,
+        "__class" : "FrameNode",
+        "fillImage" : null,
+        "clip" : true,
+        "fillType" : "color",
+        "visible" : true,
+        "invertEnabled" : 0,
+        "heightFactor" : null,
+        "width" : 1536,
+        "intrinsicHeight" : null,
+        "borderBottom" : 1,
+        "deviceType" : null,
+        "bottom" : null,
+        "borderTop" : 1,
+        "targetName" : "iPad",
+        "radiusBottomRight" : 0,
+        "blurEnabled" : 0
+      }
+    ]
+  }
+}
