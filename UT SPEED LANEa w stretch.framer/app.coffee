@@ -3,7 +3,7 @@
 {Pointer} = require "Pointer"
 
 # Import file "Interactions_ORIGINAL"
-sketch = Framer.Importer.load("imported/Interactions_ORIGINAL@1x", scale: 1)
+sketch = Framer.Importer.load("imported/Interactions_ORIGINAL@1x", scale: 1.1)
 # Import file "Interactions7.1v2"
 
 # Import file "Interactions7.1v2"# Import file "Interactions7.1v2"
@@ -12,15 +12,22 @@ sketch = Framer.Importer.load("imported/Interactions_ORIGINAL@1x", scale: 1)
 
 
 # Import file "Interactions7.1v2"
-Utils.globalLayers(sketch)	
+Utils.globalLayers(sketch)
+
+defaultWidth = 1700
+defaultHeight = 2298
+
+screenWidth = Framer.Device.screen.width
+
+widthScale = defaultWidth / screenWidth
 
 #TODO JS: 
 Framer.Device.customize
 	devicePixelRatio: 1
-	screenWidth: 1536
-	screenHeight: 2048
-	borderColor: "FAFAFA"
-	borderWidth: 0
+	screenWidth: defaultWidth
+	screenHeight: defaultHeight
+
+
 
 circles = sketch.circles_offset
 mainBoard = sketch.Version_One_Default
@@ -113,7 +120,7 @@ canvas = new Layer
 
 
 trail = new Layer
-	backgroundColor: "rgba(94,167,207,1)"
+	backgroundColor: "rgba(34,167,207,1)"
 	y: 0
 	x: 0
 	blur: 50
@@ -171,6 +178,7 @@ setShowOnDrag = (shape) ->
 		#TODO put into function
 		canvas.on Events.TouchMove, (ev, layer) ->
 			if speedUpSwitch
+			# Start speeding up
 				y2 = tapY - trackingOffset
 				dist = y1-y2
 				bottom_bumper.animate
@@ -189,6 +197,7 @@ setShowOnDrag = (shape) ->
 	canvas.on Events.TouchEnd, () ->
 		
 		if speedUpSwitch
+			# Stop speeding up
 			bottom_bumper.animate
 				scaleY: 1
 				options:
