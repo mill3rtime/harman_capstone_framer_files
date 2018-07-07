@@ -3,7 +3,10 @@
 {Pointer} = require "Pointer"
 
 # Import file "Interactions_ORIGINAL"
-sketch = Framer.Importer.load("imported/Interactions_ORIGINAL@1x", scale: 1.1)
+SKETCH_IMPORT_SCALE = 1.1
+IPAD_HEIGHT = 2048
+IPAD_WIDTH = 1536
+sketch = Framer.Importer.load("imported/Interactions_ORIGINAL@1x", scale: SKETCH_IMPORT_SCALE)
 # Import file "Interactions7.1v2"
 
 # Import file "Interactions7.1v2"# Import file "Interactions7.1v2"
@@ -14,8 +17,8 @@ sketch = Framer.Importer.load("imported/Interactions_ORIGINAL@1x", scale: 1.1)
 # Import file "Interactions7.1v2"
 Utils.globalLayers(sketch)
 
-defaultWidth = 1700
-defaultHeight = 2298
+defaultWidth = IPAD_WIDTH * SKETCH_IMPORT_SCALE
+defaultHeight = IPAD_HEIGHT * SKETCH_IMPORT_SCALE
 
 screenWidth = Framer.Device.screen.width
 
