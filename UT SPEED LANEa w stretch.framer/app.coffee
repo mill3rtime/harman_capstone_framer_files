@@ -2,6 +2,10 @@
 
 {Pointer} = require "Pointer"
 
+# Import the CARLA API and begin the server
+CARLA_API = require "CARLA_API"
+CARLA_API.begin_server()
+
 # Import file "Interactions_ORIGINAL"
 SKETCH_IMPORT_SCALE = 1.1
 IPAD_HEIGHT = 2048
@@ -182,6 +186,7 @@ setShowOnDrag = (shape) ->
 		canvas.on Events.TouchMove, (ev, layer) ->
 			if speedUpSwitch
 			# Start speeding up
+				CARLA_API.speed_up()
 				y2 = tapY - trackingOffset
 				dist = y1-y2
 				bottom_bumper.animate
@@ -191,6 +196,20 @@ setShowOnDrag = (shape) ->
 			
 			if trailSwitch
 				trailSwitch = true
+				# Case for V2, check if we are moving up or down
+				if currentScreen == "v2"
+					if shape.y > tapY - trackingOffset
+						# Moving up on canvas
+						CARLA_API.stop_speeding_up()
+						CARLA_API.slow_down()
+					else
+						CARLA_API.stop_slowing_down()
+						CARLA_API.speed_up()
+				if currentScreen == 'v1'
+					if shape.y < tapY - trackingOffset
+						# Moving up on canvas
+						CARLA_API.speed_up()
+						CARLA_API.stop_slowing_down()
 				shape.x = tapX - trackingOffset
 				shape.y = tapY - trackingOffset
 		canvas.bringToFront()
@@ -201,6 +220,8 @@ setShowOnDrag = (shape) ->
 		
 		if speedUpSwitch
 			# Stop speeding up
+			# CARLA_API Call to stop
+			CARLA_API.stop_speeding_up()
 			bottom_bumper.animate
 				scaleY: 1
 				options:
