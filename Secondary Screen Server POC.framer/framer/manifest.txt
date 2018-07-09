@@ -1,9 +1,11 @@
 app.coffee
 framer/coffee-script.js
+framer/config.json
 framer/framer.generated.js
 framer/framer.init.js
 framer/framer.js
 framer/framer.modules.js
+framer/framer.vekter.js
 framer/images/cursor-active.png
 framer/images/cursor-active@2x.png
 framer/images/cursor.png
@@ -18,3 +20,5 @@ framer/preview.png
 framer/style.css
 framer/version
 index.html
+modules/myModule.coffee
+server.js
