@@ -1,3 +1,14 @@
-# I could not find an app.coffee file in your project so an empty one was created.
+# Generic helper function that brings the desired layer to
+# the forefront 
+screen_to_show = (screen) ->
+	screen.x = 0
+	screen.bringToFront()
+	
+# Listen for a websocket event at the server specified at
+# the bottom of index.html 
+ws.onmessage = (event) ->
+ switch event.data
+   when 'speed_up' then screen_to_show(speed_up)
+   when 'slow_down' then screen_to_show(slow_down)
+   else screen_to_show(idle)
 
-# If you worked in javascript before you can translate your app.js file to coffee script at: http://js2coffee.org/
