@@ -95,28 +95,28 @@
                   "inlineStyleRanges" : [
                     {
                       "style" : "FONT:__SF-UI-Text-Regular__",
-                      "length" : 4,
-                      "offset" : 0
+                      "offset" : 0,
+                      "length" : 4
                     },
                     {
                       "style" : "LETTERSPACING:0",
-                      "length" : 4,
-                      "offset" : 0
+                      "offset" : 0,
+                      "length" : 4
                     },
                     {
                       "style" : "LINEHEIGHT:1.2",
-                      "length" : 4,
-                      "offset" : 0
+                      "offset" : 0,
+                      "length" : 4
                     },
                     {
                       "style" : "SIZE:128",
-                      "length" : 4,
-                      "offset" : 0
+                      "offset" : 0,
+                      "length" : 4
                     },
                     {
                       "style" : "COLOR:#55CCFF",
-                      "length" : 4,
-                      "offset" : 0
+                      "offset" : 0,
+                      "length" : 4
                     }
                   ],
                   "entityRanges" : [
@@ -342,28 +342,28 @@
                   "inlineStyleRanges" : [
                     {
                       "style" : "FONT:__SF-UI-Text-Regular__",
-                      "offset" : 0,
-                      "length" : 12
+                      "length" : 12,
+                      "offset" : 0
                     },
                     {
                       "style" : "LETTERSPACING:0",
-                      "offset" : 0,
-                      "length" : 12
+                      "length" : 12,
+                      "offset" : 0
                     },
                     {
                       "style" : "LINEHEIGHT:1.2",
-                      "offset" : 0,
-                      "length" : 12
+                      "length" : 12,
+                      "offset" : 0
                     },
                     {
                       "style" : "SIZE:128",
-                      "offset" : 0,
-                      "length" : 12
+                      "length" : 12,
+                      "offset" : 0
                     },
                     {
                       "style" : "COLOR:#55CCFF",
-                      "offset" : 0,
-                      "length" : 12
+                      "length" : 12,
+                      "offset" : 0
                     }
                   ],
                   "entityRanges" : [
@@ -589,28 +589,28 @@
                   "inlineStyleRanges" : [
                     {
                       "style" : "FONT:__SF-UI-Text-Regular__",
-                      "length" : 13,
-                      "offset" : 0
+                      "offset" : 0,
+                      "length" : 13
                     },
                     {
                       "style" : "LETTERSPACING:0",
-                      "length" : 13,
-                      "offset" : 0
+                      "offset" : 0,
+                      "length" : 13
                     },
                     {
                       "style" : "LINEHEIGHT:1.2",
-                      "length" : 13,
-                      "offset" : 0
+                      "offset" : 0,
+                      "length" : 13
                     },
                     {
                       "style" : "SIZE:128",
-                      "length" : 13,
-                      "offset" : 0
+                      "offset" : 0,
+                      "length" : 13
                     },
                     {
                       "style" : "COLOR:#55CCFF",
-                      "length" : 13,
-                      "offset" : 0
+                      "offset" : 0,
+                      "length" : 13
                     }
                   ],
                   "entityRanges" : [
