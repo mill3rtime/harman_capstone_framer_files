@@ -71,7 +71,7 @@ y2 = 0
 x2 = 0
 bumpers = [bottom_bumper,top_bumper,left_bumper,right_bumper]
 
-sideBumpers = [right_bumper, left_bumper]
+sideBumpers = [right_bumper,left_bumper, Position1]
 
 stretchY = 0
 stretchX = 0
@@ -228,8 +228,31 @@ returnBumpers = (layer) ->
 			curve: Bezier.easeOut
 
 
-	
+Speed3.states =
+	in:
+		scale: 1.5
+		animationOptions:
+			curve: "spring"
+	default:
+		scale: 1
 
+
+
+hideBumpers = (layer) ->
+	layer.animate
+		opacity: 0
+		options:
+			time: .3
+			curve: Bezier.easeOut
+
+
+showBumpers = (layer) ->
+	layer.animate
+		opacity: 1
+		options:
+			time: .3
+			curve: Bezier.easeOut
+	
 #setup trail  and circles for drag
 snailSetup(trail)
 snailSetup(circles)
@@ -245,6 +268,13 @@ canvas.on Events.TouchStart, (e, layer) ->
 	stretchX = initialX
 	whichBumper()
 	
+	
+	
+	if wasTapIn(bottom_bumper) || wasTapIn(top_bumper)
+		Speed3.stateCycle()
+		for layer in sideBumpers
+			hideBumpers(layer)
+
 	
 	trailSwitch = true
 
@@ -266,7 +296,12 @@ canvas.on Events.TouchEnd, () ->
 
 	for layer in bumpers
 		returnBumpers(layer)
+		
+	for layer in sideBumpers
+		showBumpers(layer)	
 	
+	Speed3.states.switch "default"
+		
 	bumperTapped = null
 
 trail.draggable.enabled = true
