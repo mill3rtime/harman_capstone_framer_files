@@ -3,7 +3,7 @@
 
 if (!window.Framer && window._bridge) {window._bridge('runtime.error', {message:'[framer.js] Framer library missing or corrupt. Select File → Update Framer Library.'})}
 window.__imported__ = window.__imported__ || {};
-window.__imported__["Interactions7.1v2@1x/layers.json.js"] = [
+window.__imported__["Interactions7.1v2@2x/layers.json.js"] = [
 	{
 		"objectId": "22348E1C-7674-4057-BB06-969272D9D35C",
 		"kind": "artboard",
@@ -913,7 +913,7 @@ window.__imported__["Interactions7.1v2@1x/layers.json.js"] = [
 	}
 ]
 window.__imported__ = window.__imported__ || {};
-window.__imported__["Interactions7.1v2@2x/layers.json.js"] = [
+window.__imported__["Interactions7.1v2@1x/layers.json.js"] = [
 	{
 		"objectId": "22348E1C-7674-4057-BB06-969272D9D35C",
 		"kind": "artboard",

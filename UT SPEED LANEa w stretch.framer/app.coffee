@@ -11,21 +11,13 @@ SKETCH_IMPORT_SCALE = 1.1
 IPAD_HEIGHT = 2048
 IPAD_WIDTH = 1536
 sketch = Framer.Importer.load("imported/Interactions_ORIGINAL@1x", scale: SKETCH_IMPORT_SCALE)
-# Import file "Interactions7.1v2"
 
-# Import file "Interactions7.1v2"# Import file "Interactions7.1v2"
-
-# Import file "Interactions7.1v2"
-
-
-# Import file "Interactions7.1v2"
 Utils.globalLayers(sketch)
 
 defaultWidth = IPAD_WIDTH * SKETCH_IMPORT_SCALE
 defaultHeight = IPAD_HEIGHT * SKETCH_IMPORT_SCALE
 
 screenWidth = Framer.Device.screen.width
-
 widthScale = defaultWidth / screenWidth
 
 #TODO JS: 
@@ -43,29 +35,87 @@ mainBoard = sketch.Version_One_Default
 mainBoard.x = 0
 mainBoard.y = 0
 
+canvas = new Layer
+	width: Screen.width
+	height: Screen.height
+	opacity: 0
+
+
 tapX = 0
 tapY = 0
 
 
+#TODO 
+#touch start should come before touch move	
+#add param for visible on click for snail setup
+#use tap check for easter egg functions
+# breakup enormous show on drag functon
+# disable purple box
+# when lane adjust is tapped make other options disapear and vic versa
 
+
+# #COMMIT
+# CHECK TAP FUNC THAT RETURNS SHAPE TAPPED
+# encapsulated cord tracking
+# all bumpers stretch
+# al bumpers return to previous state on release
+# code cleanup
+
+#GLOBAL VARIABLES
+speedUpSwitch = false
 easterEggCounter = 0
 trailSwitch = false
 currentScreen = "v1"
 trackingOffset = 300
-
-y1 = 0
+bumperTapped = null
+initialY = 0
+initialX = 0
 y2 = 0
-speedUpSwitch = false
+x2 = 0
+bumpers = [bottom_bumper,top_bumper,left_bumper,right_bumper]
 
 
+#Func for Setting tapX and tapY
+trackTaps = (touchEvent, layer) ->
+	if Utils.isPhone() || Utils.isTablet()
+		tapX = (touchEvent.clientX - layer.x)
+		tapY = touchEvent.clientY - layer.y
+# 		print "is mobile"
+	else 
+# 		print "not mobile"
+		tapX = (touchEvent.offsetX)
+		tapY = (touchEvent.offsetY)
 
+# trail design in code
+trail = new Layer
+	backgroundColor: "rgba(34,167,207,1)"
+	y: 0
+	x: 0
+	blur: 50
+	borderRadius: 100
+	height: 160
+	width: 120
+	opacity: 0.3
 
-checkTap = (shape) ->
-	if (tapY >= shape.minY & tapY <= shape.maxY + 200) && (tapX >= shape.minX & tapX <= shape.maxX)
+#Func: wasTapIn - takes a shape and returns t/f if click is inside of it (using tapY, tapX)
+wasTapIn = (shape) ->
+	if (tapY >= shape.minY & tapY <= shape.maxY + 200) && (tapX >= shape.minX &
+	tapX <= shape.maxX)
 		return true
 
-
-#Func: snailSetup
+#Func sets the bumperTapped
+whichBumper = () ->
+	if wasTapIn(bottom_bumper)
+		bumperTapped = bottom_bumper
+	else if wasTapIn(top_bumper)
+		bumperTapped = top_bumper
+	else if wasTapIn(right_bumper)
+		bumperTapped = right_bumper 
+	else if wasTapIn(left_bumper)
+		bumperTapped = left_bumper
+	else bumperTapped = ""
+	
+#Func: snailSetup  - sets up layers to be dragged around
 snailSetup = (shape)->
 	shape.x = -500
 	shape.y = -500
@@ -80,8 +130,44 @@ snailSetup = (shape)->
 	shape.draggable.overdrag = false
 	
 
-#Func: checkEasterEgg
-#for some reason this counts in 2's
+
+# Func: bumperStretch for pulling from sides
+bumperStretch = (bumperTapped) ->
+	if bumperTapped == bottom_bumper
+			# Start speeding up
+				CARLA_API.speed_up()
+				dist = initialY-y2
+				bottom_bumper.animate
+					scaleY: 1 + (dist/80)
+					scaleX: 1 + dist/320
+					options:
+						time: .1
+						
+			if bumperTapped == top_bumper
+			# Start speeding up
+				CARLA_API.speed_up()
+				dist = y2-initialY
+				top_bumper.animate
+					scaleY: 1 + dist/80
+					scaleX: 1 + dist/320
+					options:
+						time: .1
+						
+			if bumperTapped == left_bumper
+				dist = x2 - initialX
+				left_bumper.animate
+					scaleX: 1 + dist/80
+					scaleY: 1 + dist/240
+					options:
+						time: .1
+						
+			if bumperTapped == right_bumper
+				dist = initialX - x2
+				right_bumper.animate
+					scaleX: 1 + dist/80
+					scaleY: 1 + dist/240
+					options:
+						time: .1
 
 #SWITCH SCREENS
 #redo this by passing in current screen and prev screen
@@ -118,82 +204,54 @@ checkEasterEgg = () ->
 	
 
 
+#Func: return bumpers to 
+returnBumpers = (layer) ->
+	layer.animate
+		scaleY: 1
+		scaleX: 1
+		options:
+			time: .3
+			curve: Bezier.easeOut
 
 
-canvas = new Layer
-	width: Screen.width
-	height: Screen.height
-	opacity: 0
 
-
-trail = new Layer
-	backgroundColor: "rgba(34,167,207,1)"
-	y: 0
-	x: 0
-	blur: 50
-	borderRadius: 100
-	height: 160
-	width: 120
-	opacity: 0.3
-
+#setup trail  and circles for drag
 snailSetup(trail)
 snailSetup(circles)
 
-#TODO JS: look at pointer module and tablet detection
-# track movements on touch move (circle and trail)
+# immediately begin tracking movements on canvas
 canvas.on Events.TouchMove, (e, layer) ->
 	touchEvent = Events.touchEvent(e)
-#TODO JS: encapsulate cord tracking
-	if Utils.isPhone() || Utils.isTablet()
-		tapX = (touchEvent.clientX - layer.x)
-		tapY = touchEvent.clientY - layer.y
-# 		print "is mobile"
-	else 
-# 		print "not mobile"
-		tapX = (touchEvent.offsetX)
-		tapY = (touchEvent.offsetY)
+	trackTaps(touchEvent, layer)
 	
-
 
 #Func: setShowOnDrag
 setShowOnDrag = (shape) -> 
 	# circles but hide trail, it appears in wrong palce (top left)
 	canvas.on Events.TouchStart, (e, layer) ->
 		touchEvent = Events.touchEvent(e)
-		if Utils.isPhone() || Utils.isTablet()
-				tapX = (touchEvent.clientX - layer.x)
-				tapY = touchEvent.clientY - layer.y
-# 				print "is mobile"
-		else 
-# 			print "not mobile"
-			tapX = (touchEvent.offsetX)
-			tapY = (touchEvent.offsetY)
-		shape.x = tapX - trackingOffset
-		shape.y = tapY - trackingOffset
+		trackTaps(touchEvent,layer)
+		initialY = tapY - trackingOffset
+		initialX = tapX - trackingOffset
+		whichBumper()
+		
 		shape.visible = true
-		#TODO add param for visible on click
 		trail.visible = false
 		trailSwitch = true
+			
 		
-		if checkTap(bottom_bumper)
-			y1 = tapY - trackingOffset
-			speedUpSwitch = true
-		
-		
-		#^set flag so that when trail animation finishes and trail switch is false, you dont keep making trails below here
+		#BUMPER TAP DETECTION
+		# make a fun
+
+#^set flag so that when trail animation finishes and trail switch is false, you dont keep making trails below here
 		
 		#TODO put into function
 		canvas.on Events.TouchMove, (ev, layer) ->
-			if speedUpSwitch
-			# Start speeding up
-				CARLA_API.speed_up()
-				y2 = tapY - trackingOffset
-				dist = y1-y2
-				bottom_bumper.animate
-					scaleY: dist/80
-					options:
-						time: .1
+			y2 = tapY - trackingOffset
+			x2 = tapX - trackingOffset
 			
+			bumperStretch(bumperTapped)
+									
 			if trailSwitch
 				trailSwitch = true
 				# Case for V2, check if we are moving up or down
@@ -217,31 +275,19 @@ setShowOnDrag = (shape) ->
 	
 	#TOUCHEND
 	canvas.on Events.TouchEnd, () ->
+		for layer in bumpers
+			returnBumpers(layer)
+		CARLA_API.stop_speeding_up()
 		
-		if speedUpSwitch
-			# Stop speeding up
-			# CARLA_API Call to stop
-			CARLA_API.stop_speeding_up()
-			bottom_bumper.animate
-				scaleY: 1
-				options:
-					time: .3
-					curve: Bezier.easeOut
-			speedUpSwitch = false
-					
-
+		bumperTapped = null
 		shape.visible = false
 		trailSwitch = false
 		
-		#TODO use the x and y values of 2 			shapes instes
+		#TODO use the x and y values of 2 					shapes instes
 		if tapX > -300 & tapX < 300
 			if tapY > -300 & tapY < 300
-			
-				easterEggCounter += 1
-	#UGH HAVE TO LISTEN FOR CLICKS HERE			
+				easterEggCounter += 1	
 				checkEasterEgg()
-				
-		
 
 trail.draggable.enabled = true
 trail.draggable.constraints = {
@@ -271,6 +317,8 @@ setShowOnDrag(circles)
 #fix and use arrays
 
 layerArray = []
+
+
 
 trail.on "change:y", ->
 	if trailSwitch
