@@ -1,6 +1,9 @@
 #SETUP
 
 {Pointer} = require "Pointer"
+#disable purple hints
+Framer.Extras.Hints.disable()
+
 
 # Import the CARLA API and begin the server
 CARLA_API = require "CARLA_API"
@@ -49,18 +52,19 @@ tapY = 0
 #touch start should come before touch move	
 #add param for visible on click for snail setup
 #use tap check for easter egg functions
-# breakup enormous show on drag functon
 # disable purple box
 # when lane adjust is tapped make other options disapear and vic versa
 #back to speed and nudge
 # make hideSideBumper() that switches sttes animated
 
 # #COMMIT
-# seperated out listeners
+#fixed screen switching and changed related func and var names
+#disable purple hints
+
 
 #GLOBAL VARIABLES
 speedUpSwitch = false
-easterEggCounter = 0
+switchScreenCounter = 0
 trailSwitch = false
 currentScreen = "v1"
 trackingOffset = 300
@@ -77,8 +81,11 @@ stretchY = 0
 stretchX = 0
 
 
+
 switchScreenButton = new Layer
 	visible: false
+	width: 316
+	height: 294
 	
 
 #Func for Setting tapX and tapY
@@ -181,9 +188,11 @@ bumperStretch = (bumperTapped) ->
 #checkSwitchScreens
 #SWITCH SCREENS
 #redo this by passing in current screen and prev screen
-checkScreenSwitch = () ->	
-	if easterEggCounter >= 6
-		easterEggCounter = 0
+checkScreenSwitch = () ->
+	if wasTapIn(switchScreenButton)
+		switchScreenCounter++
+	if switchScreenCounter >= 4
+		switchScreenCounter = 0
 		if currentScreen == "v2"
 			sketch.Binary_1.x = 0
 			sketch.Binary_1.y = 0
@@ -212,7 +221,8 @@ checkScreenSwitch = () ->
 # 		sketch.Version_One_Default.
 		#put transition to next screen here
 	
-
+	
+		
 #moveToTap()
 moveToTap = (visual) ->
 	visual.x = tapX - trackingOffset
@@ -267,7 +277,7 @@ canvas.on Events.TouchStart, (e, layer) ->
 	stretchY = initialY
 	stretchX = initialX
 	whichBumper()
-	
+	checkScreenSwitch()	
 	
 	
 	if wasTapIn(bottom_bumper) || wasTapIn(top_bumper)
