@@ -346,7 +346,9 @@ canvas.on Events.TouchEnd, () ->
 		showBumpers(layer)	
 	
 	Speed3.states.switch "default"
-	top_bumper.stateCycle()
+	
+	if bumperTapped = bottom_bumper
+		top_bumper.stateCycle()
 		
 	bumperTapped = null
 	released = true
