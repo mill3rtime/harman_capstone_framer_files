@@ -48,6 +48,7 @@ tapX = 0
 tapY = 0
 
 
+#	
 #TODO 
 #touch start should come before touch move	
 #add param for visible on click for snail setup
@@ -74,11 +75,23 @@ initialX = 0
 y2 = 0
 x2 = 0
 bumpers = [bottom_bumper,top_bumper,left_bumper,right_bumper]
-
 sideBumpers = [right_bumper,left_bumper, Position1]
-
 stretchY = 0
 stretchX = 0
+
+startYTop = top_bumper.y
+startYBottom = bottom_bumper.y
+
+released = true
+
+Speed3.states =
+	in:
+		scale: 1.5
+		animationOptions:
+			curve: "spring"
+	default:
+		scale: 1
+	
 
 
 
@@ -149,6 +162,8 @@ snailSetup = (shape)->
 
 #bumperStretch()
 bumperStretch = (bumperTapped) ->
+
+	
 	if bumperTapped == bottom_bumper
 			# Start speeding up
 				dist =  initialY - stretchY
@@ -157,6 +172,17 @@ bumperStretch = (bumperTapped) ->
 					scaleX: 1 + dist/320
 					options:
 						time: .1
+				bottom_bumper.onAnimationStart ->
+					top_bumper.animate
+						y: top_bumper.y - (dist * 3) 
+						bottom_bumper.onAnimationEnd -> 
+							if released
+								top_bumper.animate
+									y: startYTop
+									options:
+										time: .4
+										curve: Bezier.ease
+
 						
 			if bumperTapped == top_bumper
 			# Start speeding up
@@ -166,6 +192,16 @@ bumperStretch = (bumperTapped) ->
 					scaleX: 1 + dist/320
 					options:
 						time: .1
+				top_bumper.onAnimationStart ->
+					bottom_bumper.animate
+						y: bottom_bumper.y + (dist *3)
+						top_bumper.onAnimationEnd ->
+							if released
+								bottom_bumper.animate
+									y: startYBottom
+									options:
+										time: .4
+										curve: Bezier.ease
 						
 			if bumperTapped == left_bumper
 				dist = stretchX - initialX
@@ -238,13 +274,7 @@ returnBumpers = (layer) ->
 			curve: Bezier.easeOut
 
 
-Speed3.states =
-	in:
-		scale: 1.5
-		animationOptions:
-			curve: "spring"
-	default:
-		scale: 1
+
 
 
 
@@ -277,7 +307,8 @@ canvas.on Events.TouchStart, (e, layer) ->
 	stretchY = initialY
 	stretchX = initialX
 	whichBumper()
-	checkScreenSwitch()	
+	checkScreenSwitch()
+	released = false
 	
 	
 	if wasTapIn(bottom_bumper) || wasTapIn(top_bumper)
@@ -311,8 +342,10 @@ canvas.on Events.TouchEnd, () ->
 		showBumpers(layer)	
 	
 	Speed3.states.switch "default"
+	top_bumper.stateCycle()
 		
 	bumperTapped = null
+	released = true
 
 trail.draggable.enabled = true
 trail.draggable.constraints = {
