@@ -172,53 +172,57 @@ bumperStretch = (bumperTapped) ->
 					scaleX: 1 + dist/320
 					options:
 						time: .1
+				top_bumper.off(Events.AnimationStart)
+				top_bumper.off(Events.AnimationStop)
 				bottom_bumper.onAnimationStart ->
 					top_bumper.animate
 						y: top_bumper.y - (dist * 3) 
-						bottom_bumper.onAnimationEnd -> 
-							if released
-								top_bumper.animate
-									y: startYTop
-									options:
-										time: .4
-										curve: Bezier.ease
+				bottom_bumper.onAnimationEnd -> 
+					if released
+						top_bumper.animate
+							y: startYTop
+							options:
+								time: .4
+								curve: Bezier.ease
 
 						
-			if bumperTapped == top_bumper
-			# Start speeding up
-				dist = stretchY - initialY
-				top_bumper.animate
-					scaleY: 1 + dist/80
-					scaleX: 1 + dist/320
+	if bumperTapped == top_bumper
+	# Start speeding up
+		dist = stretchY - initialY
+		top_bumper.animate
+			scaleY: 1 + dist/80
+			scaleX: 1 + dist/320
+			options:
+				time: .1
+		bottom_bumper.off(Events.AnimationStart)
+		bottom_bumper.off(Events.AnimationStop)
+		top_bumper.onAnimationStart ->
+			bottom_bumper.animate
+				y: bottom_bumper.y + (dist * 3)
+		top_bumper.onAnimationEnd ->
+			if released
+				bottom_bumper.animate
+					y: startYBottom
 					options:
-						time: .1
-				top_bumper.onAnimationStart ->
-					bottom_bumper.animate
-						y: bottom_bumper.y + (dist *3)
-						top_bumper.onAnimationEnd ->
-							if released
-								bottom_bumper.animate
-									y: startYBottom
-									options:
-										time: .4
-										curve: Bezier.ease
-						
-			if bumperTapped == left_bumper
-				dist = stretchX - initialX
-				left_bumper.animate
-					scaleX: 1 + dist/80
-					scaleY: 1 + dist/240
-					options:
-						time: .1
-						
-			if bumperTapped == right_bumper
-				dist = initialX - stretchX
-				right_bumper.animate
-					scaleX: 1 + dist/80
-					scaleY: 1 + dist/240
-					opacity: 1
-					options:
-						time: .1
+						time: .4
+						curve: Bezier.ease
+				
+	if bumperTapped == left_bumper
+		dist = stretchX - initialX
+		left_bumper.animate
+			scaleX: 1 + dist/80
+			scaleY: 1 + dist/240
+			options:
+				time: .1
+				
+	if bumperTapped == right_bumper
+		dist = initialX - stretchX
+		right_bumper.animate
+			scaleX: 1 + dist/80
+			scaleY: 1 + dist/240
+			opacity: 1
+			options:
+				time: .1
 
 
 #checkSwitchScreens
