@@ -1,5 +1,5 @@
 IP_PORT = 'http://172.25.2.19:8080'
-DEBUG = true
+DEBUG = false
 
 run_ajax = (msg) ->
   if DEBUG

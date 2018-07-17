@@ -9,6 +9,7 @@ Framer.Extras.Hints.disable()
 CARLA_API = require "CARLA_API"
 CARLA_API.begin_server()
 
+
 # Import file "Interactions_ORIGINAL"
 SKETCH_IMPORT_SCALE = 1.1
 IPAD_HEIGHT = 2048
@@ -177,6 +178,8 @@ bumperStretch = (bumperTapped) ->
 				bottom_bumper.onAnimationStart ->
 					top_bumper.animate
 						y: top_bumper.y - (dist * 3) 
+# 					CARLA_API.stop_slowing_down() 
+# 					CARLA_API.speed_up()
 				bottom_bumper.onAnimationEnd -> 
 					if released
 						top_bumper.animate
@@ -197,6 +200,9 @@ bumperStretch = (bumperTapped) ->
 		bottom_bumper.off(Events.AnimationStart)
 		bottom_bumper.off(Events.AnimationStop)
 		top_bumper.onAnimationStart ->
+			# Start Speeding Up
+# 			CARLA_API.slow_down() 
+# 			CARLA_API.stop_speeding_up()
 			bottom_bumper.animate
 				y: bottom_bumper.y + (dist * 3)
 		top_bumper.onAnimationEnd ->
@@ -276,10 +282,7 @@ returnBumpers = (layer) ->
 		options:
 			time: .3
 			curve: Bezier.easeOut
-
-
-
-
+	
 
 
 hideBumpers = (layer) ->
@@ -323,6 +326,8 @@ canvas.on Events.TouchStart, (e, layer) ->
 	
 	trailSwitch = true
 
+
+
 canvas.on Events.TouchMove, (e, layer) ->
 	touchEvent = Events.touchEvent(e)
 	trackTaps(touchEvent, layer)
@@ -332,6 +337,18 @@ canvas.on Events.TouchMove, (e, layer) ->
 		moveToTap(circles)
 		moveToTap(trail)
 	bumperStretch(bumperTapped)
+	if bumperTapped == bottom_bumper
+		CARLA_API.stop_slowing_down()
+		CARLA_API.speed_up()
+	else if bumperTapped == top_bumper
+		CARLA_API.slow_down()
+		CARLA_API.stop_speeding_up()
+	else if bumperTapped == left_bumper
+		CARLA_API.stop_moving_left()
+		CARLA_API.move_right()
+	else if bumperTapped == right_bumper
+		CARLA_API.stop_moving_right()
+		CARLA_API.move_left()
 	canvas.bringToFront()
 
 canvas.on Events.TouchEnd, () ->
@@ -350,6 +367,7 @@ canvas.on Events.TouchEnd, () ->
 		
 	bumperTapped = null
 	released = true
+	CARLA_API.remove_all_commands()
 
 trail.draggable.enabled = true
 trail.draggable.constraints = {
