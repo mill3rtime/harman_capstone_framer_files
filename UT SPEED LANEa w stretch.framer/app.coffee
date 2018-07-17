@@ -58,6 +58,7 @@ tapY = 0
 # when lane adjust is tapped make other options disapear and vic versa
 #back to speed and nudge
 # make hideSideBumper() that switches sttes animated
+#TODO increase target for side bumpers
 
 # #COMMIT
 #fixed screen switching and changed related func and var names
@@ -77,6 +78,7 @@ y2 = 0
 x2 = 0
 bumpers = [bottom_bumper,top_bumper,left_bumper,right_bumper]
 sideBumpers = [right_bumper,left_bumper, Position1]
+vertical_bumpers = [top_bumper, bottom_bumper, Speed3]
 stretchY = 0
 stretchX = 0
 
@@ -86,8 +88,16 @@ startYBottom = bottom_bumper.y
 released = true
 
 Speed3.states =
-	in:
+	big:
 		scale: 1.5
+		animationOptions:
+			curve: "spring"
+	default:
+		scale: 1
+		
+Position1.states =
+	big:
+		scale: 1.2
 		animationOptions:
 			curve: "spring"
 	default:
@@ -323,6 +333,11 @@ canvas.on Events.TouchStart, (e, layer) ->
 		for layer in sideBumpers
 			hideBumpers(layer)
 
+	if wasTapIn(left_bumper) || wasTapIn(right_bumper)
+		Position1.stateCycle()
+		for layer in vertical_bumpers
+			hideBumpers(layer)
+
 	
 	trailSwitch = true
 
@@ -360,10 +375,18 @@ canvas.on Events.TouchEnd, () ->
 		returnBumpers(layer)
 		
 	for layer in sideBumpers
-		showBumpers(layer)	
+		showBumpers(layer)
+	
+	for layer in vertical_bumpers
+		showBumpers(layer)		
 	
 	Speed3.states.switch "default"
-	top_bumper.stateCycle()
+	Position1.states.switch "default"
+	
+	if bumperTapped = bottom_bumper
+		top_bumper.stateCycle()
+		
+
 		
 	bumperTapped = null
 	released = true
