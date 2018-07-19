@@ -2,6 +2,17 @@
 # Import file "bidirectional choice"
 sketch = Framer.Importer.load("imported/bidirectional%20choice@1x", scale: 1)
 
+# limit_1 = new Layer
+# 	y: 603
+# 	width: 1536
+# 	height: 29
+# 	
+# limit_2 = new Layer
+# 	y: 443
+# 	width: 1536
+# 	height: 29
+	
+
 
 #disable purple hints
 Framer.Extras.Hints.disable()
@@ -37,6 +48,8 @@ canvas = new Layer
 	width: Screen.width
 	height: Screen.height
 	opacity: 0
+	x: 1
+	y: 283
 
 
 
@@ -102,9 +115,12 @@ canvas.on Events.TouchStart, (e, layer) ->
 	
 
 checkMove = () ->
-	if yes_4.y < -123
+	if yes_4.maxY < yes_3.height
 		moveLayer(yes_3)
-
+		if yes_3.maxY < yes_2.height
+			moveLayer(yes_2)
+			if yes_2.maxY < yes_1.height
+				moveLayer(yes_1)
 	
 canvas.on Events.TouchMove, (e, layer) ->
 # 		testLayer.y = Utils.modulate(event.offsetY, [0, canvas.height], [0, canvas.height] )
@@ -130,6 +146,9 @@ canvas.on Events.TouchEnd, (e, layer) ->
 	
 	yes_4.animate
 		y: yes_4_start
-		
 	yes_3.animate
 		y: yes_3_start
+	yes_2.animate
+		y: yes_2_start
+	yes_1.animate
+		y: yes_1_start
