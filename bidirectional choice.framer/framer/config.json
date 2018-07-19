@@ -7,17 +7,17 @@
   "cachedDeviceWidth" : 1689.599975585938,
   "fullScreen" : false,
   "deviceType" : "custom",
-  "sharedPrototype" : 0,
+  "sharedPrototype" : true,
   "propertyPanelToggleStates" : {
-    "Filters" : false
+    "Filters" : true
   },
   "projectId" : "5511CCE2-E3D3-42C2-BF6C-24A07C0DE336",
   "deviceOrientation" : 0,
   "selectedHand" : "",
   "showBezel" : 0,
   "foldedCodeRanges" : [
-    "{0, 776}",
-    "{1550, 287}"
+    "{0, 810}",
+    "{1706, 287}"
   ],
   "deviceScale" : "fit"
 }

@@ -26,7 +26,10 @@ IPAD_HEIGHT = 2048
 IPAD_WIDTH = 1536
 
 
+
 Utils.globalLayers(sketch)
+
+BG = sketch.Background_Gradient
 
 defaultWidth = IPAD_WIDTH * SKETCH_IMPORT_SCALE
 defaultHeight = IPAD_HEIGHT * SKETCH_IMPORT_SCALE
@@ -43,6 +46,12 @@ Framer.Device.customize
 
 
 # to make other artboards visible make xy = 0 and current board not visible.
+
+sound1 = new Audio("sounds/Button1.m4a")
+
+sound2 = new Audio("sounds/Button2.m4a")
+
+
 
 canvas = new Layer
 	width: Screen.width
@@ -64,6 +73,8 @@ touching = null
 checkDevice()
 
 yesArray = [yes_1, yes_2, yes_3, yes_4]
+noArray = [no_1, no_2, no_3, no_4]
+
 
 for layer in yesArray
 	animationOptions:
@@ -103,7 +114,7 @@ trackY = (touchEvent, layer, target) ->
 	
 moveLayer = (layer) ->
 	layer.animate
-		y: (layer.y + 2* (tapY2 - oldTapY2)/1.5)
+		y: (layer.y + 2* (tapY2 - oldTapY2)/1.7)
 		options:
 			time: 0
 			curve: Bezier.linear
@@ -111,17 +122,33 @@ moveLayer = (layer) ->
 canvas.on Events.TouchStart, (e, layer) ->
 	touchEvent = Events.touchEvent(e)
 	touching = true
-	
 
 checkMove = () ->
 	if yes_4.maxY < yes_3.height
 		moveLayer(yes_3)
+
+		for layer in yesArray
+			layer.animate
+				brightness: layer.brightness + 5
+				options:
+					time: .2
+					curve: Bezier.ease
+		
 		if yes_3.maxY < yes_2.height
 			moveLayer(yes_2)
 			if yes_2.maxY < yes_1.height
 				moveLayer(yes_1)
+				
 	if no_1.minY > (no_2.maxY- no_2.height)
 		moveLayer(no_2)
+		
+		for layer in noArray
+			layer.animate
+				brightness: layer.brightness + 5
+				options:
+					time: .2
+					curve: Bezier.ease
+	
 		if no_2.minY > (no_3.maxY - no_3.height)
 			moveLayer(no_3)
 			if no_3.minY > (no_4.maxY - no_4.height)
@@ -146,15 +173,23 @@ canvas.on Events.TouchMove, (e, layer) ->
 # 		print dist
 		#prevent downward/upward motion of other side of screen
 		if yes_4.y > yes_4_start
-# 			for layer in yesArray
-# 				layer.opacity = 0
 			yes_4.y = yes_4.start
+		if yes_3.y > yes_3_start
+			yes_3.y = yes_3.start
+		if yes_2.y > yes_2_start
+			yes_2.y = yes_2.start
+		if yes_1.y > yes_1_start
+			yes_1.y = yes_1.start
 
 		if no_1.minY < no_1_start
 			no_1.y = no_1_start	
-		
-# 			for layer in yesArray
-# 				layer.opacity = 0
+		if no_2.minY < no_2_start
+			no_2.y = no_2_start	
+		if no_3.minY < no_3_start
+			no_3.y = no_3_start
+		if no_4.minY < no_4_start
+			no_4.y = no_4_start		
+
 		moveLayer(yes_4)
 		moveLayer(no_1)
 		#only y4 uses move(). all others chain off of previous curves position
@@ -185,6 +220,17 @@ canvas.on Events.TouchEnd, (e, layer) ->
 		y: no_2_start
 	no_1.animate
 		y: no_1_start
-	
-	Background_Gradient.animate
-		opacity: 1
+		
+	for layer in yesArray
+		layer.animate
+			brightness: 100
+			options:
+				time: 2
+				curve: Bezier.ease
+
+	for layer in noArray
+		layer.animate
+			brightness: 100
+			options:
+				time: 2
+				curve: Bezier.ease
