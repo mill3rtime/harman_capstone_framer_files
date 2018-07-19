@@ -9,15 +9,16 @@
   "deviceType" : "custom",
   "sharedPrototype" : 0,
   "propertyPanelToggleStates" : {
-
+    "Filters" : false
   },
   "projectId" : "5511CCE2-E3D3-42C2-BF6C-24A07C0DE336",
   "deviceOrientation" : 0,
   "selectedHand" : "",
   "showBezel" : 0,
   "foldedCodeRanges" : [
-    "{0, 829}",
-    "{870, 268}"
+    "{0, 806}",
+    "{806, 103}",
+    "{1159, 285}"
   ],
   "deviceScale" : "fit"
 }

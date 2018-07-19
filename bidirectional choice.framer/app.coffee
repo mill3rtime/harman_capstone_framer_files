@@ -1,7 +1,7 @@
 #SETUP
 # Import file "bidirectional choice"
 sketch = Framer.Importer.load("imported/bidirectional%20choice@1x", scale: 1)
-#SETUP
+
 
 #disable purple hints
 Framer.Extras.Hints.disable()
@@ -39,32 +39,82 @@ canvas = new Layer
 	opacity: 0
 
 
-tapX = 0
-tapY = 0
 
+checkDevice = () ->
+	if Utils.isPhone() || Utils.isTablet()
+		touching = true
+	else
+		touching = false
 
 trackingOffset = 300
-touching = false
+touching = null
+checkDevice()
+		
+#this is diff than original binary where tapx is global. now it is in the scope of track taps.
 
-trackTaps = (touchEvent, layer) ->
+testLayer = new Layer
+	x: 692
+	y: 924
+
+oldTapY2 = 0
+tapY1 = 0
+tapY2 = 0
+dist = ""
+
+
+#return Y cord
+trackY = (touchEvent, layer, target) ->
 	if Utils.isPhone() || Utils.isTablet()
 		tapX = (touchEvent.clientX - layer.x)
-		tapY = touchEvent.clientY - layer.y
-		
-# 		print "is mobile"
+		tapY = (touchEvent.clientY - layer.y)		
+		print "is mobile"
 	else 
-# 		print "not mobile"
+		print "not mobile"
 		tapX = (touchEvent.offsetX)
 		tapY = (touchEvent.offsetY)
+	
+	return tapY
 
-
-
+moveLayer = (layer) ->
+	print "start"
+	print layer.y
+	print tapY2
+	print oldTapY2
+	layer.animate
+		y: (layer.y + 2* (tapY2 - oldTapY2))
+		options:
+			time: 0
+			curve: Bezier.linear
+	
 canvas.on Events.TouchStart, (e, layer) ->
 	touchEvent = Events.touchEvent(e)
 	touching = true
-	trackTaps(touchEvent, layer)
-	print tapX
+	
+	
+canvas.on Events.TouchMove, (e, layer) ->
+	if touching
+		touchEvent = Events.touchEvent(e)
+		oldTapY2 = tapY2
+		tapY2 = trackY(touchEvent, layer)
+		if oldTapY2	== 0
+			oldTapY2 = tapY2
+		threshold = 50
+		if Math.abs(oldTapY2 - tapY2) > threshold
+			oldTapY2 = tapY2
+# 		print dist
+		moveLayer(testLayer)
 	
 canvas.on Events.TouchEnd, (e, layer) ->
-	touchevent = Events.touchEvent(escape)
+	touching = false
+	dist = 0
+	
+	testLayer.animate
+		y: 924
+		options:
+			time: .1
+			curve: Bezier.linear
+			
+			
+	
+	
 	
