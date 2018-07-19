@@ -1,6 +1,6 @@
+# Import file "bidirectional choiceRR"
+sketch = Framer.Importer.load("imported/bidirectional%20choiceRR@1x", scale: 1)
 #SETUP
-# Import file "bidirectional choice"
-sketch = Framer.Importer.load("imported/bidirectional%20choice@1x", scale: 1)
 
 # limit_1 = new Layer
 # 	y: 603
@@ -13,6 +13,18 @@ sketch = Framer.Importer.load("imported/bidirectional%20choice@1x", scale: 1)
 # 	height: 29
 	
 
+# sketch.Yes.visible = true
+# sketch.Yes.bringToFront()
+# 
+# sketch.Pass_Bus.visible = false
+# sketch.Take_Right.x = 0
+# 
+# sketch.Yes.animate
+# 	y: 525
+# 	x: 197
+# 	width: 821
+# 	height: 461
+	
 
 #disable purple hints
 Framer.Extras.Hints.disable()
