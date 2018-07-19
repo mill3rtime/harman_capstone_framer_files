@@ -61,6 +61,7 @@ checkDevice = () ->
 
 trackingOffset = 300
 touching = null
+checkDevice()
 
 yesArray = [yes_1, yes_2, yes_3, yes_4]
 
@@ -74,11 +75,10 @@ yes_2_start = yes_2.y
 yes_3_start = yes_3.y
 yes_4_start = yes_4.y
 
-
-print yes_1.y
-
-
-checkDevice()
+no_1_start = no_1.y
+no_2_start = no_2.y
+no_3_start = no_3.y
+no_4_start = no_4.y
 		
 #this is diff than original binary where tapx is global. now it is in the scope of track taps.
 
@@ -98,13 +98,12 @@ trackY = (touchEvent, layer, target) ->
 # 		print "not mobile"
 		tapX = (touchEvent.offsetX)
 		tapY = (touchEvent.offsetY)
-	
 	return tapY
-
+	
+	
 moveLayer = (layer) ->
-
 	layer.animate
-		y: (layer.y + 2* (tapY2 - oldTapY2))
+		y: (layer.y + 2* (tapY2 - oldTapY2)/1.5)
 		options:
 			time: 0
 			curve: Bezier.linear
@@ -121,6 +120,16 @@ checkMove = () ->
 			moveLayer(yes_2)
 			if yes_2.maxY < yes_1.height
 				moveLayer(yes_1)
+	if no_1.minY > (no_2.maxY- no_2.height)
+		moveLayer(no_2)
+		if no_2.minY > (no_3.maxY - no_3.height)
+			moveLayer(no_3)
+			if no_3.minY > (no_4.maxY - no_4.height)
+				moveLayer(no_4)
+
+
+				
+
 	
 canvas.on Events.TouchMove, (e, layer) ->
 # 		testLayer.y = Utils.modulate(event.offsetY, [0, canvas.height], [0, canvas.height] )
@@ -135,15 +144,30 @@ canvas.on Events.TouchMove, (e, layer) ->
 		if Math.abs(oldTapY2 - tapY2) > threshold
 			oldTapY2 = tapY2
 # 		print dist
-		moveLayer(sketch.yes_4)
+		#prevent downward/upward motion of other side of screen
+		if yes_4.y > yes_4_start
+# 			for layer in yesArray
+# 				layer.opacity = 0
+			yes_4.y = yes_4.start
+
+		if no_1.minY < no_1_start
+			no_1.y = no_1_start	
+		
+# 			for layer in yesArray
+# 				layer.opacity = 0
+		moveLayer(yes_4)
+		moveLayer(no_1)
+		#only y4 uses move(). all others chain off of previous curves position
 		checkMove()
-		print yes_4.y
+	
 	
 canvas.on Events.TouchEnd, (e, layer) ->
 	touching = false
 	dist = 0
 	
-	
+	for layer in yesArray
+		layer.opacity = 1
+	#return yes's to original position
 	yes_4.animate
 		y: yes_4_start
 	yes_3.animate
@@ -152,3 +176,15 @@ canvas.on Events.TouchEnd, (e, layer) ->
 		y: yes_2_start
 	yes_1.animate
 		y: yes_1_start
+		
+	no_4.animate
+		y: no_4_start
+	no_3.animate
+		y: no_3_start
+	no_2.animate
+		y: no_2_start
+	no_1.animate
+		y: no_1_start
+	
+	Background_Gradient.animate
+		opacity: 1

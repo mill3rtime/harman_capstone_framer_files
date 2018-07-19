@@ -100,29 +100,129 @@ window.__imported__["bidirectional choice@1x/layers.json.js"] = [
 			{
 				"objectId": "AA2D26CE-FF3F-4DFE-8B29-84C9A7F331FC",
 				"kind": "group",
-				"name": "Top_Gradient_Copy",
-				"originalName": "Top Gradient Copy",
+				"name": "BottomGradient",
+				"originalName": "BottomGradient",
 				"maskFrame": null,
 				"layerFrame": {
 					"x": 1,
-					"y": 1322,
+					"y": 1321,
 					"width": 1535,
-					"height": 724
+					"height": 722
 				},
 				"visible": true,
 				"metadata": {
 					"opacity": 1
 				},
-				"image": {
-					"path": "images/Layer-Top_Gradient_Copy-queyrdi2.png",
-					"frame": {
-						"x": 1,
-						"y": 1322,
-						"width": 1535,
-						"height": 724
+				"children": [
+					{
+						"objectId": "E4B16642-67B7-452A-BF07-E881EA89C33C",
+						"kind": "group",
+						"name": "no_4",
+						"originalName": "no_4",
+						"maskFrame": null,
+						"layerFrame": {
+							"x": 1,
+							"y": 1760.3914246196405,
+							"width": 1535,
+							"height": 282
+						},
+						"visible": true,
+						"metadata": {
+							"opacity": 1
+						},
+						"image": {
+							"path": "images/Layer-no_4-rtrcmty2.png",
+							"frame": {
+								"x": 1,
+								"y": 1760.3914246196405,
+								"width": 1535,
+								"height": 282
+							}
+						},
+						"children": []
+					},
+					{
+						"objectId": "4214FB48-0755-401A-B3C6-8A97D3AC8600",
+						"kind": "group",
+						"name": "no_3",
+						"originalName": "no_3",
+						"maskFrame": null,
+						"layerFrame": {
+							"x": 1,
+							"y": 1601.6113416320886,
+							"width": 1535,
+							"height": 441
+						},
+						"visible": true,
+						"metadata": {
+							"opacity": 1
+						},
+						"image": {
+							"path": "images/Layer-no_3-ndixnezc.png",
+							"frame": {
+								"x": 1,
+								"y": 1601.6113416320886,
+								"width": 1535,
+								"height": 441
+							}
+						},
+						"children": []
+					},
+					{
+						"objectId": "89670EFF-FADF-4097-B665-15EAF1BE0B09",
+						"kind": "group",
+						"name": "no_2",
+						"originalName": "no_2",
+						"maskFrame": null,
+						"layerFrame": {
+							"x": 1,
+							"y": 1439.83540802213,
+							"width": 1535,
+							"height": 603
+						},
+						"visible": true,
+						"metadata": {
+							"opacity": 1
+						},
+						"image": {
+							"path": "images/Layer-no_2-odk2nzbf.png",
+							"frame": {
+								"x": 1,
+								"y": 1439.83540802213,
+								"width": 1535,
+								"height": 603
+							}
+						},
+						"children": []
+					},
+					{
+						"objectId": "5002C733-0D00-4177-9E86-514774273365",
+						"kind": "group",
+						"name": "no_1",
+						"originalName": "no_1",
+						"maskFrame": null,
+						"layerFrame": {
+							"x": 1,
+							"y": 1321,
+							"width": 1535,
+							"height": 722
+						},
+						"visible": true,
+						"metadata": {
+							"opacity": 1
+						},
+						"image": {
+							"path": "images/Layer-no_1-ntawmkm3.png",
+							"frame": {
+								"x": 1,
+								"y": 1321,
+								"width": 1535,
+								"height": 722
+							}
+						},
+						"children": []
 					}
-				},
-				"children": []
+				]
 			},
 			{
 				"objectId": "796B46AE-C993-4F94-8DA6-56B024ACB009",
@@ -132,9 +232,9 @@ window.__imported__["bidirectional choice@1x/layers.json.js"] = [
 				"maskFrame": null,
 				"layerFrame": {
 					"x": 1,
-					"y": -1,
+					"y": 0,
 					"width": 1535,
-					"height": 724
+					"height": 723
 				},
 				"visible": true,
 				"metadata": {
@@ -176,7 +276,7 @@ window.__imported__["bidirectional choice@1x/layers.json.js"] = [
 						"maskFrame": null,
 						"layerFrame": {
 							"x": 1,
-							"y": 1,
+							"y": 0,
 							"width": 1535,
 							"height": 442
 						},
@@ -188,7 +288,7 @@ window.__imported__["bidirectional choice@1x/layers.json.js"] = [
 							"path": "images/Layer-yes_2-mtkyqzyy.png",
 							"frame": {
 								"x": 1,
-								"y": 1,
+								"y": 0,
 								"width": 1535,
 								"height": 442
 							}
@@ -203,7 +303,7 @@ window.__imported__["bidirectional choice@1x/layers.json.js"] = [
 						"maskFrame": null,
 						"layerFrame": {
 							"x": 1,
-							"y": -1,
+							"y": 0,
 							"width": 1535,
 							"height": 604
 						},
@@ -215,7 +315,7 @@ window.__imported__["bidirectional choice@1x/layers.json.js"] = [
 							"path": "images/Layer-yes_3-otbeotaw.png",
 							"frame": {
 								"x": 1,
-								"y": -1,
+								"y": 0,
 								"width": 1535,
 								"height": 604
 							}
@@ -380,7 +480,7 @@ window.__imported__["bidirectional choice@1x/layers.json.js"] = [
 			{
 				"objectId": "08728969-1835-4071-91CC-D91127DE6243",
 				"kind": "group",
-				"name": "Top_Gradient_Copy1",
+				"name": "Top_Gradient_Copy",
 				"originalName": "Top Gradient Copy",
 				"maskFrame": null,
 				"layerFrame": {
