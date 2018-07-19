@@ -69,6 +69,10 @@ checkDevice()
 		
 #this is diff than original binary where tapx is global. now it is in the scope of track taps.
 
+testLayer = new Layer
+	x: 692
+	y: 924
+
 oldTapY2 = 0
 tapY1 = 0
 tapY2 = 0
@@ -133,3 +137,8 @@ canvas.on Events.TouchEnd, (e, layer) ->
 		
 	yes_3.animate
 		y: yes_3_start
+			
+			
+	
+	
+	
