@@ -1,3 +1,4 @@
+#SETUP
 # Import file "bidirectional choiceRR"
 sketch = Framer.Importer.load("imported/bidirectional%20choiceRR@1x", scale: 1)
 #SETUP
@@ -59,10 +60,8 @@ Framer.Device.customize
 
 # to make other artboards visible make xy = 0 and current board not visible.
 
-sound1 = new Audio("sounds/Button1.m4a")
-
-sound2 = new Audio("sounds/Button2.m4a")
-
+#TODO
+#remove hack for preveting opposite motion and do it based on drag direction.
 
 
 canvas = new Layer
@@ -71,7 +70,6 @@ canvas = new Layer
 	opacity: 0
 	x: 1
 	y: 283
-
 
 
 checkDevice = () ->
@@ -97,11 +95,13 @@ yes_1_start = yes_1.y
 yes_2_start = yes_2.y
 yes_3_start = yes_3.y
 yes_4_start = yes_4.y
+Yes_start = Yes.y
 
 no_1_start = no_1.y
 no_2_start = no_2.y
 no_3_start = no_3.y
 no_4_start = no_4.y
+No_start = No.y
 		
 #this is diff than original binary where tapx is global. now it is in the scope of track taps.
 
@@ -136,6 +136,8 @@ canvas.on Events.TouchStart, (e, layer) ->
 	touching = true
 
 checkMove = () ->
+	if yes_4.maxY < yes_4.height
+		moveLayer(Yes)
 	if yes_4.maxY < yes_3.height
 		moveLayer(yes_3)
 
@@ -151,6 +153,8 @@ checkMove = () ->
 			if yes_2.maxY < yes_1.height
 				moveLayer(yes_1)
 				
+	if no_1.minY > no_1_start
+		moveLayer(No)
 	if no_1.minY > (no_2.maxY- no_2.height)
 		moveLayer(no_2)
 		
@@ -223,6 +227,8 @@ canvas.on Events.TouchEnd, (e, layer) ->
 		y: yes_2_start
 	yes_1.animate
 		y: yes_1_start
+	Yes.animate
+		y: Yes_start
 		
 	no_4.animate
 		y: no_4_start
@@ -232,6 +238,8 @@ canvas.on Events.TouchEnd, (e, layer) ->
 		y: no_2_start
 	no_1.animate
 		y: no_1_start
+	No.animate
+		y: No_start
 		
 	for layer in yesArray
 		layer.animate
