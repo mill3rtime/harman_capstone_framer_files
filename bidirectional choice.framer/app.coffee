@@ -74,15 +74,15 @@ canvas = new Layer
 sketch.Passing_Bus.opacity = 0
 sketch.Home.opacity = 0
 
-checkDevice = () ->
-	if Utils.isPhone() || Utils.isTablet()
-		touching = true
-	else
-		touching = false
+# checkDevice = () ->
+# 	if Utils.isPhone() || Utils.isTablet()
+# 		touching = true
+# 	else
+# 		touching = false
 
 trackingOffset = 300
-touching = null
-checkDevice()
+touching = true
+# checkDevice()
 offScreen = false
 
 yesArray = [yes_1, yes_2, yes_3, yes_4, Yes]
