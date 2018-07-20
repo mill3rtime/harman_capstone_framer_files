@@ -1,6 +1,9 @@
-#SETUP
-# Import file "bidirectional choiceRR"
-sketch = Framer.Importer.load("imported/bidirectional%20choiceRR@1x", scale: 1)
+# Import file "bidirectional choice"
+sketch = Framer.Importer.load("imported/bidirectional%20choice@1x", scale: 1)
+# Import file "bidirectional choice"
+
+# Import file "bidirectional choice"
+
 #SETUP
 
 # limit_1 = new Layer
@@ -56,21 +59,20 @@ Framer.Device.customize
 	screenWidth: defaultWidth
 	screenHeight: defaultHeight
 
-
-
 # to make other artboards visible make xy = 0 and current board not visible.
 
 #TODO
 #remove hack for preveting opposite motion and do it based on drag direction.
 
-
 canvas = new Layer
-	width: Screen.width
-	height: Screen.height
+	width: IPAD_WIDTH
+	height: IPAD_HEIGHT
 	opacity: 0
 	x: 1
-	y: 283
+	y: 50
 
+sketch.Passing_Bus.opacity = 0
+sketch.Home.opacity = 0
 
 checkDevice = () ->
 	if Utils.isPhone() || Utils.isTablet()
@@ -81,15 +83,17 @@ checkDevice = () ->
 trackingOffset = 300
 touching = null
 checkDevice()
+offScreen = false
 
-yesArray = [yes_1, yes_2, yes_3, yes_4]
-noArray = [no_1, no_2, no_3, no_4]
+yesArray = [yes_1, yes_2, yes_3, yes_4, Yes]
+noArray = [no_1, no_2, no_3, no_4, No]
 
 
 for layer in yesArray
 	animationOptions:
 		curve: Bezier.linear
 		time: .2
+		
 
 yes_1_start = yes_1.y
 yes_2_start = yes_2.y
@@ -102,6 +106,8 @@ no_2_start = no_2.y
 no_3_start = no_3.y
 no_4_start = no_4.y
 No_start = No.y
+
+bottomBorder = no_4.maxY
 		
 #this is diff than original binary where tapx is global. now it is in the scope of track taps.
 
@@ -126,11 +132,42 @@ trackY = (touchEvent, layer, target) ->
 	
 moveLayer = (layer) ->
 	layer.animate
-		y: (layer.y + 2* (tapY2 - oldTapY2)/1.7)
+		y: (layer.y + 2* (tapY2 - oldTapY2)/1.5)
 		options:
 			time: 0
 			curve: Bezier.linear
 	
+hideControl = () ->
+	for layer in noArray
+		layer.visible = false
+	for layer in yesArray
+		layer.visible = false
+	
+			
+confirmDeny = () ->	
+	if yes_4.maxY < 0
+		offScreen = true
+		hideControl()
+		sketch.Passing_Bus.x = 0
+		sketch.Passing_Bus.y = 0
+		Passing_Bus.animate
+			opacity: 1
+			options:
+				time: 1
+				curve: Bezier.easeInOut
+	
+	if no_1.minY > bottomBorder
+		hideControl()
+		sketch.Home.x = 0
+		sketch.Home.y = 0
+		Home.animate
+			opacity: 1
+			options:
+				time: 1
+				curve: Bezier.easeInOut
+
+	
+#TOUCH START	
 canvas.on Events.TouchStart, (e, layer) ->
 	touchEvent = Events.touchEvent(e)
 	touching = true
@@ -141,6 +178,7 @@ checkMove = () ->
 	if yes_4.maxY < yes_3.height
 		moveLayer(yes_3)
 
+		
 		for layer in yesArray
 			layer.animate
 				brightness: layer.brightness + 5
@@ -208,10 +246,10 @@ canvas.on Events.TouchMove, (e, layer) ->
 
 		moveLayer(yes_4)
 		moveLayer(no_1)
+
 		#only y4 uses move(). all others chain off of previous curves position
 		checkMove()
-	
-	
+		
 canvas.on Events.TouchEnd, (e, layer) ->
 	touching = false
 	dist = 0
@@ -240,6 +278,9 @@ canvas.on Events.TouchEnd, (e, layer) ->
 		y: no_1_start
 	No.animate
 		y: No_start
+	
+	confirmDeny()
+	
 		
 	for layer in yesArray
 		layer.animate
@@ -254,3 +295,4 @@ canvas.on Events.TouchEnd, (e, layer) ->
 			options:
 				time: 2
 				curve: Bezier.ease
+				
