@@ -348,6 +348,27 @@ canvas.on Events.TouchMove, (e, layer) ->
 	trackTaps(touchEvent, layer)
 	stretchY = tapY - trackingOffset - layer.y
 	stretchX = tapX - trackingOffset - layer.x
+	if currentScreen == "v2"
+		deltaX = Math.abs(tapX - initialX)
+		deltaY = Math.abs(tapY - initialY)
+		yDistanceThreshold = 100
+		xDistanceThreshold = 10
+		if deltaY > yDistanceThreshold
+			if tapY > initialY
+				CARLA_API.slow_down()
+				CARLA_API.stop_speeding_up()
+			else
+				CARLA_API.stop_slowing_down()
+				CARLA_API.speed_up()
+		else if deltaX > xDistanceThreshold
+			if tapX > initialX
+				CARLA_API.stop_moving_left()
+				CARLA_API.move_right()
+			else
+				CARLA_API.stop_moving_right()
+				CARLA_API.move_left()
+		else
+			CARLA_API.remove_all_commands()
 	if trailSwitch
 		moveToTap(circles)
 		moveToTap(trail)
