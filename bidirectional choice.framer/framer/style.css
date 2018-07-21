@@ -57,3 +57,7 @@ body:active {
 ::-webkit-scrollbar {
 	display: none;
 }
+
+.DeviceBackground > div {
+	background-color: black;
+}
