@@ -90,10 +90,12 @@ laneDetect  = new Layer
 	width: Screen.width
 	y: 1522
 	height: 731
+	opacity: 0
 
 speedDetect = new Layer
 	width: Screen.width
 	height: (Screen.height - laneDetect.height)
+	opacity: 0
 
 
 
