@@ -14,7 +14,7 @@ button = new Layer
 
 
 button2 = new Layer
-	y: 414
+	y: 403
 
 button3 = new Layer
 	y: 782
@@ -39,6 +39,7 @@ Framer.Device.customize
 	
 Top_Text = sketch.Top_Text.convertToTextLayer()
 Bottom_Text = sketch.Bottom_Text.convertToTextLayer()
+Speed_Text = sketch.Speed_Text.convertToTextLayer()
 
 Straight_String.animationOptions = {time: .4, curve: Bezier.ease}
 
@@ -47,10 +48,10 @@ Bottom_Text.animationOptions = {time: 5, curve: Bezier.ease}
 	
 stringToAccel = () ->
 	Transition_String.visible = true
+	Transition_String. opacity = 1
 	Transition_String.animate
-		y: 230
-		scaleX: .1
-		opacity: 1
+		scaleY: 4
+		minY: 200
 
 
 setDefaultState = () ->
@@ -94,6 +95,12 @@ button.onClick ->
 		options:
 			time: 3.5
 			
+
+		
+Fill_Speed.on "change:y", ->
+	Speed_Text.text = 34 + (Utils.round(Fill_Speed.scaleY))
+	
+
 # if Fill_Speed.y >= Transition_String.y
 # 	Transition_String.y =
 		

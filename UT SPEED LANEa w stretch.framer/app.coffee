@@ -350,15 +350,10 @@ canvas.on Events.TouchStart, (e, layer) ->
 	if wasTapIn(speedDetect)
 		isSpeed = true
 		isLane = false
-		
-		print "speed"
-		
+				
 	if wasTapIn(laneDetect)
 		isSpeed = false
-		isLane = true
-		
-		print "lane"
-		
+		isLane = true		
 		
 	
 	if wasTapIn(bottom_bumper) || wasTapIn(top_bumper)
