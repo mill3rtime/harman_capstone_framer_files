@@ -82,6 +82,7 @@ vertical_bumpers = [top_bumper, bottom_bumper, Speed3]
 stretchY = 0
 stretchX = 0
 
+
 startYTop = top_bumper.y
 startYBottom = bottom_bumper.y
 
