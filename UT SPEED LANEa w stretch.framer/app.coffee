@@ -82,6 +82,22 @@ vertical_bumpers = [top_bumper, bottom_bumper, Speed3]
 stretchY = 0
 stretchX = 0
 
+isLane = false
+isSpeed = true
+
+
+laneDetect  = new Layer
+	width: Screen.width
+	y: 1522
+	height: 731
+
+speedDetect = new Layer
+	width: Screen.width
+	height: (Screen.height - laneDetect.height)
+
+
+
+
 
 startYTop = top_bumper.y
 startYBottom = bottom_bumper.y
@@ -328,6 +344,20 @@ canvas.on Events.TouchStart, (e, layer) ->
 	checkScreenSwitch()
 	released = false
 	
+	
+	if wasTapIn(speedDetect)
+		isSpeed = true
+		isLane = false
+		
+		print "speed"
+		
+	if wasTapIn(laneDetect)
+		isSpeed = false
+		isLane = true
+		
+		print "lane"
+		
+		
 	
 	if wasTapIn(bottom_bumper) || wasTapIn(top_bumper)
 		Speed3.stateCycle()
