@@ -345,30 +345,34 @@ canvas.on Events.TouchStart, (e, layer) ->
 
 canvas.on Events.TouchMove, (e, layer) ->
 	touchEvent = Events.touchEvent(e)
+	lastY = tapY
+	lastX = tapX
 	trackTaps(touchEvent, layer)
 	stretchY = tapY - trackingOffset - layer.y
 	stretchX = tapX - trackingOffset - layer.x
 	if currentScreen == "v2"
-		deltaX = Math.abs(tapX - initialX)
-		deltaY = Math.abs(tapY - initialY)
-		yDistanceThreshold = 100
+		deltaX = Math.abs(tapX - lastX)
+		deltaY = Math.abs(tapY - lastY)
+		yDistanceThreshold = 10
 		xDistanceThreshold = 10
 		if deltaY > yDistanceThreshold
-			if tapY > initialY
+			CARLA_API.stop_moving_left()
+			CARLA_API.stop_moving_right()
+			if tapY > lastY
 				CARLA_API.slow_down()
 				CARLA_API.stop_speeding_up()
 			else
-				CARLA_API.stop_slowing_down()
 				CARLA_API.speed_up()
+				CARLA_API.stop_slowing_down()
 		else if deltaX > xDistanceThreshold
-			if tapX > initialX
+			if tapX > lastX
 				CARLA_API.stop_moving_left()
 				CARLA_API.move_right()
 			else
 				CARLA_API.stop_moving_right()
 				CARLA_API.move_left()
-		else
-			CARLA_API.remove_all_commands()
+# 		else
+# 			CARLA_API.remove_all_commands()
 	if trailSwitch
 		moveToTap(circles)
 		moveToTap(trail)
@@ -465,7 +469,7 @@ trail.on "change:y", ->
 		trail2.onAnimationEnd ->
 			trail2.destroy()
 	
-
+checkScreenSwitch()
 
 # TODO: set a switch for x change or why change depnindg on stating point
 

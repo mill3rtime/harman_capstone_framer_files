@@ -2,6 +2,7 @@ IP_PORT = 'http://172.25.2.19:8080'
 DEBUG = false
 
 run_ajax = (msg) ->
+  console.log(msg)
   if DEBUG
     # ...
     return
