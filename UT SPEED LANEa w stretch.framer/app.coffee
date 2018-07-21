@@ -353,9 +353,12 @@ canvas.on Events.TouchMove, (e, layer) ->
 	if currentScreen == "v2"
 		deltaX = Math.abs(tapX - lastX)
 		deltaY = Math.abs(tapY - lastY)
-		yDistanceThreshold = 10
-		xDistanceThreshold = 10
-		if deltaY > yDistanceThreshold
+		# Calculating how much it takes to trigger
+		percentOfScreenToCross = 0.4
+		overallChangeThreshold = defaultHeight * percentOfScreenToCross
+		yDistanceThreshold = overallChangeThreshold
+		xDistanceThreshold = yDistanceThreshold / 1.33
+		if deltaY > yDistanceThreshold and deltaY > deltaX
 			CARLA_API.stop_moving_left()
 			CARLA_API.stop_moving_right()
 			if tapY > lastY
@@ -371,8 +374,8 @@ canvas.on Events.TouchMove, (e, layer) ->
 			else
 				CARLA_API.stop_moving_right()
 				CARLA_API.move_left()
-# 		else
-# 			CARLA_API.remove_all_commands()
+		else
+			CARLA_API.remove_all_commands()
 	if trailSwitch
 		moveToTap(circles)
 		moveToTap(trail)
