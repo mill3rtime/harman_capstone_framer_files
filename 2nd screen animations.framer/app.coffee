@@ -1,3 +1,4 @@
+#SETUP
 # Import file "Sketch Imports Second Screen"
 {TextLayer, convertTextLayers} = require 'TextLayer'
 
@@ -11,14 +12,12 @@ IPAD_HEIGHT = 2048
 IPAD_WIDTH = 1536
 
 button = new Layer
-
+	opacity: 0
 
 button2 = new Layer
-	y: 403
-
-button3 = new Layer
-	y: 782
-
+	opacity: 0
+	y: 305
+	x: -31
 
 
 	
@@ -36,70 +35,134 @@ Framer.Device.customize
 	screenWidth: defaultWidth
 	screenHeight: defaultHeight
 	
+///TODO///
+# remove magic numbers and create system for tracking y to match two animations	
 	
+///Variables///	
 Top_Text = sketch.Top_Text.convertToTextLayer()
 Bottom_Text = sketch.Bottom_Text.convertToTextLayer()
 Speed_Text = sketch.Speed_Text.convertToTextLayer()
 
 Straight_String.animationOptions = {time: .4, curve: Bezier.ease}
 
-Top_Text.animationOptions = {time: 5, curve: Bezier.ease}
-Bottom_Text.animationOptions = {time: 5, curve: Bezier.ease}
-	
-stringToAccel = () ->
-	Transition_String.visible = true
-	Transition_String. opacity = 1
-	Transition_String.animate
-		scaleY: 4
-		minY: 200
+Top_Text.animationOptions = {time: 3, curve: Bezier.ease}
+Bottom_Text.animationOptions = {time: 3, curve: Bezier.ease}
+stringStart = Transition_String.maxY
 
+range =
+	min: 34
+	max: 50
+time = 0.2
+
+speed = null
+	
+///Functions///
 
 setDefaultState = () ->
-	Top_Text.opacity = 0
-	Bottom_Text.opacity = 0
-	Top_Text.text = ""
+	Top_Text.text = "SELF DRIVING: ON"
 	Bottom_Text.text = "CURRENT SPEED"
-	Fill_Speed.visible = false
+	Bottom_Text.opacity = 1
+	Bottom_Text.visible = true
+	Fill_Speed.visible = true
 	sketch.Speed_Highlight.visible = true
 	Up_String.visible = false
 	Straight_String.opacity = 1
 	Transition_String.opacity = 0
+	Fill_Speed.visible = false
+	
+
+
 
 setAccelState = () ->
-	Top_Text.text = "SPEED: ACCELERATING"
+	if speed == "up"
+		Top_Text.text = "SPEED: ACCELERATING"
+	if speed == "down" 
+		Top_Text.text = "SPEED: DECELERATING"
 	Bottom_Text.text = "SETTING NEW SPEED"
 	Up_String.visible = false
 	Fill_Speed.visible = true
 	sketch.Speed_Highlight.visible = false
 	Straight_String.opacity = 0
-	
 	Bottom_Text.animate
 		opacity: 1
 	Top_Text.animate
 		opacity: 1
-		
-		
-	stringToAccel()
 	
+	
+#String to Accel Decel
+stringToAccel = () ->
+	Transition_String.visible = true
+	Transition_String. opacity = 1
+	Transition_String.animate
+		scaleY: 4
+		minY: 130
 
+stringToDecel = () ->
+	Transition_String.visible = true
+	Transition_String. opacity = 1
+	Transition_String.animate
+		scaleY: -4
+		minY: Dividing_Bar.y - 220
 
+	
+fillToAccel = () ->
+	if speed == "down"
+		Fill_Speed.minY = stringStart
+		Fill_Speed.rotation = 180
+	Fill_Speed.visible = true
+	if speed == "down"
+		print "down"
+		Fill_Speed.animate
+			scaleY: 5.8
+			scaleX: 1.15
+			maxY: Transition_String.maxY
+			options:
+				time: 5
+	if speed == "up"
+		Fill_Speed.animate
+			scaleY: 5.8
+			scaleX: 1.15
+			maxY: Transition_String.maxY
+			y: 200
+			options:
+				time: 5
+			
+			
+countUp = () ->
+	for i in [0..(range.max-range.min)]
+		do (i) ->
+			Utils.delay time*i, ->
+				Speed_Text.text = range.min+i
+	
 setDefaultState()
 
-button.onClick ->
-	setAccelState()
-	Fill_Speed.visible = true
-	Fill_Speed.animate
-		scaleY: 9
-		scaleX: 1.4
-		y: 500
-		options:
-			time: 3.5
-			
 
-		
-Fill_Speed.on "change:y", ->
-	Speed_Text.text = 34 + (Utils.round(Fill_Speed.scaleY))
+button.onClick ->
+	speed = "up"
+	setAccelState()
+	stringToAccel()
+	fillToAccel()
+	countUp()
+
+button2.onClick ->
+	speed = "down"
+	setAccelState()
+	stringToDecel()
+	fillToAccel()
+
+Fill_Speed.onAnimationEnd ->	
+	setDefaultState()
 	
+	
+
+
+# Transition_String.on "change:y", ->
+# # 	Speed_Text.text = (Utils.round(Transition_String.y))
+# 	for i in [0..(range.max-range.min)]
+# 	do (i) ->
+# 		Utils.delay time*i, ->
+# 			text.html = range.min+i
+# 	
 
 # if Fill_Speed.y >= Transition_String.y
 # 	Transition_String.y =
