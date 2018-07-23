@@ -5,22 +5,17 @@
   "cachedDeviceHeight" : 2252.800048828125,
   "contentScale" : 1,
   "cachedDeviceWidth" : 1689.599975585938,
-  "fullScreen" : false,
   "deviceType" : "custom",
   "sharedPrototype" : 0,
   "propertyPanelToggleStates" : {
-    "Filters" : false
+
   },
-  "projectId" : "98754AF8-B4F0-44ED-A9E5-0DB382C19C6B",
+  "projectId" : "8F928E7A-DCDB-49B8-9CD3-5770C446E2BD",
   "deviceOrientation" : 0,
   "selectedHand" : "",
   "showBezel" : 0,
   "foldedCodeRanges" : [
-    "{0, 698}",
-    "{1260, 333}",
-    "{1595, 369}",
-    "{1968, 320}",
-    "{2291, 406}"
+
   ],
   "deviceScale" : "fit"
 }

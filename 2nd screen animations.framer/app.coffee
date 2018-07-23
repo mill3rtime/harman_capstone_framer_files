@@ -69,8 +69,6 @@ setDefaultState = () ->
 	Straight_String.opacity = 1
 	Transition_String.opacity = 0
 	Fill_Speed.visible = false
-	
-
 
 
 setAccelState = () ->
