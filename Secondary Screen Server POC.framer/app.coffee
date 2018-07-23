@@ -38,17 +38,27 @@ canvas = new Layer
 sleep = (ms) ->
   start = new Date().getTime()
   continue while new Date().getTime() - start < ms
-  
+
+TIMEOUT_DELAY = 500 #ms
 runCallback = (screen, time) ->
 	callback = -> screen_to_show screen
-	setTimeout(callback, 300 * time)
+	setTimeout(callback, TIMEOUT_DELAY * time)
+
+# Woo concurrency in timeouts
+isLocked = false
+unlock = () ->
+	isLocked = false
 	
 series_to_show = (screenList) ->
-	for screen in screenList
-		screen_to_show(screen)
-# 			runCallback(screen, timenum)
-# 			timenum = timenum + 1
-		sleep(1500)
+	timenum = 1
+	if not isLocked
+		isLocked = true
+		for screen in screenList
+			screen_to_show(screen)
+			runCallback(screen, timenum)
+			timenum = timenum + 1
+		setTimeout(unlock, timenum * TIMEOUT_DELAY)
+# 		sleep(150)
 # Generic helper function that brings the desired layer to
 # the forefront 
 screen_to_show = (screen) ->
