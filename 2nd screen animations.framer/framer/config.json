@@ -5,6 +5,7 @@
   "cachedDeviceHeight" : 2252.800048828125,
   "contentScale" : 1,
   "cachedDeviceWidth" : 1689.599975585938,
+  "fullScreen" : false,
   "deviceType" : "custom",
   "sharedPrototype" : 0,
   "propertyPanelToggleStates" : {
