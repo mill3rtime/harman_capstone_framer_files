@@ -88,8 +88,8 @@ isSpeed = true
 
 laneDetect  = new Layer
 	width: Screen.width
-	y: 1522
-	height: 731
+	y: 1922
+	height: 331
 	opacity: 0
 
 speedDetect = new Layer
@@ -350,15 +350,10 @@ canvas.on Events.TouchStart, (e, layer) ->
 	if wasTapIn(speedDetect)
 		isSpeed = true
 		isLane = false
-		
-		print "speed"
-		
+				
 	if wasTapIn(laneDetect)
 		isSpeed = false
-		isLane = true
-		
-		print "lane"
-		
+		isLane = true		
 		
 	
 	if wasTapIn(bottom_bumper) || wasTapIn(top_bumper)
@@ -389,26 +384,26 @@ canvas.on Events.TouchMove, (e, layer) ->
 		# Calculating how much it takes to trigger
 		percentOfScreenToCross = 0.4
 		overallChangeThreshold = defaultHeight * percentOfScreenToCross
-		yDistanceThreshold = overallChangeThreshold
-		xDistanceThreshold = yDistanceThreshold / 1.33
-		if deltaY > yDistanceThreshold and deltaY > deltaX
-			CARLA_API.stop_moving_left()
-			CARLA_API.stop_moving_right()
+		yDistanceThreshold = 50
+		xDistanceThreshold = 800
+		if deltaY > yDistanceThreshold
+			CARLA_API.remove_all_commands()
 			if tapY > lastY
 				CARLA_API.slow_down()
 				CARLA_API.stop_speeding_up()
 			else
 				CARLA_API.speed_up()
 				CARLA_API.stop_slowing_down()
-		else if deltaX > xDistanceThreshold
+		else if deltaX > xDistanceThreshold and isLane
+			CARLA_API.remove_all_commands()
 			if tapX > lastX
 				CARLA_API.stop_moving_left()
 				CARLA_API.move_right()
 			else
 				CARLA_API.stop_moving_right()
 				CARLA_API.move_left()
-		else
-			CARLA_API.remove_all_commands()
+# 		else
+# 			CARLA_API.remove_all_commands()
 	if trailSwitch
 		moveToTap(circles)
 		moveToTap(trail)

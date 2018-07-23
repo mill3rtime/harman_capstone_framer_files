@@ -1,5 +1,8 @@
+# Import file "bus_only"
+bus_sketch = Framer.Importer.load("imported/bus_only@1x", scale: 1)
 # Import file "SecondScreen-7.20 Grouped"
 sketch = Framer.Importer.load("imported/SecondScreen-7.20%20Grouped@1x", scale: 1)
+
 # Import file "SecondScreen-7.20"
 # sketch = Framer.Importer.load("imported/SecondScreen-7.20@1x", scale: 1)
 
@@ -39,14 +42,13 @@ sleep = (ms) ->
 runCallback = (screen, time) ->
 	callback = -> screen_to_show screen
 	setTimeout(callback, 300 * time)
-isLocked = false
+	
 series_to_show = (screenList) ->
-	timenum = 1
-	if not isLocked
-		for screen in screenList
-			runCallback(screen, timenum)
-			timenum = timenum + 1
-# 		sleep(1500)
+	for screen in screenList
+		screen_to_show(screen)
+# 			runCallback(screen, timenum)
+# 			timenum = timenum + 1
+		sleep(1500)
 # Generic helper function that brings the desired layer to
 # the forefront 
 screen_to_show = (screen) ->
@@ -57,21 +59,21 @@ screen_to_show = (screen) ->
 	mainBoard = screen
 	screen.bringToFront()
 
-ACCEL_SERIES = [sketch.start, sketch.accel_1, sketch.accel_2, sketch.accel_3, sketch.accel_4, sketch.accel_5, sketch.accel_6]
+ACCEL_SERIES = [sketch.start, sketch.accel_1, sketch.accel_2, sketch.accel_3, sketch.accel_4, sketch.accel_5, sketch.accel_6, sketch.start]
 
-DECEL_SERIES = [sketch.start, sketch.decel_1, sketch.decel_2, sketch.decel_3, sketch.decel_4, sketch.decel_5, sketch.decel_6]
+DECEL_SERIES = [sketch.start, sketch.decel_1, sketch.decel_2, sketch.decel_3, sketch.decel_4, sketch.decel_5, sketch.decel_6, sketch.start]
 
-LEFT_SERIES = [sketch.start, sketch.lane_static, sketch.lane_left_1, sketch.lane_left_2, sketch.lane_left_3]
+LEFT_SERIES = [sketch.start, sketch.lane_static, sketch.lane_left_1, sketch.lane_left_2, sketch.lane_left_3, sketch.start]
 
-RIGHT_SERIES = [sketch.start, sketch.lane_static, sketch.lane_right_1, sketch.lane_right_2, sketch.lane_right_3]
+RIGHT_SERIES = [sketch.start, sketch.lane_static, sketch.lane_right_1, sketch.lane_right_2, sketch.lane_right_3, sketch.start]
 
-BUS_CONFIRM_SERIES = [sketch.start, sketch.bus_yes_1, sketch.bus_yes_2, sketch.bus_yes_3, sketch.bus_yes_4, sketch.bus_yes_5, sketch.bus_yes_6, sketch.bus_yes_7, sketch.bus_yes_8, sketch.bus_yes_9]
+BUS_CONFIRM_SERIES = [sketch.start, bus_sketch.bus_yes_1, bus_sketch.bus_yes_2, bus_sketch.bus_yes_3, bus_sketch.bus_yes_4, bus_sketch.bus_yes_5, bus_sketch.bus_yes_6, bus_sketch.bus_yes_7, bus_sketch.bus_yes_8, bus_sketch.bus_yes_9, sketch.start]
 
-BUS_DENY_SERIES = [sketch.start, sketch.bus_no_1, sketch.bus_no_2, sketch.bus_no_3, sketch.bus_no_4, sketch.bus_no_5]
+BUS_DENY_SERIES = [sketch.start, bus_sketch.bus_no_1, bus_sketch.bus_no_2, bus_sketch.bus_no_3, bus_sketch.bus_no_4, bus_sketch.bus_no_5, sketch.start]
 
-BINARY_CONFIRM_SERIES_A = [sketch.start, sketch.binary_confirm_1, sketch.binary_confirm_2, sketch.binary_confirm_3, sketch.binary_confirm_4, sketch.binary_confirm_5, sketch.binary_confirm_6, sketch.binary_confirm_7, sketch.binary_confirm_8, sketch.binary_confirm_9]
+BINARY_CONFIRM_SERIES_A = [sketch.start, sketch.binary_confirm_1, sketch.binary_confirm_2, sketch.binary_confirm_3, sketch.binary_confirm_4, sketch.binary_confirm_5, sketch.binary_confirm_6, sketch.binary_confirm_7, sketch.binary_confirm_8, sketch.binary_confirm_9, sketch.start]
 
-BINARY_DENY_SERIES_B = [sketch.start, sketch.binary_deny_1, sketch.binary_deny_2, sketch.binary_deny_3, sketch.binary_deny_4, sketch.binary_deny_5]
+BINARY_DENY_SERIES_B = [sketch.start, sketch.binary_deny_1, sketch.binary_deny_2, sketch.binary_deny_3, sketch.binary_deny_4, sketch.binary_deny_5, sketch.start]
 # Listen for a websocket event at the server specified at
 # the bottom of index.html 
 ws.onmessage = (event) ->
