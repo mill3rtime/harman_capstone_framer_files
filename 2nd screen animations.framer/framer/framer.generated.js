@@ -21,33 +21,6 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 		"backgroundColor": "rgba(255, 255, 255, 1)",
 		"children": [
 			{
-				"objectId": "5157F18A-3404-400C-9394-C2155AA2A3A1",
-				"kind": "group",
-				"name": "Transition_String",
-				"originalName": "Transition_String",
-				"maskFrame": null,
-				"layerFrame": {
-					"x": -7315,
-					"y": 398,
-					"width": 16298,
-					"height": 248
-				},
-				"visible": true,
-				"metadata": {
-					"opacity": 1
-				},
-				"image": {
-					"path": "images/Layer-Transition_String-nte1n0yx.png",
-					"frame": {
-						"x": -7315,
-						"y": 398,
-						"width": 16298,
-						"height": 248
-					}
-				},
-				"children": []
-			},
-			{
 				"objectId": "F6FD0898-4773-4269-8775-1457910C40C0",
 				"kind": "group",
 				"name": "Straight_String",
@@ -165,24 +138,60 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 				},
 				"children": [
 					{
+						"objectId": "2B3D30CA-355E-4932-8EDA-8BE09350578F",
+						"kind": "text",
+						"name": "MPH",
+						"originalName": "MPH",
+						"maskFrame": null,
+						"layerFrame": {
+							"x": 804,
+							"y": 477,
+							"width": 53,
+							"height": 15
+						},
+						"visible": true,
+						"metadata": {
+							"opacity": 1,
+							"string": "\nMPH",
+							"css": [
+								"/* MPH: */",
+								"font-family: Helvetica;",
+								"font-size: 144px;",
+								"color: #D5F0FF;",
+								"letter-spacing: 12px;",
+								"text-align: center;"
+							]
+						},
+						"image": {
+							"path": "images/Layer-MPH-mkizrdmw.png",
+							"frame": {
+								"x": 804,
+								"y": 477,
+								"width": 53,
+								"height": 15
+							}
+						},
+						"children": []
+					},
+					{
 						"objectId": "1BCBAA36-410D-4ED8-AD25-FA9ED7E7C110",
 						"kind": "text",
 						"name": "Speed_Text",
 						"originalName": "Speed_Text",
 						"maskFrame": null,
 						"layerFrame": {
-							"x": 741,
-							"y": 353,
-							"width": 174,
-							"height": 153
+							"x": 744,
+							"y": 346,
+							"width": 165,
+							"height": 104
 						},
 						"visible": true,
 						"metadata": {
 							"opacity": 1,
-							"string": "34\nMPH",
+							"string": "34\n",
 							"css": [
-								"/* 34 MPH: */",
-								"font-family: .SFNSDisplay;",
+								"/* 34: */",
+								"font-family: Helvetica;",
 								"font-size: 144px;",
 								"color: #D5F0FF;",
 								"letter-spacing: 12px;",
@@ -192,10 +201,10 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 						"image": {
 							"path": "images/Layer-Speed_Text-mujdqkfb.png",
 							"frame": {
-								"x": 741,
-								"y": 353,
-								"width": 174,
-								"height": 153
+								"x": 744,
+								"y": 346,
+								"width": 165,
+								"height": 104
 							}
 						},
 						"children": []
@@ -228,6 +237,33 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 						"children": []
 					}
 				]
+			},
+			{
+				"objectId": "2F107F03-3751-435F-82DA-2446F2731976",
+				"kind": "group",
+				"name": "Transition_String",
+				"originalName": "Transition_String",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": 0,
+					"y": 318,
+					"width": 1668,
+					"height": 84
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"image": {
+					"path": "images/Layer-Transition_String-mkyxmddg.png",
+					"frame": {
+						"x": 0,
+						"y": 318,
+						"width": 1668,
+						"height": 84
+					}
+				},
+				"children": []
 			},
 			{
 				"objectId": "F5F02328-9B19-43BB-91F6-06D26B4598AD",
