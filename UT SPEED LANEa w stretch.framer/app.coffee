@@ -369,10 +369,19 @@ canvas.on Events.TouchStart, (e, layer) ->
 	
 	trailSwitch = true
 
+removeCommands = () ->
+	setTimeout(CARLA_API.remove_all_commands, 1000)
 
 
 canvas.on Events.TouchMove, (e, layer) ->
 	touchEvent = Events.touchEvent(e)
+	if wasTapIn(speedDetect)
+		isSpeed = true
+		isLane = false
+				
+	if wasTapIn(laneDetect)
+		isSpeed = false
+		isLane = true
 	lastY = tapY
 	lastX = tapX
 	trackTaps(touchEvent, layer)
@@ -384,10 +393,10 @@ canvas.on Events.TouchMove, (e, layer) ->
 		# Calculating how much it takes to trigger
 		percentOfScreenToCross = 0.4
 		overallChangeThreshold = defaultHeight * percentOfScreenToCross
-		yDistanceThreshold = 50
-		xDistanceThreshold = 800
-		if deltaY > yDistanceThreshold
-			CARLA_API.remove_all_commands()
+		yDistanceThreshold = 200
+		xDistanceThreshold = 0
+		if deltaY > yDistanceThreshold and isSpeed
+# 			CARLA_API.remove_all_commands()
 			if tapY > lastY
 				CARLA_API.slow_down()
 				CARLA_API.stop_speeding_up()
@@ -395,15 +404,15 @@ canvas.on Events.TouchMove, (e, layer) ->
 				CARLA_API.speed_up()
 				CARLA_API.stop_slowing_down()
 		else if deltaX > xDistanceThreshold and isLane
-			CARLA_API.remove_all_commands()
+# 			CARLA_API.remove_all_commands()
 			if tapX > lastX
 				CARLA_API.stop_moving_left()
 				CARLA_API.move_right()
 			else
 				CARLA_API.stop_moving_right()
 				CARLA_API.move_left()
-# 		else
-# 			CARLA_API.remove_all_commands()
+		else
+			removeCommands()
 	if trailSwitch
 		moveToTap(circles)
 		moveToTap(trail)

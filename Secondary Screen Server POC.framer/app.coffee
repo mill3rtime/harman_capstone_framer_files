@@ -77,6 +77,8 @@ LEFT_SERIES = [sketch.start, sketch.lane_static, sketch.lane_left_1, sketch.lane
 
 RIGHT_SERIES = [sketch.start, sketch.lane_static, sketch.lane_right_1, sketch.lane_right_2, sketch.lane_right_3, sketch.start]
 
+BUS_STATIC_SERIES = [sketch.start, bus_sketch.bus_yes_1]
+
 BUS_CONFIRM_SERIES = [sketch.start, bus_sketch.bus_yes_1, bus_sketch.bus_yes_2, bus_sketch.bus_yes_3, bus_sketch.bus_yes_4, bus_sketch.bus_yes_5, bus_sketch.bus_yes_6, bus_sketch.bus_yes_7, bus_sketch.bus_yes_8, bus_sketch.bus_yes_9, sketch.start]
 
 BUS_DENY_SERIES = [sketch.start, bus_sketch.bus_no_1, bus_sketch.bus_no_2, bus_sketch.bus_no_3, bus_sketch.bus_no_4, bus_sketch.bus_no_5, sketch.start]
@@ -96,5 +98,6 @@ ws.onmessage = (event) ->
    when 'no_turn_right' then series_to_show(BINARY_DENY_SERIES_B)
    when 'no_pass_bus' then series_to_show(BUS_DENY_SERIES)
    when 'pass_bus' then series_to_show(BUS_CONFIRM_SERIES)
+   when 'static_bus' then series_to_show(BUS_STATIC_SERIES)
    else screen_to_show(sketch.start)
 
