@@ -24,7 +24,26 @@ button2 = new Layer
 	
 Utils.globalLayers(sketch)
 
+Fill_Speed.states =
+	home:
+		width: 1668
+		height: 82
+		scaleY: 1
+		scaleX: 1
+		visible: true
+		x: 0
+		y: 718
 
+Transition_String.states =
+	home:
+		width: 1668
+		height: 84
+		scaleY: 1
+		scaleX: 1
+		visible: true
+		x: 0
+		y: 318		
+		
 
 defaultWidth = IPAD_WIDTH * SKETCH_IMPORT_SCALE
 defaultHeight = IPAD_HEIGHT * SKETCH_IMPORT_SCALE
@@ -46,10 +65,10 @@ Top_Text = sketch.Top_Text.convertToTextLayer()
 Bottom_Text = sketch.Bottom_Text.convertToTextLayer()
 Speed_Text = sketch.Speed_Text.convertToTextLayer()
 
-Straight_String.animationOptions = {time: .4, curve: Bezier.ease}
-
-Top_Text.animationOptions = {time: 3, curve: Bezier.ease}
-Bottom_Text.animationOptions = {time: 3, curve: Bezier.ease}
+# Straight_String.animationOptions = {time: .4, curve: Bezier.ease}
+# 
+# Top_Text.animationOptions = {time: 3, curve: Bezier.ease}
+# Bottom_Text.animationOptions = {time: 3, curve: Bezier.ease}
 stringStart = Transition_String.maxY
 startSpeed = 34
 
@@ -74,12 +93,11 @@ setDefaultState = () ->
 	Bottom_Text.text = "CURRENT SPEED"
 	Bottom_Text.opacity = 1
 	Bottom_Text.visible = true
-	Fill_Speed.visible = true
 	sketch.Speed_Highlight.visible = true
 	Up_String.visible = false
 	Straight_String.opacity = 1
 	Transition_String.opacity = 0
-	Fill_Speed.visible = false
+
 
 
 setAccelState = () ->
@@ -169,7 +187,15 @@ button2.onClick ->
 	countDown()
 
 Fill_Speed.onAnimationEnd ->	
+	print "hooooome"
+	Fill_Speed.states.switchInstant "home"
+# 	Fill_Speed.off(Events.AnimationEnd)
+	Transition_String.states.switchInstant "home"
+	if speed = "down"
+		Fill_Speed.rotation = 0
+		speed = ""
 	setDefaultState()
+	
 	
 	
 
