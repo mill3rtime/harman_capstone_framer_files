@@ -145,7 +145,8 @@ hideControl = () ->
 	
 			
 confirmDeny = () ->	
-	if yes_4.maxY < 0
+	# TODO: Change back to 0 for the full curve effect
+	if yes_4.maxY < 400
 		offScreen = true
 		hideControl()
 		sketch.Passing_Bus.x = 0
@@ -156,7 +157,7 @@ confirmDeny = () ->
 				time: 1
 				curve: Bezier.easeInOut
 	
-	if no_1.minY > bottomBorder
+	if no_1.minY > bottomBorder - 200
 		hideControl()
 		sketch.Home.x = 0
 		sketch.Home.y = 0
@@ -249,6 +250,9 @@ canvas.on Events.TouchMove, (e, layer) ->
 
 		#only y4 uses move(). all others chain off of previous curves position
 		checkMove()
+		
+		# Checking here for simulator
+		confirmDeny()
 		
 canvas.on Events.TouchEnd, (e, layer) ->
 	touching = false
