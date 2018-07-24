@@ -20,8 +20,11 @@ button2 = new Layer
 	x: -31
 
 
+
 	
 Utils.globalLayers(sketch)
+
+
 
 defaultWidth = IPAD_WIDTH * SKETCH_IMPORT_SCALE
 defaultHeight = IPAD_HEIGHT * SKETCH_IMPORT_SCALE
@@ -48,10 +51,18 @@ Straight_String.animationOptions = {time: .4, curve: Bezier.ease}
 Top_Text.animationOptions = {time: 3, curve: Bezier.ease}
 Bottom_Text.animationOptions = {time: 3, curve: Bezier.ease}
 stringStart = Transition_String.maxY
+startSpeed = 34
 
-range =
-	min: 34
+rangeUp =
+	min: startSpeed
 	max: 50
+	
+rangeDown =
+	min: 12
+	max: startSpeed
+
+	
+	
 time = 0.2
 
 speed = null
@@ -105,17 +116,17 @@ stringToDecel = () ->
 	
 fillToAccel = () ->
 	if speed == "down"
-		Fill_Speed.minY = stringStart
+		Fill_Speed.y = 0
 		Fill_Speed.rotation = 180
 	Fill_Speed.visible = true
 	if speed == "down"
 		print "down"
 		Fill_Speed.animate
-			scaleY: 5.8
+			scaleY: 6
 			scaleX: 1.15
-			maxY: Transition_String.maxY
+			y: Transition_String.maxY + 100			
 			options:
-				time: 5
+				time: 4
 	if speed == "up"
 		Fill_Speed.animate
 			scaleY: 5.8
@@ -127,14 +138,22 @@ fillToAccel = () ->
 			
 			
 countUp = () ->
-	for i in [0..(range.max-range.min)]
+	for i in [0..(rangeUp.max-rangeUp.min)]
 		do (i) ->
 			Utils.delay time*i, ->
-				Speed_Text.text = range.min+i
+				Speed_Text.text = rangeUp.min+i
+
+countDown = () ->
+	for i in [startSpeed..0]
+		do (i) ->
+			Utils.delay .1*i, ->
+				Speed_Text.text = startSpeed-i
 	
 setDefaultState()
 
 
+
+///UI///
 button.onClick ->
 	speed = "up"
 	setAccelState()
@@ -147,6 +166,7 @@ button2.onClick ->
 	setAccelState()
 	stringToDecel()
 	fillToAccel()
+	countDown()
 
 Fill_Speed.onAnimationEnd ->	
 	setDefaultState()
