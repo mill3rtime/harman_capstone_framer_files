@@ -1,5 +1,6 @@
 # Import file "bidirectional choice"
-sketch = Framer.Importer.load("imported/bidirectional%20choice@1x", scale: 1)
+SKETCH_IMPORT_SCALE = 1.1
+sketch = Framer.Importer.load("imported/bidirectional%20choice@1x", scale: SKETCH_IMPORT_SCALE)
 # Import file "bidirectional choice"
 
 # Import file "bidirectional choice"
@@ -37,7 +38,6 @@ Framer.Extras.Hints.disable()
 # Import the CARLA API and begin the server
 
 # Import file "Interactions_ORIGINAL"
-SKETCH_IMPORT_SCALE = 1.1
 IPAD_HEIGHT = 2048
 IPAD_WIDTH = 1536
 
@@ -65,8 +65,8 @@ Framer.Device.customize
 #remove hack for preveting opposite motion and do it based on drag direction.
 
 canvas = new Layer
-	width: IPAD_WIDTH
-	height: IPAD_HEIGHT
+	width: defaultWidth
+	height: defaultHeight
 	opacity: 0
 	x: 1
 	y: 50
