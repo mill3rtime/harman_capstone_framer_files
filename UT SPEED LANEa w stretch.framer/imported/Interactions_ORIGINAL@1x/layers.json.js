@@ -1,85 +1,21 @@
 window.__imported__ = window.__imported__ || {};
 window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 	{
-		"objectId": "22348E1C-7674-4057-BB06-969272D9D35C",
+		"objectId": "92C0E95D-D7EA-4F0D-87B3-2F3676E0166D",
 		"kind": "artboard",
-		"name": "Version2",
-		"originalName": "Version2",
+		"name": "target_for_bumpers_just_make_top_wider",
+		"originalName": "target for bumpers, just make top wider",
 		"maskFrame": null,
 		"layerFrame": {
-			"x": -9104,
-			"y": 6964,
-			"width": 1536,
-			"height": 2048
+			"x": -15267,
+			"y": 3671,
+			"width": 1252,
+			"height": 519
 		},
 		"visible": true,
 		"metadata": {},
 		"backgroundColor": "rgba(255, 255, 255, 1)",
-		"image": {
-			"path": "images/Layer-Version2-mjizndhf.png",
-			"frame": {
-				"x": -9104,
-				"y": 6964,
-				"width": 1536,
-				"height": 2048
-			}
-		},
-		"children": [
-			{
-				"objectId": "404E8175-59C9-4072-AF27-E073218F3EB9",
-				"kind": "group",
-				"name": "Position",
-				"originalName": "Position",
-				"maskFrame": null,
-				"layerFrame": {
-					"x": 295,
-					"y": 1661.0000000000002,
-					"width": 885,
-					"height": 250
-				},
-				"visible": true,
-				"metadata": {
-					"opacity": 0.5
-				},
-				"image": {
-					"path": "images/Layer-Position-nda0rtgx.png",
-					"frame": {
-						"x": 295,
-						"y": 1661.0000000000002,
-						"width": 885,
-						"height": 250
-					}
-				},
-				"children": []
-			},
-			{
-				"objectId": "584FF69E-D5A4-46BE-A390-D28023BFB7FA",
-				"kind": "group",
-				"name": "Speed",
-				"originalName": "Speed",
-				"maskFrame": null,
-				"layerFrame": {
-					"x": 480,
-					"y": 577,
-					"width": 529,
-					"height": 251
-				},
-				"visible": true,
-				"metadata": {
-					"opacity": 0.5
-				},
-				"image": {
-					"path": "images/Layer-Speed-ntg0rky2.png",
-					"frame": {
-						"x": 480,
-						"y": 577,
-						"width": 529,
-						"height": 251
-					}
-				},
-				"children": []
-			}
-		]
+		"children": []
 	},
 	{
 		"objectId": "2F5FF04E-E4B7-48D8-B745-CB6E1A8095BD",
@@ -136,7 +72,7 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 			{
 				"objectId": "3F22A09C-773A-4F08-A284-38767211AEBF",
 				"kind": "group",
-				"name": "Speed1",
+				"name": "Speed",
 				"originalName": "Speed",
 				"maskFrame": null,
 				"layerFrame": {
@@ -190,7 +126,7 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 			{
 				"objectId": "4FA8F288-F9B1-4F93-94A7-1EBCCAE0DD16",
 				"kind": "group",
-				"name": "Speed2",
+				"name": "Speed1",
 				"originalName": "Speed",
 				"maskFrame": null,
 				"layerFrame": {
@@ -325,7 +261,7 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 			{
 				"objectId": "65FE57B3-3505-4975-99DD-0A26DBBA637F",
 				"kind": "group",
-				"name": "Position1",
+				"name": "Position",
 				"originalName": "Position",
 				"maskFrame": null,
 				"layerFrame": {
@@ -356,10 +292,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"originalName": "top_bumper",
 				"maskFrame": null,
 				"layerFrame": {
-					"x": 287,
-					"y": 57,
-					"width": 965,
-					"height": 210
+					"x": 211,
+					"y": 59,
+					"width": 1117,
+					"height": 248
 				},
 				"visible": true,
 				"metadata": {
@@ -368,10 +304,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"image": {
 					"path": "images/Layer-top_bumper-mtixmtew.png",
 					"frame": {
-						"x": 287,
-						"y": 57,
-						"width": 965,
-						"height": 210
+						"x": 211,
+						"y": 59,
+						"width": 1117,
+						"height": 248
 					}
 				},
 				"children": []
@@ -406,7 +342,7 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 			{
 				"objectId": "A06B2EB5-173C-4675-818F-CA2B56641F68",
 				"kind": "group",
-				"name": "Speed3",
+				"name": "Speed2",
 				"originalName": "Speed",
 				"maskFrame": null,
 				"layerFrame": {
@@ -487,7 +423,7 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 			{
 				"objectId": "2875E51A-2B84-4B85-AFA0-BBDB49360A4E",
 				"kind": "group",
-				"name": "Position2",
+				"name": "Position1",
 				"originalName": "Position",
 				"maskFrame": null,
 				"layerFrame": {
@@ -837,12 +773,12 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 			{
 				"objectId": "2BF0016A-08C9-452A-A0B9-2F3E42F77ACB",
 				"kind": "group",
-				"name": "Position3",
+				"name": "Position2",
 				"originalName": "Position",
 				"maskFrame": null,
 				"layerFrame": {
 					"x": 94.00000000000023,
-					"y": 1571,
+					"y": 1531,
 					"width": 1411,
 					"height": 251
 				},
@@ -854,7 +790,7 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 					"path": "images/Layer-Position-mkjgmdax.png",
 					"frame": {
 						"x": 94.00000000000023,
-						"y": 1571,
+						"y": 1531,
 						"width": 1411,
 						"height": 251
 					}
@@ -891,7 +827,7 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 			{
 				"objectId": "EAB8E403-1A32-4521-9EDC-9CE96125B8E3",
 				"kind": "group",
-				"name": "Speed4",
+				"name": "Speed3",
 				"originalName": "Speed",
 				"maskFrame": null,
 				"layerFrame": {
@@ -911,6 +847,60 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 						"y": -109.99999999999996,
 						"width": 529,
 						"height": 251
+					}
+				},
+				"children": []
+			}
+		]
+	},
+	{
+		"objectId": "E8DC766D-45ED-42A8-A2F6-4DE4EC4FEC87",
+		"kind": "artboard",
+		"name": "Version2",
+		"originalName": "Version2",
+		"maskFrame": null,
+		"layerFrame": {
+			"x": -9104,
+			"y": 7295,
+			"width": 1536,
+			"height": 2048
+		},
+		"visible": true,
+		"metadata": {},
+		"backgroundColor": "rgba(255, 255, 255, 1)",
+		"image": {
+			"path": "images/Layer-Version2-rtheqzc2.png",
+			"frame": {
+				"x": -9104,
+				"y": 7295,
+				"width": 1536,
+				"height": 2048
+			}
+		},
+		"children": [
+			{
+				"objectId": "2E16893B-6D11-476D-BC70-71D62FEF64B9",
+				"kind": "group",
+				"name": "Group2",
+				"originalName": "Group",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": 285,
+					"y": 197,
+					"width": 966,
+					"height": 1051
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"image": {
+					"path": "images/Layer-Group-mkuxnjg5.png",
+					"frame": {
+						"x": 285,
+						"y": 197,
+						"width": 966,
+						"height": 1051
 					}
 				},
 				"children": []
