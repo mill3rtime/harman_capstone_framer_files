@@ -127,7 +127,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 				"originalName": "Speed",
 				"maskFrame": null,
 				"layerFrame": {
-					"x": 668,
+					"x": 669,
 					"y": 248,
 					"width": 331,
 					"height": 331
@@ -216,7 +216,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 						"originalName": "Speed_Highlight",
 						"maskFrame": null,
 						"layerFrame": {
-							"x": 668,
+							"x": 669,
 							"y": 248,
 							"width": 331,
 							"height": 331
@@ -228,7 +228,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 						"image": {
 							"path": "images/Layer-Speed_Highlight-mjlfrty4.png",
 							"frame": {
-								"x": 668,
+								"x": 669,
 								"y": 248,
 								"width": 331,
 								"height": 331

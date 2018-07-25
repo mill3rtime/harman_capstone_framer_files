@@ -19,36 +19,10 @@ button2 = new Layer
 	y: 305
 	x: -31
 
-
-
 	
 Utils.globalLayers(sketch)
 
-
-
-
-Fill_Speed.states =
-	home:
-		width: 1668
-		height: 82
-		scaleY: 1
-		scaleX: 1
-		visible: true
-		x: 0
-		y: 718
-
-Transition_String.states =
-	home:
-		width: 1668
-		height: 84
-		scaleY: 1
-		scaleX: 1
-		visible: true
-		x: 0
-		y: 318		
-		
-
-
+speedArray = [sketch.Speed_Text,sketch.MPH, sketch.Speed_Highlight]
 
 defaultWidth = IPAD_WIDTH * SKETCH_IMPORT_SCALE
 defaultHeight = IPAD_HEIGHT * SKETCH_IMPORT_SCALE
@@ -69,18 +43,27 @@ Framer.Device.customize
 Top_Text = sketch.Top_Text.convertToTextLayer()
 Bottom_Text = sketch.Bottom_Text.convertToTextLayer()
 Speed_Text = sketch.Speed_Text.convertToTextLayer()
+
+
 pulse = sketch.Speed_Highlight
 # Straight_String.animationOptions = {time: .4, curve: Bezier.ease}
 # 
 # Top_Text.animationOptions = {time: 3, curve: Bezier.ease}
 # Bottom_Text.animationOptions = {time: 3, curve: Bezier.ease}
+done = false
+block = false
+
 stringStart = Transition_String.maxY
 
-startSpeed = 34
+startSpeed = 36
 downSpeed = 24
-upSpeed = 55
+upSpeed = 48
+stringCount = 0
 
-///COUNTING///
+///COUNTING VARIABLES///
+
+newSpeed = 0
+
 rangeUp =
 	min: startSpeed
 	max: upSpeed
@@ -89,41 +72,43 @@ rangeDown =
 	min: downSpeed
 	max: startSpeed
 	
-
 stringTime1 = 3
 fillTime1 = 6
-	
-	
-	
-countUp = () ->
-	time = (stringTime1/(rangeUp.max - startSpeed))
-	print time
-	for i in [0..(rangeUp.max-rangeUp.min)]
-		do (i) ->
-			Utils.delay time *i, ->
-				Speed_Text.text = rangeUp.min+i
-
-countDown = () ->
-	time = (stringTime1/(startSpeed - downSpeed))
-	for i in [0..(rangeDown.max-rangeDown.min)]
-		do (i) ->
-			Utils.delay time*i, ->
-				Speed_Text.text = startSpeed-i
-	print "go"
-	
-
-	
-	
-///TEST///	
-
-
-
-
-
-///TEST///
-
-
 speed = null
+	
+///STATES///
+sketch.Speed_Highlight.states =
+	big:
+		scale: 1.5
+	reg:
+		scale: 1
+sketch.Speed_Highlight.animationOptions = 
+	curve: Bezier.linear
+	time: .4
+delete sketch.Speed_Highlight.states.default
+
+
+Fill_Speed.states =
+	home:
+		width: 1668
+		height: 82
+		scaleY: 1
+		scaleX: 1
+		visible: false
+		x: 0
+		y: 718
+
+Transition_String.states =
+	home:
+		width: 1668
+		height: 84
+		scaleY: 1
+		scaleX: 1
+		visible: false
+		x: 0
+		y: 318		
+			
+	
 	
 ///Functions///
 
@@ -133,11 +118,12 @@ setDefaultState = () ->
 	Bottom_Text.opacity = 1
 	Bottom_Text.visible = true
 	Up_String.visible = false
-	Straight_String.opacity = 1
 	Transition_String.opacity = 0
 	Speed_Text.text = startSpeed
-
-
+	done = true
+	Fill_Speed.visible = false
+	Straight_String.animate
+		opacity: 1
 
 setAccelState = () ->
 	if speed == "up"
@@ -153,8 +139,6 @@ setAccelState = () ->
 		opacity: 1
 	Top_Text.animate
 		opacity: 1
-	
-
 #String to Accel Decel
 stringToAccel = () ->
 	Transition_String.visible = true
@@ -168,14 +152,15 @@ stringToAccel = () ->
 
 stringToDecel = () ->
 	Transition_String.visible = true
-	Transition_String. opacity = 1
+	sketch.Transition_String.opacity = 1
+	Transition_String. rotation = 180
 	sketch.Transition_String.animate
-		scaleY: -4
+		scaleY: 4
 		minY: Dividing_Bar.y - 220
 		options:
 			time: stringTime1
 			curve: Bezier.easeIn
-	
+
 #Also decel fill
 fillToAccel = () ->
 	if speed == "down"
@@ -202,7 +187,6 @@ fillToAccel = () ->
 				curve: Bezier.easeIn
 				time: fillTime1
 			
-			
 pulseAnimation = () ->
 	pulse.visible = true
 	pulse.stateCycle "big"
@@ -215,73 +199,88 @@ pulseAnimation = () ->
 			pulse.onAnimationEnd ->
 				pulse.off Events.AnimationEnd
 				pulse.stateCycle "reg"
-				
 			
-	
-setDefaultState()
+///COUNTING FUNCTIONS///			
 
+newSpeed = 0
+
+countUp = () ->
+	time = (stringTime1/(upSpeed - startSpeed))
+	print time
+	for i in [0..(rangeUp.max-rangeUp.min)]
+		do (i) ->
+			Utils.delay time *i, ->
+				newSpeed = startSpeed+i
+				Speed_Text.text = newSpeed
+
+countDown = () ->
+	time = (stringTime1/(startSpeed - downSpeed))
+	for i in [0..(rangeDown.max-rangeDown.min)]
+		do (i) ->
+			Utils.delay time*i, ->
+				newSpeed = startSpeed-i
+				Speed_Text.text = newSpeed
+	print "go"				
+			
 
 ///UI///
-
-sketch.Speed_Highlight.states =
-	big:
-		scale: 1.5
-	reg:
-		scale: 1
-sketch.Speed_Highlight.animationOptions = 
-	curve: Bezier.linear
-	time: .4
-
-delete sketch.Speed_Highlight.states.default
-
+setDefaultState()
+sketch.MPH.x = 160
 
 button.onClick ->
-	speed = "up"
-	setAccelState()
-	stringToAccel()
-	fillToAccel()
-	countUp()
+	if block == false
+		speed = "up"
+		setAccelState()
+		stringToAccel()
+		fillToAccel()
+		countUp()
+		done = false
+		block = true
 
 button2.onClick ->
-	speed = "down"
-	setAccelState()
-	stringToDecel()
-	fillToAccel()
-	countDown()
-	
-button3 = new Layer
-	x: 1468
+	if block == false
+		speed = "down"
+		setAccelState()
+		stringToDecel()
+		fillToAccel()
+		countDown()
+		done = false
+		block = true
 
 
-
-
-	
-
-	
 
 Transition_String.onAnimationEnd ->
+	stringCount += 1
+	if stringCount == 2
+		setDefaultState()
+		stringCount = 0
+		block = false
 
-	print "string done"	
+	
+		
 
 Fill_Speed.onAnimationEnd ->
-	Fill_Speed.off Events.AnimationEnd
-	pulseAnimation()
-	Utils.delay 3, ->
-		print "hooooome"
-		Fill_Speed.states.switchInstant "home"
-	# 	Fill_Speed.off(Events.AnimationEnd)
-		Transition_String.states.switchInstant "home"
-		if speed = "down"
-			Fill_Speed.rotation = 0
-			startSpeed = downSpeed
+	if !done
+		pulseAnimation()
+		done = true 
+		Utils.delay 3, ->
+			Fill_Speed.states.switchInstant "home"
+		# 	Fill_Speed.off(Events.AnimationEnd)
+			Transition_String.states.switch "home"
+			
+			startSpeed = newSpeed
+			upSpeed = startSpeed + 12
 			downSpeed = startSpeed - 12
-			if downSpeed <= 0
-				downSpeed = 6	
-		setDefaultState()
+
+			if speed = "down"
+				Fill_Speed.rotation = 180
+
+			if speed = "up"
+				Fill_Speed.rotation = 0
 		
+					
 	
-	
-	
+
 
 
 # Transition_String.on "change:y", ->
