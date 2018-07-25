@@ -143,6 +143,7 @@ setAccelState = () ->
 stringToAccel = () ->
 	Transition_String.visible = true
 	Transition_String. opacity = 1
+	Transition_String. rotation = 0
 	sketch.Transition_String.animate
 		scaleY: 4
 		minY: 130

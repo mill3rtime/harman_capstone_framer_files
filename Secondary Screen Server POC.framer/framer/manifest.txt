@@ -615,6 +615,43 @@ imported/SecondScreen-7.20@1x/images/Layer-Vertical_Bars-qjrenke5.png
 imported/SecondScreen-7.20@1x/images/Layer-Vertical_Bars-rkm2ntve.png
 imported/SecondScreen-7.20@1x/layers.json
 imported/SecondScreen-7.20@1x/layers.json.js
+imported/Sketch Imports Second Screen@1x/images/Layer-Background-nzi3nja1.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Background-qzzfrdy2.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Bitmap-mku0mkvb.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Bitmap-qju3qku3.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Bottom_Text-ntq2rke5.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Buttons-ndffqzu3.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Buttons-ndqynkiy.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Dividing_Bar-ntk2mzhe.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Dividing_Bar-nzyxqtrf.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Down_Bulge-qju4n0iz.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Down_String-qji3qjyw.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Fill_Speed-nky4mtm3.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Group-m0y5rdq3.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Group-oeyymung.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Group-oum3mdgy.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Group-rtvgotc0.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Group_2-q0jgnuux.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Group_3-m0nbn0q1.png
+imported/Sketch Imports Second Screen@1x/images/Layer-MPH-mkizrdmw.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Music-mey5mdfg.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Music-qkfcrdg4.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Nav-mevcntmy.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Nav-renenujg.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Speed-mtheruiy.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Speed-mtk4rtmw.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Speed-nze1muzd.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Speed-rtg0nuvb.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Speed_Highlight-mjlfrty4.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Speed_Text-mujdqkfb.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Straight_String-rjzgrda4.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Top_Text-mti1neiy.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Transition_String-mkyxmddg.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Up_String-rjvgmdiz.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Vertical_Bars-qzg2m0fg.png
+imported/Sketch Imports Second Screen@1x/layers.json
+imported/Sketch Imports Second Screen@1x/layers.json.js
 index.html
 modules/myModule.coffee
+modules/TextLayer.coffee
 server.js
