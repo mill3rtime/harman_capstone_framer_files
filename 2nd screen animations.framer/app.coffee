@@ -46,6 +46,9 @@ Speed_Text = sketch.Speed_Text.convertToTextLayer()
 
 
 pulse = sketch.Speed_Highlight
+
+pulse.x = 10
+
 # Straight_String.animationOptions = {time: .4, curve: Bezier.ease}
 # 
 # Top_Text.animationOptions = {time: 3, curve: Bezier.ease}
@@ -72,8 +75,8 @@ rangeDown =
 	min: downSpeed
 	max: startSpeed
 	
-stringTime1 = 3
-fillTime1 = 6
+stringTime1 = 2
+fillTime1 = 3
 speed = null
 	
 ///STATES///
@@ -122,8 +125,10 @@ setDefaultState = () ->
 	Speed_Text.text = startSpeed
 	done = true
 	Fill_Speed.visible = false
+	Straight_String.visible = true
 	Straight_String.animate
 		opacity: 1
+	block = false
 
 setAccelState = () ->
 	if speed == "up"
@@ -135,6 +140,7 @@ setAccelState = () ->
 	Fill_Speed.visible = true
 	sketch.Speed_Highlight.visible = false
 	Straight_String.opacity = 0
+	Straight_String.visible = false
 	Bottom_Text.animate
 		opacity: 1
 	Top_Text.animate
@@ -255,7 +261,7 @@ Transition_String.onAnimationEnd ->
 	if stringCount == 2
 		setDefaultState()
 		stringCount = 0
-		block = false
+		
 
 	
 		
