@@ -50,8 +50,12 @@ unlock = () ->
 	isLocked = false
 	block = false
 	mainBoard.visible = false
+
+modifiedUnlock = () ->
+	isLocked = false
+	block = false
 	
-series_to_show = (screenList) ->
+series_to_show = (screenList, hangAtEnd=false) ->
 	timenum = 1
 	if not isLocked and not block
 		isLocked = true
@@ -59,7 +63,10 @@ series_to_show = (screenList) ->
 			screen_to_show(screen)
 			runCallback(screen, timenum)
 			timenum = timenum + 1
-		setTimeout(unlock, timenum * TIMEOUT_DELAY)
+		if hangAtEnd
+			setTimeout(modifiedUnlock, timenum * TIMEOUT_DELAY)
+		else
+			setTimeout(unlock, timenum * TIMEOUT_DELAY)
 # 		setTimeout(setDefaultState, timenum * TIMEOUT_DELAY)
 # 		sleep(150)
 # Generic helper function that brings the desired layer to
@@ -299,7 +306,7 @@ fillToAccel = () ->
 		Fill_Speed.rotation = 180
 	Fill_Speed.visible = true
 	if speed == "down"
-		print "down"
+# 		print "down"
 		Fill_Speed.animate
 			scaleY: 6
 			scaleX: 1.15
@@ -337,7 +344,7 @@ newSpeed = 0
 
 countUp = () ->
 	time = (stringTime1/(upSpeed - startSpeed))
-	print time
+# 	print time
 	for i in [0..(rangeUp.max-rangeUp.min)]
 		do (i) ->
 			Utils.delay time *i, ->
@@ -351,7 +358,7 @@ countDown = () ->
 			Utils.delay time*i, ->
 				newSpeed = startSpeed-i
 				Speed_Text.text = newSpeed
-	print "go"				
+# 	print "go"				
 			
 
 ///UI///
@@ -372,7 +379,7 @@ moveUp = () ->
 		fillToAccel()
 		countUp()
 		done = false
-		print 'block true'
+# 		print 'block true'
 		block = true
 
 moveDown = () ->
@@ -416,7 +423,7 @@ Transition_String.onAnimationEnd ->
 	if stringCount == 2
 		setDefaultState()
 		stringCount = 0
-		print 'block false'
+# 		print 'block false'
 		block = false
 
 	
@@ -469,6 +476,6 @@ ws.onmessage = (event) ->
    when 'no_turn_right' then series_to_show(BINARY_DENY_SERIES_B)
    when 'no_pass_bus' then series_to_show(BUS_DENY_SERIES)
    when 'pass_bus' then series_to_show(BUS_CONFIRM_SERIES)
-   when 'static_bus' then series_to_show(BUS_STATIC_SERIES)
+   when 'static_bus' then series_to_show(BUS_STATIC_SERIES, hangAtEnd=true)
    else screen_to_show(sketch.start)
 
