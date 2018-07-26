@@ -88,8 +88,8 @@ isSpeed = true
 
 laneDetect  = new Layer
 	width: Screen.width
-	y: 1922
-	height: 331
+	y: Screen.height - 800
+	height: 800
 	opacity: 0
 
 speedDetect = new Layer
@@ -393,24 +393,36 @@ canvas.on Events.TouchMove, (e, layer) ->
 		# Calculating how much it takes to trigger
 		percentOfScreenToCross = 0.4
 		overallChangeThreshold = defaultHeight * percentOfScreenToCross
-		yDistanceThreshold = 200
-		xDistanceThreshold = 0
-		if deltaY > yDistanceThreshold and isSpeed
+		yDistanceDownThreshold = 80
+		yDistanceUpThreshold = 150
+		xDistanceThreshold = 50
+# 		print isLane
+# 		print deltaY > deltaX
+# 		print isLane
+		if deltaX > deltaY and deltaX > xDistanceThreshold and isLane
+# 			CARLA_API.remove_all_commands()
+			if tapX > lastX
+# 				print "sending right"
+				CARLA_API.move_right()
+				CARLA_API.stop_moving_left()
+			else
+# 				print "sending left"
+				CARLA_API.move_left()
+				CARLA_API.stop_moving_right()
+		else if deltaY > yDistanceUpThreshold and isSpeed and deltaY > deltaX
+			if tapY < lastY
+				CARLA_API.speed_up()
+				CARLA_API.stop_slowing_down()
+				
+		else if deltaY > yDistanceDownThreshold and isSpeed and deltaY > deltaX
 # 			CARLA_API.remove_all_commands()
 			if tapY > lastY
 				CARLA_API.slow_down()
 				CARLA_API.stop_speeding_up()
-			else
-				CARLA_API.speed_up()
-				CARLA_API.stop_slowing_down()
-		else if deltaX > xDistanceThreshold and isLane
-# 			CARLA_API.remove_all_commands()
-			if tapX > lastX
-				CARLA_API.stop_moving_left()
-				CARLA_API.move_right()
-			else
-				CARLA_API.stop_moving_right()
-				CARLA_API.move_left()
+# 			else
+# 				CARLA_API.speed_up()
+# 				CARLA_API.stop_slowing_down()
+#  Take the below case out for a convincing video		
 		else
 			removeCommands()
 	if trailSwitch
@@ -455,7 +467,8 @@ canvas.on Events.TouchEnd, () ->
 		
 	bumperTapped = null
 	released = true
-	CARLA_API.remove_all_commands()
+	removeCommands()
+# 	CARLA_API.remove_all_commands()
 
 trail.draggable.enabled = true
 trail.draggable.constraints = {

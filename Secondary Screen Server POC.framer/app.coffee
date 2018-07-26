@@ -49,7 +49,7 @@ isLocked = false
 unlock = () ->
 	isLocked = false
 	block = false
-	mainBoard.visible = false
+# 	mainBoard.visible = false
 
 modifiedUnlock = () ->
 	isLocked = false
@@ -72,12 +72,13 @@ series_to_show = (screenList, hangAtEnd=false) ->
 # Generic helper function that brings the desired layer to
 # the forefront 
 screen_to_show = (screen) ->
-	screen.x = 0
-	screen.y = 0
-	mainBoard.visible = false
-	screen.visible = true
-	mainBoard = screen
-	screen.bringToFront()
+	if screen
+		screen.x = 0
+		screen.y = 0
+		mainBoard.visible = false
+		screen.visible = true
+		mainBoard = screen
+		screen.bringToFront()
 
 ACCEL_SERIES = [sketch.start, sketch.accel_1, sketch.accel_2, sketch.accel_3, sketch.accel_4, sketch.accel_5, sketch.accel_6, sketch.start]
 
@@ -215,7 +216,7 @@ speed = null
 # 	speed = null
 # 		
 # 	///STATES///
-# 	setDefaultState()
+# setDefaultState()
 		
 ///Functions///
 sketch.Speed_Highlight.states =
@@ -441,6 +442,9 @@ Fill_Speed.onAnimationEnd ->
 			startSpeed = newSpeed
 			upSpeed = startSpeed + 12
 			downSpeed = startSpeed - 12
+			
+			if startSpeed < 10
+				startSpeed = 30
 
 			if speed = "down"
 				Fill_Speed.rotation = 180
