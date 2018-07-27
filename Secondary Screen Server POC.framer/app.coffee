@@ -1,16 +1,9 @@
-# Import file "bus_only"
-bus_sketch = Framer.Importer.load("imported/bus_only@1x", scale: 1)
-# Import file "SecondScreen-7.20 Grouped"
-sketch = Framer.Importer.load("imported/SecondScreen-7.20%20Grouped@1x", scale: 1)
-
-# Import file "SecondScreen-7.20"
-# sketch = Framer.Importer.load("imported/SecondScreen-7.20@1x", scale: 1)
-
-# Utils.globalLayers(sketch)
-
-IPAD_HEIGHT = 2048
-IPAD_WIDTH = 1536
-SKETCH_IMPORT_SCALE = 1.1
+# === Secondary Screen Socket Listener Framer Prototype ===
+		
+# Defining some constants for monitoring the imports of several sketch files, as well as adhering to screen size requirements.
+IPAD_HEIGHT = 2224
+IPAD_WIDTH = 1668
+SKETCH_IMPORT_SCALE = 1
 
 defaultWidth = IPAD_WIDTH * SKETCH_IMPORT_SCALE
 defaultHeight = IPAD_HEIGHT * SKETCH_IMPORT_SCALE
@@ -18,45 +11,54 @@ defaultHeight = IPAD_HEIGHT * SKETCH_IMPORT_SCALE
 screenWidth = Framer.Device.screen.width
 widthScale = defaultWidth / screenWidth
 
-#TODO JS: 
 Framer.Device.customize
 	devicePixelRatio: 1
 	screenWidth: defaultWidth
 	screenHeight: defaultHeight
 
-mainBoard = sketch.start
+# === Importing Sketch Files ===
 
-# to make other artboards visible make xy = 0 and current board not visible.
+# Import sketch file "bus_only", which has just the pass the bus artboards
+bus_sketch = Framer.Importer.load("imported/bus_only@1x", scale: SKETCH_IMPORT_SCALE)
+
+# Import sketch file "SecondScreen-7.20 Grouped" which has all the other artboards
+sketch = Framer.Importer.load("imported/SecondScreen-7.20%20Grouped@1x", scale: SKETCH_IMPORT_SCALE)
+
+# Defining the starting background board
+mainBoard = sketch.start
 mainBoard.x = 0
 mainBoard.y = 0
 
-canvas = new Layer
-	width: Screen.width
-	height: Screen.height
-	opacity: 0
-	
-sleep = (ms) ->
-  start = new Date().getTime()
-  continue while new Date().getTime() - start < ms
-
+# === runCallback ===
 TIMEOUT_DELAY = 500 #ms
 runCallback = (screen, time) ->
+	# A timeout function which pushes the screen `screen` to the front after TIMEOUT_DELAY * time milliseconds
 	callback = -> screen_to_show screen
 	setTimeout(callback, TIMEOUT_DELAY * time)
 
-# Woo concurrency in timeouts
-isLocked = false
-unlock = () ->
-	isLocked = false
-	block = false
-# 	mainBoard.visible = false
+# === Concurrency ===
 
-modifiedUnlock = () ->
+# Because we consistently listen for sockets, we need to implement some form of concurrency control. Here we opt for the simple binary semaphore to do so, locking access to the screen until an animation is complete.
+isLocked = false
+
+# === unlock ===
+unlock = () ->
+# Reset our concurrency variables and push up the main mph screen.
 	isLocked = false
 	block = false
-	
+	mainBoard.visible = false
+
+# === modifiedUnlock ===
+modifiedUnlock = () ->
+# Unlock control of the screen without pushing the main mph screen back up. This was used during user testing.
+	isLocked = false
+	block = false
+
+# === series_to_show ===
 series_to_show = (screenList, hangAtEnd=false) ->
+# This function runs through a series of artboards defined as screenList and shows them one by one with a delay of TIMEOUT_DELAY milliseconds each
 	timenum = 1
+	# Check to make sure we have access to the screen to update
 	if not isLocked and not block
 		isLocked = true
 		for screen in screenList
@@ -64,11 +66,11 @@ series_to_show = (screenList, hangAtEnd=false) ->
 			runCallback(screen, timenum)
 			timenum = timenum + 1
 		if hangAtEnd
+			# For user testing, if we just want to show a blank screen at the end
 			setTimeout(modifiedUnlock, timenum * TIMEOUT_DELAY)
 		else
 			setTimeout(unlock, timenum * TIMEOUT_DELAY)
-# 		setTimeout(setDefaultState, timenum * TIMEOUT_DELAY)
-# 		sleep(150)
+
 # Generic helper function that brings the desired layer to
 # the forefront 
 screen_to_show = (screen) ->
@@ -80,9 +82,9 @@ screen_to_show = (screen) ->
 		mainBoard = screen
 		screen.bringToFront()
 
-ACCEL_SERIES = [sketch.start, sketch.accel_1, sketch.accel_2, sketch.accel_3, sketch.accel_4, sketch.accel_5, sketch.accel_6, sketch.start]
-
-DECEL_SERIES = [sketch.start, sketch.decel_1, sketch.decel_2, sketch.decel_3, sketch.decel_4, sketch.decel_5, sketch.decel_6, sketch.start]
+# === Artboard Series ===
+	
+# For feedback we do not yet have animated, we create a series of artboards to walk through (in a slide show style) upon receiving a specific socket message
 
 LEFT_SERIES = [sketch.start, sketch.lane_static, sketch.lane_left_1, sketch.lane_left_2, sketch.lane_left_3, sketch.start]
 
@@ -97,49 +99,21 @@ BUS_DENY_SERIES = [sketch.start, bus_sketch.bus_no_1, bus_sketch.bus_no_2, bus_s
 BINARY_CONFIRM_SERIES_A = [sketch.start, sketch.binary_confirm_1, sketch.binary_confirm_2, sketch.binary_confirm_3, sketch.binary_confirm_4, sketch.binary_confirm_5, sketch.binary_confirm_6, sketch.binary_confirm_7, sketch.binary_confirm_8, sketch.binary_confirm_9, sketch.start]
 
 BINARY_DENY_SERIES_B = [sketch.start, sketch.binary_deny_1, sketch.binary_deny_2, sketch.binary_deny_3, sketch.binary_deny_4, sketch.binary_deny_5, sketch.start]
-# Listen for a websocket event at the server specified at
-# the bottom of index.html
 
-#SETUP
-# Import file "Sketch Imports Second Screen"
+# Listen for a websocket event at the server specified at
+# the bottom of `index.html`
+
+# === Begin Speed Up/Down Animation ===
 {TextLayer, convertTextLayers} = require 'TextLayer'
 
+# Import a new sketch file, the second screen components for animation only
 sketch = Framer.Importer.load("imported/Sketch%20Imports%20Second%20Screen@1x", scale: 1)
 
 Framer.Extras.Hints.disable()
 
-
-SKETCH_IMPORT_SCALE = 1.1
-IPAD_HEIGHT = 2048
-IPAD_WIDTH = 1536
-
-button = new Layer
-	opacity: 0
-
-button2 = new Layer
-	opacity: 0
-	y: 305
-	x: -31
-
-	
 Utils.globalLayers(sketch)
 
 speedArray = [sketch.Speed_Text,sketch.MPH, sketch.Speed_Highlight]
-
-defaultWidth = IPAD_WIDTH * SKETCH_IMPORT_SCALE
-defaultHeight = IPAD_HEIGHT * SKETCH_IMPORT_SCALE
-
-screenWidth = Framer.Device.screen.width
-widthScale = defaultWidth / screenWidth
-
-#TODO JS: 
-Framer.Device.customize
-	devicePixelRatio: 1
-	screenWidth: defaultWidth
-	screenHeight: defaultHeight
-	
-///TODO///
-# remove magic numbers and create system for tracking y to match two animations
 
 Top_Text = sketch.Top_Text.convertToTextLayer()
 Bottom_Text = sketch.Bottom_Text.convertToTextLayer()
@@ -147,10 +121,10 @@ Speed_Text = sketch.Speed_Text.convertToTextLayer()
 
 
 pulse = sketch.Speed_Highlight
-# Straight_String.animationOptions = {time: .4, curve: Bezier.ease}
-# 
-# Top_Text.animationOptions = {time: 3, curve: Bezier.ease}
-# Bottom_Text.animationOptions = {time: 3, curve: Bezier.ease}
+
+# === Defining Speed Control Constants for Animation ===
+
+# Additional Concurrency Control
 done = false
 block = false
 
@@ -160,9 +134,9 @@ startSpeed = 36
 downSpeed = 24
 upSpeed = 48
 stringCount = 0
-
-///COUNTING VARIABLES///
-
+stringTime1 = 3
+fillTime1 = 6
+speed = null
 newSpeed = 0
 
 rangeUp =
@@ -172,53 +146,8 @@ rangeUp =
 rangeDown =
 	min: downSpeed
 	max: startSpeed
-	
-stringTime1 = 3
-fillTime1 = 6
-speed = null	
-	
-///Variables///	
-# reinit = () ->
-# 	Top_Text = sketch.Top_Text.convertToTextLayer()
-# 	Bottom_Text = sketch.Bottom_Text.convertToTextLayer()
-# 	Speed_Text = sketch.Speed_Text.convertToTextLayer()
-# 	
-# 	
-# 	pulse = sketch.Speed_Highlight
-# 	# Straight_String.animationOptions = {time: .4, curve: Bezier.ease}
-# 	# 
-# 	# Top_Text.animationOptions = {time: 3, curve: Bezier.ease}
-# 	# Bottom_Text.animationOptions = {time: 3, curve: Bezier.ease}
-# 	done = false
-# 	block = false
-# 	
-# 	stringStart = Transition_String.maxY
-# 	
-# 	startSpeed = 36
-# 	downSpeed = 24
-# 	upSpeed = 48
-# 	stringCount = 0
-# 	
-# 	///COUNTING VARIABLES///
-# 	
-# 	newSpeed = 0
-# 	
-# 	rangeUp =
-# 		min: startSpeed
-# 		max: upSpeed
-# 		
-# 	rangeDown =
-# 		min: downSpeed
-# 		max: startSpeed
-# 		
-# 	stringTime1 = 3
-# 	fillTime1 = 6
-# 	speed = null
-# 		
-# 	///STATES///
-# setDefaultState()
-		
-///Functions///
+
+# === Defining States for Animation Elements ===
 sketch.Speed_Highlight.states =
 	big:
 		scale: 1.5
@@ -228,7 +157,6 @@ sketch.Speed_Highlight.animationOptions =
 	curve: Bezier.linear
 	time: .4
 delete sketch.Speed_Highlight.states.default
-
 
 Fill_Speed.states =
 	home:
@@ -249,8 +177,10 @@ Transition_String.states =
 		visible: false
 		x: 0
 		y: 318		
-		
+
+# === setDefaultState ===
 setDefaultState = () ->
+	# Sets the canvas to be our static display showing the current driving speed
 	Top_Text.text = "SELF DRIVING: ON"
 	Bottom_Text.text = "CURRENT SPEED"
 	Bottom_Text.opacity = 1
@@ -263,7 +193,9 @@ setDefaultState = () ->
 	Straight_String.animate
 		opacity: 1
 
+# === setAccelState ===
 setAccelState = () ->
+	# Sets the canvas to be either speeding up or slowing down, based on the input change in speed in conjunction with various elements animating
 	if speed == "up"
 		Top_Text.text = "SPEED: ACCELERATING"
 	if speed == "down" 
@@ -277,8 +209,10 @@ setAccelState = () ->
 		opacity: 1
 	Top_Text.animate
 		opacity: 1
-#String to Accel Decel
+		
+# === stringToAccel ===
 stringToAccel = () ->
+	# Stretches the white line upward in conjunction with a speeding up event
 	Transition_String.visible = true
 	Transition_String. opacity = 1
 	Transition_String. rotation = 0
@@ -289,7 +223,9 @@ stringToAccel = () ->
 			time: stringTime1
 			curve: Bezier.easeIn
 
+# === stringToDecel ===
 stringToDecel = () ->
+	# Stretches the white line downward in conjunction with a slowing down event
 	Transition_String.visible = true
 	sketch.Transition_String.opacity = 1
 	Transition_String. rotation = 180
@@ -300,14 +236,13 @@ stringToDecel = () ->
 			time: stringTime1
 			curve: Bezier.easeIn
 
-#Also decel fill
+# === fillToAccel ===
 fillToAccel = () ->
+	# Stretches the blue fill upwards in conjunction with a speeding up event or downwards in conjunction with a slowing down event
+	Fill_Speed.visible = true
 	if speed == "down"
 		Fill_Speed.y = 0
 		Fill_Speed.rotation = 180
-	Fill_Speed.visible = true
-	if speed == "down"
-# 		print "down"
 		Fill_Speed.animate
 			scaleY: 6
 			scaleX: 1.15
@@ -315,8 +250,7 @@ fillToAccel = () ->
 			options: 
 				curve: Bezier.easeIn
 				time: fillTime1
-				
-	if speed == "up"
+	else if speed == "up"
 		sketch.Fill_Speed.animate
 			scaleY: 5.8
 			scaleX: 1.15
@@ -325,8 +259,10 @@ fillToAccel = () ->
 			options: 
 				curve: Bezier.easeIn
 				time: fillTime1
-			
+
+# === pulseAnimation ===
 pulseAnimation = () ->
+	# Controlling two pulses of the white circle behind the number after an animation has completed involving it
 	pulse.visible = true
 	pulse.stateCycle "big"
 	pulse.onAnimationEnd ->
@@ -339,40 +275,36 @@ pulseAnimation = () ->
 				pulse.off Events.AnimationEnd
 				pulse.stateCycle "reg"
 			
-///COUNTING FUNCTIONS///			
-
-newSpeed = 0
-
+# === countUp ===			
 countUp = () ->
+	# Staggers time before moving the number up one to coordinate with the other animations as speed increases
 	time = (stringTime1/(upSpeed - startSpeed))
-# 	print time
 	for i in [0..(rangeUp.max-rangeUp.min)]
 		do (i) ->
 			Utils.delay time *i, ->
 				newSpeed = startSpeed+i
 				Speed_Text.text = newSpeed
 
+# === countDown ===
 countDown = () ->
+	# Staggers time before moving the number down one to coordinate with the other animations as speed decreases
 	time = (stringTime1/(startSpeed - downSpeed))
 	for i in [0..(rangeDown.max-rangeDown.min)]
 		do (i) ->
 			Utils.delay time*i, ->
 				newSpeed = startSpeed-i
 				Speed_Text.text = newSpeed
-# 	print "go"				
-			
 
-///UI///
 setDefaultState()
 sketch.MPH.x = 160
 
+# === moveUp ===
 moveUp = () ->
+	# General chain of animations to run as speed increases
 	accel.bringToFront()
 	mainBoard.visible = false
 	if block == false
-# 		reinit()
 		mainBoard.visible = false
-# 		accel.bringToFront()
 		setDefaultState()
 		speed = "up"
 		setAccelState()
@@ -380,14 +312,14 @@ moveUp = () ->
 		fillToAccel()
 		countUp()
 		done = false
-# 		print 'block true'
 		block = true
 
+# === moveDown ===
 moveDown = () ->
+	# General chain of animations to run as speed decreases
 	accel.bringToFront()
 	mainBoard.visible = false
 	if block == false
-# 		reinit()
 		setDefaultState()
 		speed = "down"
 		setAccelState()
@@ -397,6 +329,17 @@ moveDown = () ->
 		done = false
 		block = true
 
+# === DEBUG Buttons for Animation ===
+
+# For the purposes of mimicing the socket calls we have two invisible buttons mimicing the incoming socket messages to speed up and slow down
+button = new Layer
+	opacity: 0
+
+button2 = new Layer
+	opacity: 0
+	y: 305
+	x: -31
+	
 button.onClick ->
 	if block == false
 		speed = "up"
@@ -417,60 +360,36 @@ button2.onClick ->
 		done = false
 		block = true
 
-
-
+# === Animation Ending Events ===
 Transition_String.onAnimationEnd ->
+	# Set the white string back to a horizontal line
 	stringCount += 1
 	if stringCount == 2
 		setDefaultState()
 		stringCount = 0
-# 		print 'block false'
 		block = false
 
-	
-		
-
 Fill_Speed.onAnimationEnd ->
+	# Set the blue fill back to a full-screen effect
 	if !done
 		pulseAnimation()
 		done = true 
 		Utils.delay 3, ->
 			Fill_Speed.states.switchInstant "home"
-		# 	Fill_Speed.off(Events.AnimationEnd)
-			Transition_String.states.switch "home"
-			
+			Transition_String.states.switch "home"			
 			startSpeed = newSpeed
 			upSpeed = startSpeed + 12
 			downSpeed = startSpeed - 12
-			
 			if startSpeed < 10
 				startSpeed = 30
-
 			if speed = "down"
 				Fill_Speed.rotation = 180
-
 			if speed = "up"
 				Fill_Speed.rotation = 0
-		
-					
-	
 
-
-
-# Transition_String.on "change:y", ->
-# # 	Speed_Text.text = (Utils.round(Transition_String.y))
-# 	for i in [0..(range.max-range.min)]
-# 	do (i) ->
-# 		Utils.delay time*i, ->
-# 			text.html = range.min+i
-# 	
-
-# if Fill_Speed.y >= Transition_String.y
-# 	Transition_String.y =
-		
-
-
+# === Socket Listener ===
 ws.onmessage = (event) ->
+# Run various animations/walkthroughs as different socket messages come through the express server
  switch event.data
    when 'speed_up' then moveUp()
    when 'slow_down' then moveDown()

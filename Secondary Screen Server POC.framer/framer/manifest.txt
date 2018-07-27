@@ -1,4 +1,6 @@
 app.coffee
+docs/app.html
+docs/pycco.css
 framer/coffee-script.js
 framer/config.json
 framer/framer.generated.js
