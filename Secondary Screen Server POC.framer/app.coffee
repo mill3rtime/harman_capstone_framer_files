@@ -178,6 +178,9 @@ Transition_String.states =
 		x: 0
 		y: 318		
 
+Straight_String.onAnimationEnd ->
+	block = false
+	
 # === setDefaultState ===
 setDefaultState = () ->
 	# Sets the canvas to be our static display showing the current driving speed
@@ -367,7 +370,6 @@ Transition_String.onAnimationEnd ->
 	if stringCount == 2
 		setDefaultState()
 		stringCount = 0
-		block = false
 
 Fill_Speed.onAnimationEnd ->
 	# Set the blue fill back to a full-screen effect
