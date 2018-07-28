@@ -17,33 +17,6 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 		"backgroundColor": "rgba(255, 255, 255, 1)",
 		"children": [
 			{
-				"objectId": "B185FD1D-30F9-4783-BBC4-BB67728C7D87",
-				"kind": "group",
-				"name": "Group_3",
-				"originalName": "Group 3",
-				"maskFrame": null,
-				"layerFrame": {
-					"x": 832,
-					"y": 0,
-					"width": 4,
-					"height": 2229
-				},
-				"visible": true,
-				"metadata": {
-					"opacity": 1
-				},
-				"image": {
-					"path": "images/Layer-Group_3-qje4nuze.png",
-					"frame": {
-						"x": 832,
-						"y": 0,
-						"width": 4,
-						"height": 2229
-					}
-				},
-				"children": []
-			},
-			{
 				"objectId": "F6FD0898-4773-4269-8775-1457910C40C0",
 				"kind": "group",
 				"name": "Straight_String",
@@ -799,7 +772,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 			{
 				"objectId": "3CA7D5C1-9F28-466B-9140-47D0955177F0",
 				"kind": "group",
-				"name": "Group_31",
+				"name": "Group_3",
 				"originalName": "Group 3",
 				"maskFrame": null,
 				"layerFrame": {

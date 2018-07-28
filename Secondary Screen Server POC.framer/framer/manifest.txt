@@ -635,7 +635,6 @@ imported/Sketch Imports Second Screen@1x/images/Layer-Group-oum3mdgy.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Group-rtvgotc0.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Group_2-q0jgnuux.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Group_3-m0nbn0q1.png
-imported/Sketch Imports Second Screen@1x/images/Layer-Group_3-qje4nuze.png
 imported/Sketch Imports Second Screen@1x/images/Layer-MPH-mkizrdmw.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Music-mey5mdfg.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Music-qkfcrdg4.png

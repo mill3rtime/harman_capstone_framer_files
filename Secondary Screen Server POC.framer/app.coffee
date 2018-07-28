@@ -122,7 +122,6 @@ MPH = sketch.MPH.convertToTextLayer()
 
 textArray = [Top_Text,Bottom_Text,Speed_Text,MPH]
 
-
 pulse = sketch.Speed_Highlight
 
 # === Defining Speed Control Constants for Animation ===
@@ -137,8 +136,8 @@ startSpeed = 36
 downSpeed = 24
 upSpeed = 48
 stringCount = 0
-stringTime1 = 3
-fillTime1 = 6
+stringTime1 = 2
+fillTime1 = 3
 speed = null
 newSpeed = 0
 
