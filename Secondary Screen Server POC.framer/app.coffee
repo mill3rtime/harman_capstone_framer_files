@@ -118,6 +118,9 @@ speedArray = [sketch.Speed_Text,sketch.MPH, sketch.Speed_Highlight]
 Top_Text = sketch.Top_Text.convertToTextLayer()
 Bottom_Text = sketch.Bottom_Text.convertToTextLayer()
 Speed_Text = sketch.Speed_Text.convertToTextLayer()
+MPH = sketch.MPH.convertToTextLayer()
+
+textArray = [Top_Text,Bottom_Text,Speed_Text,MPH]
 
 
 pulse = sketch.Speed_Highlight
@@ -195,6 +198,7 @@ setDefaultState = () ->
 	Fill_Speed.visible = false
 	Straight_String.animate
 		opacity: 1
+	centerText()
 
 # === setAccelState ===
 setAccelState = () ->
@@ -204,6 +208,7 @@ setAccelState = () ->
 	if speed == "down" 
 		Top_Text.text = "SPEED: DECELERATING"
 	Bottom_Text.text = "SETTING NEW SPEED"
+	centerText()
 	Up_String.visible = false
 	Fill_Speed.visible = true
 	sketch.Speed_Highlight.visible = false
@@ -262,6 +267,12 @@ fillToAccel = () ->
 			options: 
 				curve: Bezier.easeIn
 				time: fillTime1
+				
+# === centerText ===
+centerText = () ->
+	for layer in textArray
+		layer.autoSize = true
+		layer.centerX()
 
 # === pulseAnimation ===
 pulseAnimation = () ->
@@ -287,6 +298,7 @@ countUp = () ->
 			Utils.delay time *i, ->
 				newSpeed = startSpeed+i
 				Speed_Text.text = newSpeed
+				Speed_Text.centerX()
 
 # === countDown ===
 countDown = () ->
@@ -297,9 +309,10 @@ countDown = () ->
 			Utils.delay time*i, ->
 				newSpeed = startSpeed-i
 				Speed_Text.text = newSpeed
+				Speed_Text.centerX()
 
 setDefaultState()
-sketch.MPH.x = 160
+centerText()
 
 # === moveUp ===
 moveUp = () ->

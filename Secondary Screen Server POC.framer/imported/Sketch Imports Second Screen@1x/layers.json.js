@@ -17,6 +17,33 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 		"backgroundColor": "rgba(255, 255, 255, 1)",
 		"children": [
 			{
+				"objectId": "B185FD1D-30F9-4783-BBC4-BB67728C7D87",
+				"kind": "group",
+				"name": "Group_3",
+				"originalName": "Group 3",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": 832,
+					"y": 0,
+					"width": 4,
+					"height": 2229
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"image": {
+					"path": "images/Layer-Group_3-qje4nuze.png",
+					"frame": {
+						"x": 832,
+						"y": 0,
+						"width": 4,
+						"height": 2229
+					}
+				},
+				"children": []
+			},
+			{
 				"objectId": "F6FD0898-4773-4269-8775-1457910C40C0",
 				"kind": "group",
 				"name": "Straight_String",
@@ -44,89 +71,16 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 				"children": []
 			},
 			{
-				"objectId": "1254B29C-C4DF-44C3-B114-40C7378AD74E",
-				"kind": "text",
-				"name": "Top_Text",
-				"originalName": "Top Text",
-				"maskFrame": null,
-				"layerFrame": {
-					"x": 448,
-					"y": 72,
-					"width": 771,
-					"height": 46
-				},
-				"visible": true,
-				"metadata": {
-					"opacity": 1,
-					"string": "SPEED: ACCELERATING",
-					"css": [
-						"/* SPEED: ACCELERATING: */",
-						"font-family: .SFNSDisplay;",
-						"font-size: 55px;",
-						"color: #D3D1D3;",
-						"letter-spacing: 10.31px;",
-						"text-align: center;",
-						"text-shadow: 5px 2px 4px #000000;"
-					]
-				},
-				"image": {
-					"path": "images/Layer-Top_Text-mti1neiy.png",
-					"frame": {
-						"x": 448,
-						"y": 72,
-						"width": 771,
-						"height": 46
-					}
-				},
-				"children": []
-			},
-			{
-				"objectId": "546FA96D-7C4A-408C-88AF-905F91F5EDB7",
-				"kind": "text",
-				"name": "Bottom_Text",
-				"originalName": "Bottom Text",
-				"maskFrame": null,
-				"layerFrame": {
-					"x": 608,
-					"y": 697,
-					"width": 445,
-					"height": 27
-				},
-				"visible": true,
-				"metadata": {
-					"opacity": 1,
-					"string": "SETTING NEW SPEED",
-					"css": [
-						"/* SETTING NEW SPEED: */",
-						"font-family: .SFNSDisplay;",
-						"font-size: 36px;",
-						"color: #D3D1D3;",
-						"letter-spacing: 6px;",
-						"text-align: center;"
-					]
-				},
-				"image": {
-					"path": "images/Layer-Bottom_Text-ntq2rke5.png",
-					"frame": {
-						"x": 608,
-						"y": 697,
-						"width": 445,
-						"height": 27
-					}
-				},
-				"children": []
-			},
-			{
-				"objectId": "EE276DDA-A981-4717-99DF-CEA5CA7EEFFB",
+				"objectId": "067971E8-2C01-4C30-BA7B-49D4887E8A3B",
 				"kind": "group",
-				"name": "Speed",
-				"originalName": "Speed",
+				"name": "Center_Elements",
+				"originalName": "Center_Elements",
 				"maskFrame": null,
 				"layerFrame": {
-					"x": 669,
-					"y": 248,
-					"width": 331,
-					"height": 331
+					"x": 506,
+					"y": 71,
+					"width": 653,
+					"height": 653
 				},
 				"visible": true,
 				"metadata": {
@@ -134,35 +88,108 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 				},
 				"children": [
 					{
+						"objectId": "1254B29C-C4DF-44C3-B114-40C7378AD74E",
+						"kind": "text",
+						"name": "Top_Text",
+						"originalName": "Top Text",
+						"maskFrame": null,
+						"layerFrame": {
+							"x": 506,
+							"y": 71,
+							"width": 653,
+							"height": 50
+						},
+						"visible": true,
+						"metadata": {
+							"opacity": 1,
+							"string": "SELF DRIVING: ON",
+							"css": [
+								"/* SELF DRIVING: ON: */",
+								"font-family: Helvetica;",
+								"font-size: 55px;",
+								"color: #D3D1D3;",
+								"letter-spacing: 10.31px;",
+								"text-align: center;",
+								"text-shadow: 5px 2px 4px #000000;"
+							]
+						},
+						"image": {
+							"path": "images/Layer-Top_Text-mti1neiy.png",
+							"frame": {
+								"x": 506,
+								"y": 71,
+								"width": 653,
+								"height": 50
+							}
+						},
+						"children": []
+					},
+					{
+						"objectId": "546FA96D-7C4A-408C-88AF-905F91F5EDB7",
+						"kind": "text",
+						"name": "Bottom_Text",
+						"originalName": "Bottom Text",
+						"maskFrame": null,
+						"layerFrame": {
+							"x": 643,
+							"y": 696,
+							"width": 377,
+							"height": 28
+						},
+						"visible": true,
+						"metadata": {
+							"opacity": 1,
+							"string": "CURRENT SPEED",
+							"css": [
+								"/* CURRENT SPEED: */",
+								"font-family: Helvetica;",
+								"font-size: 36px;",
+								"color: #D3D1D3;",
+								"letter-spacing: 6px;",
+								"text-align: center;"
+							]
+						},
+						"image": {
+							"path": "images/Layer-Bottom_Text-ntq2rke5.png",
+							"frame": {
+								"x": 643,
+								"y": 696,
+								"width": 377,
+								"height": 28
+							}
+						},
+						"children": []
+					},
+					{
 						"objectId": "2B3D30CA-355E-4932-8EDA-8BE09350578F",
 						"kind": "text",
 						"name": "MPH",
 						"originalName": "MPH",
 						"maskFrame": null,
 						"layerFrame": {
-							"x": 804,
-							"y": 477,
+							"x": 805,
+							"y": 481,
 							"width": 53,
 							"height": 15
 						},
 						"visible": true,
 						"metadata": {
 							"opacity": 1,
-							"string": "\nMPH",
+							"string": "MPH",
 							"css": [
 								"/* MPH: */",
 								"font-family: Helvetica;",
-								"font-size: 144px;",
+								"font-size: 20px;",
 								"color: #D5F0FF;",
-								"letter-spacing: 12px;",
+								"letter-spacing: 5px;",
 								"text-align: center;"
 							]
 						},
 						"image": {
 							"path": "images/Layer-MPH-mkizrdmw.png",
 							"frame": {
-								"x": 804,
-								"y": 477,
+								"x": 805,
+								"y": 481,
 								"width": 53,
 								"height": 15
 							}
@@ -176,15 +203,15 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 						"originalName": "Speed_Text",
 						"maskFrame": null,
 						"layerFrame": {
-							"x": 744,
-							"y": 346,
+							"x": 745,
+							"y": 350,
 							"width": 165,
 							"height": 104
 						},
 						"visible": true,
 						"metadata": {
 							"opacity": 1,
-							"string": "34\n",
+							"string": "34",
 							"css": [
 								"/* 34: */",
 								"font-family: Helvetica;",
@@ -197,8 +224,8 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 						"image": {
 							"path": "images/Layer-Speed_Text-mujdqkfb.png",
 							"frame": {
-								"x": 744,
-								"y": 346,
+								"x": 745,
+								"y": 350,
 								"width": 165,
 								"height": 104
 							}
@@ -212,10 +239,10 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 						"originalName": "Speed_Highlight",
 						"maskFrame": null,
 						"layerFrame": {
-							"x": 669,
-							"y": 248,
-							"width": 331,
-							"height": 331
+							"x": 655,
+							"y": 234,
+							"width": 359,
+							"height": 359
 						},
 						"visible": true,
 						"metadata": {
@@ -224,10 +251,10 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 						"image": {
 							"path": "images/Layer-Speed_Highlight-mjlfrty4.png",
 							"frame": {
-								"x": 669,
-								"y": 248,
-								"width": 331,
-								"height": 331
+								"x": 655,
+								"y": 234,
+								"width": 359,
+								"height": 359
 							}
 						},
 						"children": []
@@ -530,7 +557,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 													{
 														"objectId": "7151FC2D-B9E0-42DE-B987-2EFA80F97C1D",
 														"kind": "text",
-														"name": "Speed1",
+														"name": "Speed",
 														"originalName": "Speed",
 														"maskFrame": null,
 														"layerFrame": {
@@ -567,7 +594,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 													{
 														"objectId": "18DEB2FF-D05A-491A-AE93-0BBE79A1D658",
 														"kind": "text",
-														"name": "Speed2",
+														"name": "Speed1",
 														"originalName": "Speed",
 														"maskFrame": null,
 														"layerFrame": {
@@ -772,7 +799,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 			{
 				"objectId": "3CA7D5C1-9F28-466B-9140-47D0955177F0",
 				"kind": "group",
-				"name": "Group_3",
+				"name": "Group_31",
 				"originalName": "Group 3",
 				"maskFrame": null,
 				"layerFrame": {
@@ -1047,7 +1074,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 													{
 														"objectId": "198E3033-DDC6-47E4-B3C1-9E9A2BB92F36",
 														"kind": "text",
-														"name": "Speed3",
+														"name": "Speed2",
 														"originalName": "Speed",
 														"maskFrame": null,
 														"layerFrame": {
@@ -1084,7 +1111,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 													{
 														"objectId": "E845EAF1-7D74-44C9-8DBE-D5BD12E4EA1F",
 														"kind": "text",
-														"name": "Speed4",
+														"name": "Speed3",
 														"originalName": "Speed",
 														"maskFrame": null,
 														"layerFrame": {
