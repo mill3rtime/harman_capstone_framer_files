@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>CARLA_API.coffee</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>CARLA_API.coffee</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <h3><span id="carla-networking-api" href="carla-networking-api"> CARLA Networking API </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>An interface to interact with the CARLA Driving Simulator based on the MHCI Protocol</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>The below IP/PORT will vary</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">IP_PORT = </span><span class="s">&#39;http://172.25.2.19:8080&#39;</span>
+<span class="nv">DEBUG = </span><span class="kc">false</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <h3><span id="run_ajax" href="run_ajax"> run_ajax </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">run_ajax = </span><span class="nf">(msg) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>A generic AJAX wrapper to perform POST requests to the Python HTTP Server</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+  <span class="k">if</span> <span class="nx">DEBUG</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>&hellip;</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>Perform an AJAX post request with our message</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span>
+    <span class="nv">url: </span><span class="nx">IP_PORT</span>
+    <span class="nv">data: </span><span class="nx">msg</span>
+    <span class="nv">method: </span><span class="s">&#39;POST&#39;</span>
+    <span class="nv">crossOrigin: </span><span class="kc">true</span>
+    <span class="nv">error: </span><span class="nf">(jqXHR, textStatus, errorThrown) -&gt;</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s">&#39;error&#39;</span><span class="p">)</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span> <span class="s">&quot;AJAX Error: </span><span class="si">#{</span><span class="nx">textStatus</span><span class="si">}</span><span class="s">&quot;</span>
+    <span class="nv">success: </span><span class="nf">(data, textStatus, jqXHR) -&gt;</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s">&#39;yes&#39;</span><span class="p">)</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span> <span class="s">&quot;Successful AJAX call: </span><span class="si">#{</span><span class="nx">data</span><span class="si">}</span><span class="s">&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>Begin the server with this command</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">exports.begin_server = </span><span class="nf">-&gt;</span>
+  <span class="nx">run_ajax</span><span class="p">(</span><span class="s">&#39;startserver&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <p>Speed up</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">exports.speed_up = </span><span class="nf">-&gt;</span>
+  <span class="nx">run_ajax</span><span class="p">(</span><span class="s">&#39;forward&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>Stop speeding up</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">exports.stop_speeding_up = </span><span class="nf">-&gt;</span>
+  <span class="nx">run_ajax</span><span class="p">(</span><span class="s">&#39;forward_stop&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <p>Slow down</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">exports.slow_down = </span><span class="nf">-&gt;</span>
+  <span class="nx">run_ajax</span><span class="p">(</span><span class="s">&#39;backward&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>Stop slowing down</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">exports.stop_slowing_down = </span><span class="nf">-&gt;</span>
+  <span class="nx">run_ajax</span><span class="p">(</span><span class="s">&#39;backward_stop&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      <p>Adjust left in lane</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">exports.move_left = </span><span class="nf">-&gt;</span>
+  <span class="nx">run_ajax</span><span class="p">(</span><span class="s">&#39;left&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p>Stop adjusting</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">exports.stop_moving_left = </span><span class="nf">-&gt;</span>
+  <span class="nx">run_ajax</span><span class="p">(</span><span class="s">&#39;left_stop&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      <p>Adjust right in lane</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">exports.move_right = </span><span class="nf">-&gt;</span>
+  <span class="nx">run_ajax</span><span class="p">(</span><span class="s">&#39;right&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      <p>Stop adjusting</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">exports.stop_moving_right = </span><span class="nf">-&gt;</span>
+  <span class="nx">run_ajax</span><span class="p">(</span><span class="s">&#39;right_stop&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-16'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-16'>#</a>
+      </div>
+      <p>Emergency stop</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">exports.hard_stop = </span><span class="nf">-&gt;</span>
+  <span class="nx">run_ajax</span><span class="p">(</span><span class="s">&#39;stop&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-17'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-17'>#</a>
+      </div>
+      <p>Clear all commands sent to the car</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">exports.remove_all_commands = </span><span class="nf">-&gt;</span>
+  <span class="nx">run_ajax</span><span class="p">(</span><span class="s">&#39;clear&#39;</span><span class="p">)</span>
+
+<span class="nv">exports.toggle_autopilot = </span><span class="nf">-&gt;</span>
+  <span class="nx">run_ajax</span><span class="p">(</span><span class="s">&#39;enable_ap&#39;</span><span class="p">)</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
