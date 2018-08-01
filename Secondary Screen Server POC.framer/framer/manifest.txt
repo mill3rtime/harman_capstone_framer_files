@@ -79,6 +79,52 @@ imported/bus_only@1x/images/Layer-Vertical_Bars-remwm0ix.png
 imported/bus_only@1x/images/Layer-Vertical_Bars-ruu2mjyz.png
 imported/bus_only@1x/layers.json
 imported/bus_only@1x/layers.json.js
+imported/Secondary Screens - Final@1x/images/Layer-binary_confirm_1-oum2mtyz.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_confirm_2-nji4rjjg.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_confirm_3-mjverefd.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_confirm_4-rjgzouu2.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_confirm_5-mtvbrje3.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_confirm_6-nkiznkje.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_confirm_7-rkndnduz.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_confirm_8-q0y1nem5.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_confirm_9-njqxree5.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_deny_1-nza5ruqx.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_deny_2-rdq1otay.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_deny_3-mdy3mdc1.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_deny_4-m0mxoum3.jpg
+imported/Secondary Screens - Final@1x/images/Layer-binary_deny_5-q0u0rki4.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_idle_1-reu0ouu5.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_idle_2-mzi4rkuy.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_idle_3-nte1numy.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_no_1-mtdcothe.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_no_2-qkm0q0mz.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_no_3-nki4rjg1.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_no_4-rtzdnknf.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_no_5-qjnenuu4.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_yes_1-qzqyrumz.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_yes_2-ruzcmuew.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_yes_3-mdndneq3.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_yes_4-njy4qtmy.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_yes_5-nzhcmtq5.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_yes_6-oeiwoeew.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_yes_7-n0fdndew.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_yes_8-qjvfqjlb.jpg
+imported/Secondary Screens - Final@1x/images/Layer-bus_yes_9-qzbdnjk3.jpg
+imported/Secondary Screens - Final@1x/images/Layer-edge_error_left-rjrcnjiy.jpg
+imported/Secondary Screens - Final@1x/images/Layer-edge_error_right-menenemw.jpg
+imported/Secondary Screens - Final@1x/images/Layer-lane_left_1-otrgmthc.jpg
+imported/Secondary Screens - Final@1x/images/Layer-lane_left_2-meq5mdu3.jpg
+imported/Secondary Screens - Final@1x/images/Layer-lane_left_3-qjbbqzq0.jpg
+imported/Secondary Screens - Final@1x/images/Layer-lane_left_4-ntg0rue5.jpg
+imported/Secondary Screens - Final@1x/images/Layer-lane_left_5-rjyxmkre.jpg
+imported/Secondary Screens - Final@1x/images/Layer-lane_right_1-ndc4ree2.jpg
+imported/Secondary Screens - Final@1x/images/Layer-lane_right_2-m0e0mdld.jpg
+imported/Secondary Screens - Final@1x/images/Layer-lane_right_3-rddequq1.jpg
+imported/Secondary Screens - Final@1x/images/Layer-lane_right_4-otk1mue2.jpg
+imported/Secondary Screens - Final@1x/images/Layer-lane_right_5-qunbodlf.jpg
+imported/Secondary Screens - Final@1x/images/Layer-start-ntezoti4.jpg
+imported/Secondary Screens - Final@1x/layers.json
+imported/Secondary Screens - Final@1x/layers.json.js
 imported/SecondScreen-7.20 Grouped@1x/images/Layer-accel_2-rky2qzyz.jpg
 imported/SecondScreen-7.20 Grouped@1x/images/Layer-accel_3-n0i2mzqx.jpg
 imported/SecondScreen-7.20 Grouped@1x/images/Layer-accel_4-rue5ntcw.jpg
@@ -617,32 +663,26 @@ imported/SecondScreen-7.20@1x/images/Layer-Vertical_Bars-qjrenke5.png
 imported/SecondScreen-7.20@1x/images/Layer-Vertical_Bars-rkm2ntve.png
 imported/SecondScreen-7.20@1x/layers.json
 imported/SecondScreen-7.20@1x/layers.json.js
-imported/Sketch Imports Second Screen@1x/images/Layer-Background-nzi3nja1.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Background-ouezodng.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Background-qzzfrdy2.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Background-rjdfoty0.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Bitmap-mku0mkvb.png
-imported/Sketch Imports Second Screen@1x/images/Layer-Bitmap-qju3qku3.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Bottom_Text-ntq2rke5.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Buttons-ndffqzu3.png
-imported/Sketch Imports Second Screen@1x/images/Layer-Buttons-ndqynkiy.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Dividing_Bar-ntk2mzhe.png
-imported/Sketch Imports Second Screen@1x/images/Layer-Dividing_Bar-nzyxqtrf.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Dividing_Bar-rei5mkm1.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Down_Bulge-qju4n0iz.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Down_String-qji3qjyw.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Fill_Speed-nky4mtm3.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Group-m0y5rdq3.png
-imported/Sketch Imports Second Screen@1x/images/Layer-Group-oeyymung.png
+imported/Sketch Imports Second Screen@1x/images/Layer-Group-otkxrtky.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Group-oum3mdgy.png
-imported/Sketch Imports Second Screen@1x/images/Layer-Group-rtvgotc0.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Group_2-q0jgnuux.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Group_3-m0nbn0q1.png
 imported/Sketch Imports Second Screen@1x/images/Layer-MPH-mkizrdmw.png
-imported/Sketch Imports Second Screen@1x/images/Layer-Music-mey5mdfg.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Music-qkfcrdg4.png
-imported/Sketch Imports Second Screen@1x/images/Layer-Nav-mevcntmy.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Nav-renenujg.png
-imported/Sketch Imports Second Screen@1x/images/Layer-Speed-mtheruiy.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Speed-mtk4rtmw.png
-imported/Sketch Imports Second Screen@1x/images/Layer-Speed-nze1muzd.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Speed-rtg0nuvb.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Speed_Highlight-mjlfrty4.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Speed_Text-mujdqkfb.png
@@ -650,7 +690,6 @@ imported/Sketch Imports Second Screen@1x/images/Layer-Straight_String-rjzgrda4.p
 imported/Sketch Imports Second Screen@1x/images/Layer-Top_Text-mti1neiy.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Transition_String-mkyxmddg.png
 imported/Sketch Imports Second Screen@1x/images/Layer-Up_String-rjvgmdiz.png
-imported/Sketch Imports Second Screen@1x/images/Layer-Vertical_Bars-qzg2m0fg.png
 imported/Sketch Imports Second Screen@1x/layers.json
 imported/Sketch Imports Second Screen@1x/layers.json.js
 index.html

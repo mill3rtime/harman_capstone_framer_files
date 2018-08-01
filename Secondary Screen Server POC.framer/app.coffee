@@ -1,9 +1,12 @@
+
 # === Secondary Screen Socket Listener Framer Prototype ===
 		
 # Defining some constants for monitoring the imports of several sketch files, as well as adhering to screen size requirements.
 IPAD_HEIGHT = 2224
 IPAD_WIDTH = 1668
 SKETCH_IMPORT_SCALE = 1
+
+Screen.backgroundColor = "#000"
 
 defaultWidth = IPAD_WIDTH * SKETCH_IMPORT_SCALE
 defaultHeight = IPAD_HEIGHT * SKETCH_IMPORT_SCALE
@@ -16,13 +19,22 @@ Framer.Device.customize
 	screenWidth: defaultWidth
 	screenHeight: defaultHeight
 
+Framer.Device.background.backgroundColor = "#000"
+
 # === Importing Sketch Files ===
 
 # Import sketch file "bus_only", which has just the pass the bus artboards
 bus_sketch = Framer.Importer.load("imported/bus_only@1x", scale: SKETCH_IMPORT_SCALE)
 
-# Import sketch file "SecondScreen-7.20 Grouped" which has all the other artboards
-sketch = Framer.Importer.load("imported/SecondScreen-7.20%20Grouped@1x", scale: SKETCH_IMPORT_SCALE)
+# # Import sketch file "SecondScreen-7.20 Grouped" which has all the other artboards
+# sketch = Framer.Importer.load("imported/SecondScreen-7.20%20Grouped@1x", scale: SKETCH_IMPORT_SCALE)
+
+# Import file "Secondary Screens - Final"
+sketch = Framer.Importer.load("imported/Secondary%20Screens%20-%20Final@1x", scale: SKETCH_IMPORT_SCALE)
+
+for name, layer of sketch when layer._info.kind is "artboard"
+	layer.background = sketch.start
+	layer.backgroundColor = "#191919"
 
 # Defining the starting background board
 mainBoard = sketch.start
@@ -77,24 +89,30 @@ screen_to_show = (screen) ->
 	if screen
 		screen.x = 0
 		screen.y = 0
-		mainBoard.visible = false
 		screen.visible = true
-		mainBoard = screen
 		screen.bringToFront()
+		mainBoard.visible = false
+		mainBoard = screen
 
 # === Artboard Series ===
 	
 # For feedback we do not yet have animated, we create a series of artboards to walk through (in a slide show style) upon receiving a specific socket message
 
-LEFT_SERIES = [sketch.start, sketch.lane_static, sketch.lane_left_1, sketch.lane_left_2, sketch.lane_left_3, sketch.start]
+ERROR_LEFT_SERIES = [sketch.edge_error_left, sketch.edge_error_left, sketch.edge_error_left]
 
-RIGHT_SERIES = [sketch.start, sketch.lane_static, sketch.lane_right_1, sketch.lane_right_2, sketch.lane_right_3, sketch.start]
+ERROR_RIGHT_SERIES = [sketch.edge_error_right, sketch.edge_error_right, sketch.edge_error_right]
 
-BUS_STATIC_SERIES = [sketch.start, bus_sketch.bus_yes_1]
+BUS_IDLE_SERIES = [sketch.bus_idle_1, sketch.bus_idle_1, sketch.bus_idle_2, sketch.bus_idle_2, sketch.bus_idle_3, sketch.bus_idle_3]
 
-BUS_CONFIRM_SERIES = [sketch.start, bus_sketch.bus_yes_1, bus_sketch.bus_yes_2, bus_sketch.bus_yes_3, bus_sketch.bus_yes_4, bus_sketch.bus_yes_5, bus_sketch.bus_yes_6, bus_sketch.bus_yes_7, bus_sketch.bus_yes_8, bus_sketch.bus_yes_9, sketch.start]
+LEFT_SERIES = [sketch.start, sketch.lane_left_1, sketch.lane_left_2, sketch.lane_left_3, sketch.lane_left_4, sketch.lane_left_5, sketch.start]
 
-BUS_DENY_SERIES = [sketch.start, bus_sketch.bus_no_1, bus_sketch.bus_no_2, bus_sketch.bus_no_3, bus_sketch.bus_no_4, bus_sketch.bus_no_5, sketch.start]
+RIGHT_SERIES = [sketch.start, sketch.lane_right_1, sketch.lane_right_2, sketch.lane_right_3, sketch.lane_right_4, sketch.lane_right_5, sketch.start]
+
+BUS_STATIC_SERIES = [sketch.start, sketch.bus_yes_1]
+
+BUS_CONFIRM_SERIES = [sketch.start, sketch.bus_yes_1, sketch.bus_yes_2, sketch.bus_yes_3, sketch.bus_yes_4, sketch.bus_yes_5, sketch.bus_yes_6, sketch.bus_yes_7, sketch.bus_yes_8, sketch.bus_yes_9, sketch.bus_yes_9, sketch.start]
+
+BUS_DENY_SERIES = [sketch.start, sketch.bus_no_1, sketch.bus_no_2, sketch.bus_no_3, sketch.bus_no_4, sketch.bus_no_5, sketch.bus_no_5, sketch.start]
 
 BINARY_CONFIRM_SERIES_A = [sketch.start, sketch.binary_confirm_1, sketch.binary_confirm_2, sketch.binary_confirm_3, sketch.binary_confirm_4, sketch.binary_confirm_5, sketch.binary_confirm_6, sketch.binary_confirm_7, sketch.binary_confirm_8, sketch.binary_confirm_9, sketch.start]
 
@@ -235,7 +253,7 @@ stringToDecel = () ->
 	# Stretches the white line downward in conjunction with a slowing down event
 	Transition_String.visible = true
 	sketch.Transition_String.opacity = 1
-	Transition_String. rotation = 180
+	Transition_String.rotation = 180
 	sketch.Transition_String.animate
 		scaleY: 4
 		minY: Dividing_Bar.y - 220
@@ -414,5 +432,8 @@ ws.onmessage = (event) ->
    when 'no_pass_bus' then series_to_show(BUS_DENY_SERIES)
    when 'pass_bus' then series_to_show(BUS_CONFIRM_SERIES)
    when 'static_bus' then series_to_show(BUS_STATIC_SERIES, hangAtEnd=true)
+   when 'eleft' then series_to_show(ERROR_LEFT_SERIES)
+   when 'eright' then series_to_show(ERROR_RIGHT_SERIES)
+   when 'idle' then series_to_show(BUS_IDLE_SERIES)
    else screen_to_show(sketch.start)
 

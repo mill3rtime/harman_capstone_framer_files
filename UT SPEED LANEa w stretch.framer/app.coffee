@@ -71,8 +71,8 @@ isLane = false
 isSpeed = true
 laneDetect  = new Layer
 	width: Screen.width
-	y: Screen.height - 800
-	height: 800
+	y: Screen.height - 900
+	height: 900
 	opacity: 0
 speedDetect = new Layer
 	width: Screen.width
@@ -349,9 +349,9 @@ canvas.on Events.TouchMove, (e, layer) ->
 		deltaX = Math.abs(tapX - lastX)
 		deltaY = Math.abs(tapY - lastY)
 		# Calculating how much it takes to trigger an intent in a certain direction of the final interface
-		yDistanceDownThreshold = 80
-		yDistanceUpThreshold = 150
-		xDistanceThreshold = 50
+		yDistanceDownThreshold = 100
+		yDistanceUpThreshold = 100
+		xDistanceThreshold = 400
 
 		# Case 1: Is this a lane adjustment
 		if deltaX > deltaY and deltaX > xDistanceThreshold and isLane

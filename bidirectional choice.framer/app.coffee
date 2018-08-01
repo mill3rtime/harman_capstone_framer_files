@@ -114,8 +114,8 @@ hideControl = () ->
 confirmDeny = () ->
 	# Check that the user does, in fact, want to perform the deny action for this binary action
 	# TODO: Change back to 0 for the full curve effect
-	denyThresholdPx = 400
-	borderOffset = 200
+	denyThresholdPx = 200
+	borderOffset = 600
 	if yes_4.maxY < denyThresholdPx
 		offScreen = true
 		hideControl()

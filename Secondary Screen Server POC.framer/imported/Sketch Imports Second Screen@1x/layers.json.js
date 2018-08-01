@@ -316,10 +316,37 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 				"children": []
 			},
 			{
-				"objectId": "1F157F71-FBB9-4F52-B6AB-930EC91DC9ED",
+				"objectId": "991E925F-70FB-4E5E-B64F-70D57E42EFC2",
 				"kind": "group",
-				"name": "Group_2",
-				"originalName": "Group 2",
+				"name": "Group",
+				"originalName": "Group",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": 107,
+					"y": 1096,
+					"width": 1451,
+					"height": 946
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"image": {
+					"path": "images/Layer-Group-otkxrtky.png",
+					"frame": {
+						"x": 107,
+						"y": 1096,
+						"width": 1451,
+						"height": 946
+					}
+				},
+				"children": []
+			},
+			{
+				"objectId": "9A383FC6-A50A-49AA-8006-AB15D053FC9D",
+				"kind": "group",
+				"name": "Background",
+				"originalName": "Background",
 				"maskFrame": null,
 				"layerFrame": {
 					"x": -31,
@@ -331,425 +358,61 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 				"metadata": {
 					"opacity": 1
 				},
-				"children": [
-					{
-						"objectId": "C863AFEC-B043-410E-AFC1-3F544FC7657B",
-						"kind": "group",
-						"name": "Vertical_Bars",
-						"originalName": "Vertical Bars",
-						"maskFrame": null,
-						"layerFrame": {
-							"x": 2247,
-							"y": 0,
-							"width": 711,
-							"height": 906
-						},
-						"visible": false,
-						"metadata": {
-							"opacity": 1
-						},
-						"image": {
-							"path": "images/Layer-Vertical_Bars-qzg2m0fg.png",
-							"frame": {
-								"x": 2247,
-								"y": 0,
-								"width": 711,
-								"height": 906
-							}
-						},
-						"children": []
-					},
-					{
-						"objectId": "761A4EE8-85D8-4481-AA12-11ED07D9975A",
-						"kind": "group",
-						"name": "Dividing_Bar",
-						"originalName": "Dividing Bar",
-						"maskFrame": null,
-						"layerFrame": {
-							"x": -31,
-							"y": 782,
-							"width": 1718,
-							"height": 156
-						},
-						"visible": true,
-						"metadata": {
-							"opacity": 1
-						},
-						"image": {
-							"path": "images/Layer-Dividing_Bar-nzyxqtrf.png",
-							"frame": {
-								"x": -31,
-								"y": 782,
-								"width": 1718,
-								"height": 156
-							}
-						},
-						"children": []
-					},
-					{
-						"objectId": "A675DF34-77F0-40DB-A2C8-2DCB263E1A49",
-						"kind": "group",
-						"name": "Infotainment",
-						"originalName": "Infotainment",
-						"maskFrame": null,
-						"layerFrame": {
-							"x": 100,
-							"y": 1096,
-							"width": 1458,
-							"height": 946
-						},
-						"visible": true,
-						"metadata": {
-							"opacity": 1
-						},
-						"children": [
-							{
-								"objectId": "F31DBC40-B5BC-4D7E-8E3F-5C739FD3DA93",
-								"kind": "group",
-								"name": "Nav",
-								"originalName": "Nav",
-								"maskFrame": null,
-								"layerFrame": {
-									"x": 100,
-									"y": 1096,
-									"width": 1379,
-									"height": 333
-								},
-								"visible": true,
-								"metadata": {
-									"opacity": 0.49921875
-								},
-								"children": [
-									{
-										"objectId": "EC079D0A-F7CE-4B01-9C35-7BA345A100AF",
-										"kind": "group",
-										"name": "Nav_Direction",
-										"originalName": "Nav Direction",
-										"maskFrame": null,
-										"layerFrame": {
-											"x": 100,
-											"y": 1096,
-											"width": 334,
-											"height": 315
-										},
-										"visible": true,
-										"metadata": {
-											"opacity": 1
-										},
-										"children": [
-											{
-												"objectId": "E9BA88BD-901A-4239-B872-E1FE522EF708",
-												"kind": "group",
-												"name": "Right_Arrow",
-												"originalName": "Right Arrow",
-												"maskFrame": null,
-												"layerFrame": {
-													"x": 163,
-													"y": 1096.7827250406908,
-													"width": 221,
-													"height": 227
-												},
-												"visible": true,
-												"metadata": {
-													"opacity": 1
-												},
-												"children": [
-													{
-														"objectId": "8F21CF35-56DD-48E2-8B79-90478344BB4C",
-														"kind": "group",
-														"name": "Group",
-														"originalName": "Group",
-														"maskFrame": null,
-														"layerFrame": {
-															"x": 163.5097209899621,
-															"y": 1096.7827250406908,
-															"width": 220,
-															"height": 227
-														},
-														"visible": true,
-														"metadata": {
-															"opacity": 1
-														},
-														"image": {
-															"path": "images/Layer-Group-oeyymung.png",
-															"frame": {
-																"x": 163.5097209899621,
-																"y": 1096.7827250406908,
-																"width": 220,
-																"height": 227
-															}
-														},
-														"children": []
-													},
-													{
-														"objectId": "E5F974D8-69F1-42B0-8F3B-5FA91D43CEF4",
-														"kind": "group",
-														"name": "Group1",
-														"originalName": "Group",
-														"maskFrame": null,
-														"layerFrame": {
-															"x": 175.5097209899621,
-															"y": 1106.7827250406908,
-															"width": 198,
-															"height": 207
-														},
-														"visible": true,
-														"metadata": {
-															"opacity": 1
-														},
-														"image": {
-															"path": "images/Layer-Group-rtvgotc0.png",
-															"frame": {
-																"x": 175.5097209899621,
-																"y": 1106.7827250406908,
-																"width": 198,
-																"height": 207
-															}
-														},
-														"children": []
-													}
-												]
-											},
-											{
-												"objectId": "E818AA20-5994-432C-8D0D-39C1B87AE379",
-												"kind": "group",
-												"name": "Nav_Text",
-												"originalName": "Nav Text",
-												"maskFrame": null,
-												"layerFrame": {
-													"x": 100,
-													"y": 1336.7827250406906,
-													"width": 334,
-													"height": 74
-												},
-												"visible": true,
-												"metadata": {
-													"opacity": 1
-												},
-												"children": [
-													{
-														"objectId": "7151FC2D-B9E0-42DE-B987-2EFA80F97C1D",
-														"kind": "text",
-														"name": "Speed",
-														"originalName": "Speed",
-														"maskFrame": null,
-														"layerFrame": {
-															"x": 100,
-															"y": 1337.71370987506,
-															"width": 334,
-															"height": 73
-														},
-														"visible": true,
-														"metadata": {
-															"opacity": 0.5,
-															"string": "LEFT ON 76W",
-															"css": [
-																"/* LEFT ON 76W: */",
-																"transform: rotate(-90deg);",
-																"font-family: OpenSans-Light;",
-																"font-size: 36px;",
-																"color: #D5F0FF;",
-																"letter-spacing: 7.2px;",
-																"text-align: center;"
-															]
-														},
-														"image": {
-															"path": "images/Layer-Speed-nze1muzd.png",
-															"frame": {
-																"x": 100,
-																"y": 1337.71370987506,
-																"width": 334,
-																"height": 73
-															}
-														},
-														"children": []
-													},
-													{
-														"objectId": "18DEB2FF-D05A-491A-AE93-0BBE79A1D658",
-														"kind": "text",
-														"name": "Speed1",
-														"originalName": "Speed",
-														"maskFrame": null,
-														"layerFrame": {
-															"x": 124,
-															"y": 1360.71370987506,
-															"width": 289,
-															"height": 28
-														},
-														"visible": true,
-														"metadata": {
-															"opacity": 0.5,
-															"string": "LEFT ON 76W",
-															"css": [
-																"/* LEFT ON 76W: */",
-																"transform: rotate(-90deg);",
-																"font-family: OpenSans-Light;",
-																"font-size: 36px;",
-																"color: #D5F0FF;",
-																"letter-spacing: 7.2px;",
-																"text-align: center;"
-															]
-														},
-														"image": {
-															"path": "images/Layer-Speed-mtheruiy.png",
-															"frame": {
-																"x": 124,
-																"y": 1360.71370987506,
-																"width": 289,
-																"height": 28
-															}
-														},
-														"children": []
-													}
-												]
-											}
-										]
-									},
-									{
-										"objectId": "B57BE7A8-1381-4ED7-B929-E4C9D89E84BD",
-										"kind": "group",
-										"name": "Bitmap",
-										"originalName": "Bitmap",
-										"maskFrame": {
-											"x": 0.5823038451958548,
-											"y": 0,
-											"width": 818.4184533362974,
-											"height": 297.2093023255814
-										},
-										"layerFrame": {
-											"x": 651,
-											"y": 1124,
-											"width": 828,
-											"height": 305
-										},
-										"visible": true,
-										"metadata": {
-											"opacity": 0.3450334821428572
-										},
-										"image": {
-											"path": "images/Layer-Bitmap-qju3qku3.png",
-											"frame": {
-												"x": 651,
-												"y": 1124,
-												"width": 828,
-												"height": 305
-											}
-										},
-										"children": []
-									},
-									{
-										"objectId": "0EB53275-AB93-4078-A602-6CB2CAC6214E",
-										"kind": "group",
-										"name": "Nav1",
-										"originalName": "Nav",
-										"maskFrame": null,
-										"layerFrame": {
-											"x": 620,
-											"y": 1079,
-											"width": 998,
-											"height": 355
-										},
-										"visible": false,
-										"metadata": {
-											"opacity": 1
-										},
-										"image": {
-											"path": "images/Layer-Nav-mevcntmy.png",
-											"frame": {
-												"x": 620,
-												"y": 1079,
-												"width": 998,
-												"height": 355
-											}
-										},
-										"children": []
-									}
-								]
-							},
-							{
-								"objectId": "0F901F8B-4B06-4098-9BEE-96F6B11DA371",
-								"kind": "group",
-								"name": "Music",
-								"originalName": "Music",
-								"maskFrame": null,
-								"layerFrame": {
-									"x": 108,
-									"y": 1538,
-									"width": 1450,
-									"height": 257
-								},
-								"visible": true,
-								"metadata": {
-									"opacity": 1
-								},
-								"image": {
-									"path": "images/Layer-Music-mey5mdfg.png",
-									"frame": {
-										"x": 108,
-										"y": 1538,
-										"width": 1450,
-										"height": 257
-									}
-								},
-								"children": []
-							},
-							{
-								"objectId": "4426B208-1669-45AA-AD64-44EAA6D72D17",
-								"kind": "group",
-								"name": "Buttons",
-								"originalName": "Buttons",
-								"maskFrame": null,
-								"layerFrame": {
-									"x": 190,
-									"y": 1937,
-									"width": 1290,
-									"height": 105
-								},
-								"visible": true,
-								"metadata": {
-									"opacity": 0.6475446428571429
-								},
-								"image": {
-									"path": "images/Layer-Buttons-ndqynkiy.png",
-									"frame": {
-										"x": 190,
-										"y": 1937,
-										"width": 1290,
-										"height": 105
-									}
-								},
-								"children": []
-							}
-						]
-					},
-					{
-						"objectId": "727605EC-2507-4852-92F3-873E3D635B7D",
-						"kind": "group",
-						"name": "Background",
-						"originalName": "Background",
-						"maskFrame": null,
-						"layerFrame": {
-							"x": -31,
-							"y": -25,
-							"width": 1718,
-							"height": 2249
-						},
-						"visible": true,
-						"metadata": {
-							"opacity": 1
-						},
-						"image": {
-							"path": "images/Layer-Background-nzi3nja1.png",
-							"frame": {
-								"x": -31,
-								"y": -25,
-								"width": 1718,
-								"height": 2249
-							}
-						},
-						"children": []
+				"image": {
+					"path": "images/Layer-Background-ouezodng.png",
+					"frame": {
+						"x": -31,
+						"y": -25,
+						"width": 1718,
+						"height": 2249
 					}
-				]
+				},
+				"children": []
+			},
+			{
+				"objectId": "DB92C58A-8475-4738-901C-9D54FD88A42C",
+				"kind": "group",
+				"name": "Dividing_Bar",
+				"originalName": "Dividing Bar",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": -31,
+					"y": 782,
+					"width": 1718,
+					"height": 156
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"image": {
+					"path": "images/Layer-Dividing_Bar-rei5mkm1.png",
+					"frame": {
+						"x": -31,
+						"y": 782,
+						"width": 1718,
+						"height": 156
+					}
+				},
+				"children": []
+			},
+			{
+				"objectId": "E91F96BD-C8AE-4E76-AF5F-76DF4883FC15",
+				"kind": "group",
+				"name": "Group_2",
+				"originalName": "Group 2",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": 0,
+					"y": 807,
+					"width": 1668,
+					"height": 106
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"children": []
 			}
 		]
 	},
@@ -829,10 +492,10 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 						"originalName": "Group 2",
 						"maskFrame": null,
 						"layerFrame": {
-							"x": 741,
-							"y": 353,
-							"width": 174,
-							"height": 153
+							"x": 747,
+							"y": 356,
+							"width": 159,
+							"height": 148
 						},
 						"visible": true,
 						"metadata": {
@@ -841,10 +504,10 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 						"image": {
 							"path": "images/Layer-Group_2-q0jgnuux.png",
 							"frame": {
-								"x": 741,
-								"y": 353,
-								"width": 174,
-								"height": 153
+								"x": 747,
+								"y": 356,
+								"width": 159,
+								"height": 148
 							}
 						},
 						"children": []
@@ -904,9 +567,36 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 						"children": []
 					},
 					{
+						"objectId": "F7E96484-5C6A-4F08-99F6-DBB7045D6B88",
+						"kind": "group",
+						"name": "Background1",
+						"originalName": "Background",
+						"maskFrame": null,
+						"layerFrame": {
+							"x": -31,
+							"y": -25,
+							"width": 1718,
+							"height": 2249
+						},
+						"visible": true,
+						"metadata": {
+							"opacity": 1
+						},
+						"image": {
+							"path": "images/Layer-Background-rjdfoty0.png",
+							"frame": {
+								"x": -31,
+								"y": -25,
+								"width": 1718,
+								"height": 2249
+							}
+						},
+						"children": []
+					},
+					{
 						"objectId": "47BAB87F-FE78-4693-ACBD-B63BDAFDD34E",
 						"kind": "group",
-						"name": "Infotainment1",
+						"name": "Infotainment",
 						"originalName": "Infotainment",
 						"maskFrame": null,
 						"layerFrame": {
@@ -923,7 +613,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 							{
 								"objectId": "88776059-F622-418D-A3A3-18B0C24D6C6E",
 								"kind": "group",
-								"name": "Nav2",
+								"name": "Nav",
 								"originalName": "Nav",
 								"maskFrame": null,
 								"layerFrame": {
@@ -940,7 +630,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 									{
 										"objectId": "F2B2BECC-B840-4D43-8301-3C1D645A166A",
 										"kind": "group",
-										"name": "Nav_Direction1",
+										"name": "Nav_Direction",
 										"originalName": "Nav Direction",
 										"maskFrame": null,
 										"layerFrame": {
@@ -957,7 +647,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 											{
 												"objectId": "F78E4FF9-8D06-4E37-902A-DC6726BC8A22",
 												"kind": "group",
-												"name": "Right_Arrow1",
+												"name": "Right_Arrow",
 												"originalName": "Right Arrow",
 												"maskFrame": null,
 												"layerFrame": {
@@ -974,7 +664,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 													{
 														"objectId": "3F9D4764-0ABB-46DA-984D-085E14E0BB0F",
 														"kind": "group",
-														"name": "Group2",
+														"name": "Group1",
 														"originalName": "Group",
 														"maskFrame": null,
 														"layerFrame": {
@@ -1001,7 +691,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 													{
 														"objectId": "9C7082BE-D18C-49E4-BFA1-A63C5EA22529",
 														"kind": "group",
-														"name": "Group3",
+														"name": "Group2",
 														"originalName": "Group",
 														"maskFrame": null,
 														"layerFrame": {
@@ -1030,7 +720,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 											{
 												"objectId": "657B534C-EC28-441B-94E5-D8E2C4E8E4BE",
 												"kind": "group",
-												"name": "Nav_Text1",
+												"name": "Nav_Text",
 												"originalName": "Nav Text",
 												"maskFrame": null,
 												"layerFrame": {
@@ -1047,7 +737,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 													{
 														"objectId": "198E3033-DDC6-47E4-B3C1-9E9A2BB92F36",
 														"kind": "text",
-														"name": "Speed2",
+														"name": "Speed",
 														"originalName": "Speed",
 														"maskFrame": null,
 														"layerFrame": {
@@ -1084,7 +774,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 													{
 														"objectId": "E845EAF1-7D74-44C9-8DBE-D5BD12E4EA1F",
 														"kind": "text",
-														"name": "Speed3",
+														"name": "Speed1",
 														"originalName": "Speed",
 														"maskFrame": null,
 														"layerFrame": {
@@ -1125,7 +815,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 									{
 										"objectId": "2E42EA66-75F4-4EB2-A10E-096CE12FABAD",
 										"kind": "group",
-										"name": "Bitmap1",
+										"name": "Bitmap",
 										"originalName": "Bitmap",
 										"maskFrame": {
 											"x": 0.5823038451958548,
@@ -1157,7 +847,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 									{
 										"objectId": "DCD5BF56-7458-43E4-BD20-029EF19851DA",
 										"kind": "group",
-										"name": "Nav3",
+										"name": "Nav1",
 										"originalName": "Nav",
 										"maskFrame": null,
 										"layerFrame": {
@@ -1186,7 +876,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 							{
 								"objectId": "BABD88FD-2A1A-4AFD-861F-579E46D0AC27",
 								"kind": "group",
-								"name": "Music1",
+								"name": "Music",
 								"originalName": "Music",
 								"maskFrame": null,
 								"layerFrame": {
@@ -1213,7 +903,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 							{
 								"objectId": "41EC5768-413D-475E-98E0-5465B47126F8",
 								"kind": "group",
-								"name": "Buttons1",
+								"name": "Buttons",
 								"originalName": "Buttons",
 								"maskFrame": null,
 								"layerFrame": {
@@ -1242,7 +932,7 @@ window.__imported__["Sketch Imports Second Screen@1x/layers.json.js"] = [
 					{
 						"objectId": "C6ED6623-C290-4219-8823-3FC18F73F73E",
 						"kind": "group",
-						"name": "Background1",
+						"name": "Background2",
 						"originalName": "Background",
 						"maskFrame": null,
 						"layerFrame": {
