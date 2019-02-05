@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>app.coffee</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>app.coffee</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <h1>Speed/Lane Positioning Control</h1>
+<p>This file outlines the generic speed and lane positioning control for controlling continuous aspects of an Autonomous Vehicle.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <h1>Note</h1>
+<p>This file contains two interfaces. The second is out of date and irrelevant, however that code is still present in this file. To transition between the interfaces, use the button <code>switchScreenButton</code> all the way in the top right (hidden).</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="p">{</span><span class="nx">Pointer</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">&quot;Pointer&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>disable purple hints</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">Framer</span><span class="p">.</span><span class="nx">Extras</span><span class="p">.</span><span class="nx">Hints</span><span class="p">.</span><span class="nx">disable</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>Import the CARLA API and begin the server</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">CARLA_API = </span><span class="nx">require</span> <span class="s">&quot;CARLA_API&quot;</span>
+<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">begin_server</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>Import file &ldquo;Interactions_ORIGINAL&rdquo;</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">SKETCH_IMPORT_SCALE = </span><span class="mf">1.1</span>
+<span class="nv">IPAD_HEIGHT = </span><span class="mi">2048</span>
+<span class="nv">IPAD_WIDTH = </span><span class="mi">1536</span>
+<span class="nv">sketch = </span><span class="nx">Framer</span><span class="p">.</span><span class="nx">Importer</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s">&quot;imported/Interactions_ORIGINAL@1x&quot;</span><span class="p">,</span> <span class="nv">scale: </span><span class="nx">SKETCH_IMPORT_SCALE</span><span class="p">)</span>
+
+<span class="nx">Utils</span><span class="p">.</span><span class="nx">globalLayers</span><span class="p">(</span><span class="nx">sketch</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Define the width and height scaled up based on our resolution and import scaling. With a projector this can be removed.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">defaultWidth = </span><span class="nx">IPAD_WIDTH</span> <span class="o">*</span> <span class="nx">SKETCH_IMPORT_SCALE</span>
+<span class="nv">defaultHeight = </span><span class="nx">IPAD_HEIGHT</span> <span class="o">*</span> <span class="nx">SKETCH_IMPORT_SCALE</span>
+
+<span class="nx">Framer</span><span class="p">.</span><span class="nx">Device</span><span class="p">.</span><span class="nx">customize</span>
+	<span class="nv">devicePixelRatio: </span><span class="mi">1</span>
+	<span class="nv">screenWidth: </span><span class="nx">defaultWidth</span>
+	<span class="nv">screenHeight: </span><span class="nx">defaultHeight</span>
+
+<span class="nv">circles = </span><span class="nx">sketch</span><span class="p">.</span><span class="nx">circles_offset</span>
+<span class="nv">mainBoard = </span><span class="nx">sketch</span><span class="p">.</span><span class="nx">Version_One_Default</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>to make other artboards visible make xy = 0 and current board not visible.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">mainBoard.x = </span><span class="mi">0</span>
+<span class="nv">mainBoard.y = </span><span class="mi">0</span>
+
+<span class="nv">canvas = </span><span class="k">new</span> <span class="nx">Layer</span>
+	<span class="nv">width: </span><span class="nx">Screen</span><span class="p">.</span><span class="nx">width</span>
+	<span class="nv">height: </span><span class="nx">Screen</span><span class="p">.</span><span class="nx">height</span>
+	<span class="nv">opacity: </span><span class="mi">0</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>Variables to keep track of our tapping events</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">tapX = </span><span class="mi">0</span>
+<span class="nv">tapY = </span><span class="mi">0</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <p>Global Variables</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">speedUpSwitch = </span><span class="kc">false</span>
+<span class="nv">switchScreenCounter = </span><span class="mi">4</span>
+<span class="nv">trailSwitch = </span><span class="kc">false</span>
+<span class="nv">currentScreen = </span><span class="s">&quot;v1&quot;</span>
+<span class="nv">trackingOffset = </span><span class="mi">300</span>
+<span class="nv">bumperTapped = </span><span class="kc">null</span>
+<span class="nv">initialY = </span><span class="mi">0</span>
+<span class="nv">initialX = </span><span class="mi">0</span>
+<span class="nv">y2 = </span><span class="mi">0</span>
+<span class="nv">x2 = </span><span class="mi">0</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>Bumpers refer to the first interface, it is outdated</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">bumpers = </span><span class="p">[</span><span class="nx">bottom_bumper</span><span class="p">,</span><span class="nx">top_bumper</span><span class="p">,</span><span class="nx">left_bumper</span><span class="p">,</span><span class="nx">right_bumper</span><span class="p">]</span>
+<span class="nv">sideBumpers = </span><span class="p">[</span><span class="nx">right_bumper</span><span class="p">,</span><span class="nx">left_bumper</span><span class="p">,</span> <span class="nx">Position1</span><span class="p">]</span>
+<span class="nv">vertical_bumpers = </span><span class="p">[</span><span class="nx">top_bumper</span><span class="p">,</span> <span class="nx">bottom_bumper</span><span class="p">,</span> <span class="nx">Speed3</span><span class="p">]</span>
+<span class="nv">stretchY = </span><span class="mi">0</span>
+<span class="nv">stretchX = </span><span class="mi">0</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <p>Variables to detect what section of the interface the user is in.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">isLane = </span><span class="kc">false</span>
+<span class="nv">isSpeed = </span><span class="kc">true</span>
+<span class="nv">laneDetect  = </span><span class="k">new</span> <span class="nx">Layer</span>
+	<span class="nv">width: </span><span class="nx">Screen</span><span class="p">.</span><span class="nx">width</span>
+	<span class="nv">y: </span><span class="nx">Screen</span><span class="p">.</span><span class="nx">height</span> <span class="o">-</span> <span class="mi">800</span>
+	<span class="nv">height: </span><span class="mi">800</span>
+	<span class="nv">opacity: </span><span class="mi">0</span>
+<span class="nv">speedDetect = </span><span class="k">new</span> <span class="nx">Layer</span>
+	<span class="nv">width: </span><span class="nx">Screen</span><span class="p">.</span><span class="nx">width</span>
+	<span class="nv">height: </span><span class="p">(</span><span class="nx">Screen</span><span class="p">.</span><span class="nx">height</span> <span class="o">-</span> <span class="nx">laneDetect</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span>
+	<span class="nv">opacity: </span><span class="mi">0</span>
+
+<span class="nv">startYTop = </span><span class="nx">top_bumper</span><span class="p">.</span><span class="nx">y</span>
+<span class="nv">startYBottom = </span><span class="nx">bottom_bumper</span><span class="p">.</span><span class="nx">y</span>
+
+<span class="nv">released = </span><span class="kc">true</span>
+
+<span class="nv">Speed3.states =</span>
+	<span class="nv">big:</span>
+		<span class="nv">scale: </span><span class="mf">1.5</span>
+		<span class="nv">animationOptions:</span>
+			<span class="nv">curve: </span><span class="s">&quot;spring&quot;</span>
+	<span class="nv">default:</span>
+		<span class="nv">scale: </span><span class="mi">1</span>
+		
+<span class="nv">Position1.states =</span>
+	<span class="nv">big:</span>
+		<span class="nv">scale: </span><span class="mf">1.2</span>
+		<span class="nv">animationOptions:</span>
+			<span class="nv">curve: </span><span class="s">&quot;spring&quot;</span>
+	<span class="nv">default:</span>
+		<span class="nv">scale: </span><span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>Button to toggle between the two interfaces</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">switchScreenButton = </span><span class="k">new</span> <span class="nx">Layer</span>
+	<span class="nv">visible: </span><span class="kc">false</span>
+	<span class="nv">width: </span><span class="mi">316</span>
+	<span class="nv">height: </span><span class="mi">294</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      <h3><span id="tracktaps" href="tracktaps"> trackTaps </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">trackTaps = </span><span class="nf">(touchEvent, layer) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p>This function tracks where a user has tapped or click, accountign for a mobile device if need be</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="nx">Utils</span><span class="p">.</span><span class="nx">isPhone</span><span class="p">()</span> <span class="o">||</span> <span class="nx">Utils</span><span class="p">.</span><span class="nx">isTablet</span><span class="p">()</span>
+		<span class="nv">tapX = </span><span class="p">(</span><span class="nx">touchEvent</span><span class="p">.</span><span class="nx">clientX</span> <span class="o">-</span> <span class="nx">layer</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span>
+		<span class="nv">tapY = </span><span class="nx">touchEvent</span><span class="p">.</span><span class="nx">clientY</span> <span class="o">-</span> <span class="nx">layer</span><span class="p">.</span><span class="nx">y</span>
+	<span class="k">else</span> 
+		<span class="nv">tapX = </span><span class="p">(</span><span class="nx">touchEvent</span><span class="p">.</span><span class="nx">offsetX</span><span class="p">)</span>
+		<span class="nv">tapY = </span><span class="p">(</span><span class="nx">touchEvent</span><span class="p">.</span><span class="nx">offsetY</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      <p>trail design in code</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">trail = </span><span class="k">new</span> <span class="nx">Layer</span>
+	<span class="nv">backgroundColor: </span><span class="s">&quot;rgba(34,167,207,1)&quot;</span>
+	<span class="nv">y: </span><span class="mi">0</span>
+	<span class="nv">x: </span><span class="mi">0</span>
+	<span class="nv">blur: </span><span class="mi">50</span>
+	<span class="nv">borderRadius: </span><span class="mi">100</span>
+	<span class="nv">height: </span><span class="mi">160</span>
+	<span class="nv">width: </span><span class="mi">120</span>
+	<span class="nv">opacity: </span><span class="mf">0.3</span>
+	<span class="nv">visible: </span><span class="kc">false</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      <h3><span id="wastapin" href="wastapin"> wasTapIn </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">wasTapIn = </span><span class="nf">(shape) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-16'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-16'>#</a>
+      </div>
+      <p>takes a shape and returns t/f if click is inside of it (using tapY, tapX)</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="p">(</span><span class="nx">tapY</span> <span class="o">&gt;=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">minY</span> <span class="o">&amp;</span> <span class="nx">tapY</span> <span class="o">&lt;=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">maxY</span> <span class="o">+</span> <span class="mi">200</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">tapX</span> <span class="o">&gt;=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">minX</span> <span class="o">&amp;</span>
+	<span class="nx">tapX</span> <span class="o">&lt;=</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">maxX</span><span class="p">)</span>
+		<span class="k">return</span> <span class="kc">true</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-17'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-17'>#</a>
+      </div>
+      <h3><span id="whichbumper" href="whichbumper"> whichBumper </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">whichBumper = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-18'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-18'>#</a>
+      </div>
+      <p>Determines which of the bumpers in the bumper interface the user clicked into</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">bottom_bumper</span><span class="p">)</span>
+		<span class="nv">bumperTapped = </span><span class="nx">bottom_bumper</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">top_bumper</span><span class="p">)</span>
+		<span class="nv">bumperTapped = </span><span class="nx">top_bumper</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">right_bumper</span><span class="p">)</span>
+		<span class="nv">bumperTapped = </span><span class="nx">right_bumper</span> 
+	<span class="k">else</span> <span class="k">if</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">left_bumper</span><span class="p">)</span>
+		<span class="nv">bumperTapped = </span><span class="nx">left_bumper</span>
+	<span class="k">else</span> <span class="nv">bumperTapped = </span><span class="s">&quot;&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-19'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-19'>#</a>
+      </div>
+      <p>snailSetup()<br />
+sets up layers to be dragged around</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">snailSetup = </span><span class="nf">(shape)-&gt;</span>
+	<span class="nv">shape.x = </span><span class="o">-</span><span class="mi">500</span>
+	<span class="nv">shape.y = </span><span class="o">-</span><span class="mi">500</span>
+	<span class="nv">shape.visible = </span><span class="kc">false</span>
+	<span class="nv">shape.draggable = </span><span class="kc">true</span>
+	<span class="nv">shape.draggable.constraints = </span><span class="p">{</span>
+		<span class="nv">width: </span><span class="nx">Screen</span><span class="p">.</span><span class="nx">width</span>
+		<span class="nv">height: </span><span class="nx">Screen</span><span class="p">.</span><span class="nx">height</span>
+	<span class="p">}</span>
+	<span class="nv">shape.draggable.momentum = </span><span class="kc">false</span>
+	<span class="nv">shape.bounce = </span><span class="kc">false</span>
+	<span class="nv">shape.draggable.overdrag = </span><span class="kc">false</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-20'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-20'>#</a>
+      </div>
+      <h3><span id="bumperstretch" href="bumperstretch"> bumperStretch </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">bumperStretch = </span><span class="nf">(bumperTapped) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-21'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-21'>#</a>
+      </div>
+      <p>If the user is dragging from the bottom, speed up</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="nx">bumperTapped</span> <span class="o">==</span> <span class="nx">bottom_bumper</span>
+		<span class="nv">dist = </span> <span class="nx">initialY</span> <span class="o">-</span> <span class="nx">stretchY</span>
+		<span class="nx">bottom_bumper</span><span class="p">.</span><span class="nx">animate</span>
+			<span class="nv">scaleY: </span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="nx">dist</span><span class="o">/</span><span class="mi">80</span><span class="p">)</span>
+			<span class="nv">scaleX: </span><span class="mi">1</span> <span class="o">+</span> <span class="nx">dist</span><span class="o">/</span><span class="mi">320</span>
+			<span class="nv">options:</span>
+				<span class="nv">time: </span><span class="p">.</span><span class="mi">1</span>
+		<span class="nx">top_bumper</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="nx">Events</span><span class="p">.</span><span class="nx">AnimationStart</span><span class="p">)</span>
+		<span class="nx">top_bumper</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="nx">Events</span><span class="p">.</span><span class="nx">AnimationStop</span><span class="p">)</span>
+		<span class="nx">bottom_bumper</span><span class="p">.</span><span class="nx">onAnimationStart</span> <span class="nf">-&gt;</span>
+			<span class="nx">top_bumper</span><span class="p">.</span><span class="nx">animate</span>
+				<span class="nv">y: </span><span class="nx">top_bumper</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="p">(</span><span class="nx">dist</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> 
+		<span class="nx">bottom_bumper</span><span class="p">.</span><span class="nx">onAnimationEnd</span> <span class="nf">-&gt;</span> 
+			<span class="k">if</span> <span class="nx">released</span>
+				<span class="nx">top_bumper</span><span class="p">.</span><span class="nx">animate</span>
+					<span class="nv">y: </span><span class="nx">startYTop</span>
+					<span class="nv">options:</span>
+						<span class="nv">time: </span><span class="p">.</span><span class="mi">4</span>
+						<span class="nv">curve: </span><span class="nx">Bezier</span><span class="p">.</span><span class="nx">ease</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-22'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-22'>#</a>
+      </div>
+      <p>If the user is dragging from the top, slow down</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="nx">bumperTapped</span> <span class="o">==</span> <span class="nx">top_bumper</span>
+		<span class="nv">dist = </span><span class="nx">stretchY</span> <span class="o">-</span> <span class="nx">initialY</span>
+		<span class="nx">top_bumper</span><span class="p">.</span><span class="nx">animate</span>
+			<span class="nv">scaleY: </span><span class="mi">1</span> <span class="o">+</span> <span class="nx">dist</span><span class="o">/</span><span class="mi">80</span>
+			<span class="nv">scaleX: </span><span class="mi">1</span> <span class="o">+</span> <span class="nx">dist</span><span class="o">/</span><span class="mi">320</span>
+			<span class="nv">options:</span>
+				<span class="nv">time: </span><span class="p">.</span><span class="mi">1</span>
+		<span class="nx">bottom_bumper</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="nx">Events</span><span class="p">.</span><span class="nx">AnimationStart</span><span class="p">)</span>
+		<span class="nx">bottom_bumper</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="nx">Events</span><span class="p">.</span><span class="nx">AnimationStop</span><span class="p">)</span>
+		<span class="nx">top_bumper</span><span class="p">.</span><span class="nx">onAnimationStart</span> <span class="nf">-&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-23'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-23'>#</a>
+      </div>
+      <p>Start Speeding Up</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>			<span class="nx">bottom_bumper</span><span class="p">.</span><span class="nx">animate</span>
+				<span class="nv">y: </span><span class="nx">bottom_bumper</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="p">(</span><span class="nx">dist</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+		<span class="nx">top_bumper</span><span class="p">.</span><span class="nx">onAnimationEnd</span> <span class="nf">-&gt;</span>
+			<span class="k">if</span> <span class="nx">released</span>
+				<span class="nx">bottom_bumper</span><span class="p">.</span><span class="nx">animate</span>
+					<span class="nv">y: </span><span class="nx">startYBottom</span>
+					<span class="nv">options:</span>
+						<span class="nv">time: </span><span class="p">.</span><span class="mi">4</span>
+						<span class="nv">curve: </span><span class="nx">Bezier</span><span class="p">.</span><span class="nx">ease</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-24'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-24'>#</a>
+      </div>
+      <p>If the user is dragging from the left, move to the right</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="nx">bumperTapped</span> <span class="o">==</span> <span class="nx">left_bumper</span>
+		<span class="nv">dist = </span><span class="nx">stretchX</span> <span class="o">-</span> <span class="nx">initialX</span>
+		<span class="nx">left_bumper</span><span class="p">.</span><span class="nx">animate</span>
+			<span class="nv">scaleX: </span><span class="mi">1</span> <span class="o">+</span> <span class="nx">dist</span><span class="o">/</span><span class="mi">80</span>
+			<span class="nv">scaleY: </span><span class="mi">1</span> <span class="o">+</span> <span class="nx">dist</span><span class="o">/</span><span class="mi">240</span>
+			<span class="nv">options:</span>
+				<span class="nv">time: </span><span class="p">.</span><span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-25'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-25'>#</a>
+      </div>
+      <p>If the user is dragging from the right, move to the left</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="nx">bumperTapped</span> <span class="o">==</span> <span class="nx">right_bumper</span>
+		<span class="nv">dist = </span><span class="nx">initialX</span> <span class="o">-</span> <span class="nx">stretchX</span>
+		<span class="nx">right_bumper</span><span class="p">.</span><span class="nx">animate</span>
+			<span class="nv">scaleX: </span><span class="mi">1</span> <span class="o">+</span> <span class="nx">dist</span><span class="o">/</span><span class="mi">80</span>
+			<span class="nv">scaleY: </span><span class="mi">1</span> <span class="o">+</span> <span class="nx">dist</span><span class="o">/</span><span class="mi">240</span>
+			<span class="nv">opacity: </span><span class="mi">1</span>
+			<span class="nv">options:</span>
+				<span class="nv">time: </span><span class="p">.</span><span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-26'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-26'>#</a>
+      </div>
+      <h3><span id="checkscreenswitch" href="checkscreenswitch"> checkScreenSwitch </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">checkScreenSwitch = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-27'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-27'>#</a>
+      </div>
+      <p>See if the user is trying to switch to the bumper interface and let them do so after four clicks (to prevent false positives)</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">switchScreenButton</span><span class="p">)</span>
+		<span class="nx">switchScreenCounter</span><span class="o">++</span>
+	<span class="k">if</span> <span class="nx">switchScreenCounter</span> <span class="o">&gt;=</span> <span class="mi">4</span>
+		<span class="nv">switchScreenCounter = </span><span class="mi">0</span>
+		<span class="k">if</span> <span class="nx">currentScreen</span> <span class="o">==</span> <span class="s">&quot;v2&quot;</span>
+			<span class="nv">sketch.Version2.visible.x = </span><span class="mi">0</span>
+			<span class="nv">sketch.Version2.visible.y = </span><span class="mi">0</span>
+			<span class="nv">sketch.Version2.visible = </span><span class="kc">false</span>
+			<span class="nv">sketch.Version_One_Default.visible = </span><span class="kc">true</span>
+			<span class="nv">circles.parent = </span><span class="nx">sketch</span><span class="p">.</span><span class="nx">Version_One_Default</span>
+			<span class="nv">currentScreen = </span><span class="s">&quot;v1&quot;</span>
+		
+		<span class="k">else</span> <span class="k">if</span> <span class="nx">currentScreen</span> <span class="o">==</span> <span class="s">&quot;v1&quot;</span>
+			<span class="nv">sketch.Version2.x = </span><span class="mi">0</span>
+			<span class="nv">sketch.Version2.y = </span><span class="mi">0</span>
+			<span class="nv">sketch.Version_One_Default.visible = </span><span class="kc">false</span>
+			<span class="nv">sketch.Version2.visible = </span><span class="kc">true</span>
+			<span class="nv">circles.parent = </span><span class="nx">sketch</span><span class="p">.</span><span class="nx">Version2</span>
+			<span class="nv">currentScreen = </span><span class="s">&quot;v2&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-28'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-28'>#</a>
+      </div>
+      <h3><span id="movetotap" href="movetotap"> moveToTap </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">moveToTap = </span><span class="nf">(visual) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-29'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-29'>#</a>
+      </div>
+      <p>Generic function that moves the visual element <code>visual</code> to where the user tapped or dragged to</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">visual.x = </span><span class="nx">tapX</span> <span class="o">-</span> <span class="nx">trackingOffset</span>
+	<span class="nv">visual.y = </span><span class="nx">tapY</span> <span class="o">-</span> <span class="nx">trackingOffset</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-30'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-30'>#</a>
+      </div>
+      <h3><span id="returnbumpers" href="returnbumpers"> returnBumpers </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">returnBumpers = </span><span class="nf">(layer) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-31'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-31'>#</a>
+      </div>
+      <p>Takes a bumper on the bumpers interface and moves it back to its original position</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nx">layer</span><span class="p">.</span><span class="nx">animate</span>
+		<span class="nv">scaleY: </span><span class="mi">1</span>
+		<span class="nv">scaleX: </span><span class="mi">1</span>
+		<span class="nv">options:</span>
+			<span class="nv">time: </span><span class="p">.</span><span class="mi">3</span>
+			<span class="nv">curve: </span><span class="nx">Bezier</span><span class="p">.</span><span class="nx">easeOut</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-32'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-32'>#</a>
+      </div>
+      <h3><span id="hidebumpers" href="hidebumpers"> hideBumpers </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">hideBumpers = </span><span class="nf">(layer) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-33'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-33'>#</a>
+      </div>
+      <p>Takes a bumper on the bumpers interface and hides it</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nx">layer</span><span class="p">.</span><span class="nx">animate</span>
+		<span class="nv">opacity: </span><span class="mi">0</span>
+		<span class="nv">options:</span>
+			<span class="nv">time: </span><span class="p">.</span><span class="mi">3</span>
+			<span class="nv">curve: </span><span class="nx">Bezier</span><span class="p">.</span><span class="nx">easeOut</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-34'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-34'>#</a>
+      </div>
+      <h3><span id="showbumpers" href="showbumpers"> showBumpers </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">showBumpers = </span><span class="nf">(layer) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-35'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-35'>#</a>
+      </div>
+      <p>Takes a bumper on the bumpers interface and shows it (unhides it)</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nx">layer</span><span class="p">.</span><span class="nx">animate</span>
+		<span class="nv">opacity: </span><span class="mi">1</span>
+		<span class="nv">options:</span>
+			<span class="nv">time: </span><span class="p">.</span><span class="mi">3</span>
+			<span class="nv">curve: </span><span class="nx">Bezier</span><span class="p">.</span><span class="nx">easeOut</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-36'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-36'>#</a>
+      </div>
+      <p>setup trail  and circles for drag</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">snailSetup</span><span class="p">(</span><span class="nx">trail</span><span class="p">)</span>
+<span class="nx">snailSetup</span><span class="p">(</span><span class="nx">circles</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-37'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-37'>#</a>
+      </div>
+      <h3><span id="touch-start-event" href="touch-start-event"> Touch Start Event </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">canvas</span><span class="p">.</span><span class="nx">on</span> <span class="nx">Events</span><span class="p">.</span><span class="nx">TouchStart</span><span class="p">,</span> <span class="nf">(e, layer) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-38'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-38'>#</a>
+      </div>
+      <p>Figure out where the user has clicked/tapped and record where they did in the interface</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">touchEvent = </span><span class="nx">Events</span><span class="p">.</span><span class="nx">touchEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+	<span class="nx">trackTaps</span><span class="p">(</span><span class="nx">touchEvent</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span>
+	<span class="nx">moveToTap</span><span class="p">(</span><span class="nx">circles</span><span class="p">)</span>
+	<span class="nv">circles.visible = </span><span class="kc">true</span>
+	<span class="nv">initialY = </span><span class="nx">tapY</span> <span class="o">-</span> <span class="nx">trackingOffset</span> <span class="o">-</span> <span class="nx">layer</span><span class="p">.</span><span class="nx">y</span>
+	<span class="nv">initialX = </span><span class="nx">tapX</span> <span class="o">-</span> <span class="nx">trackingOffset</span> <span class="o">-</span> <span class="nx">layer</span><span class="p">.</span><span class="nx">x</span>
+	<span class="nv">stretchY = </span><span class="nx">initialY</span>
+	<span class="nv">stretchX = </span><span class="nx">initialX</span>
+	<span class="nx">whichBumper</span><span class="p">()</span>
+	<span class="nx">checkScreenSwitch</span><span class="p">()</span>
+	<span class="nv">released = </span><span class="kc">false</span>
+	
+	<span class="k">if</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">speedDetect</span><span class="p">)</span>
+		<span class="nv">isSpeed = </span><span class="kc">true</span>
+		<span class="nv">isLane = </span><span class="kc">false</span>
+				
+	<span class="k">if</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">laneDetect</span><span class="p">)</span>
+		<span class="nv">isSpeed = </span><span class="kc">false</span>
+		<span class="nv">isLane = </span><span class="kc">true</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-39'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-39'>#</a>
+      </div>
+      <p>Case on the various bumpers and hide the irrelevant ones</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">bottom_bumper</span><span class="p">)</span> <span class="o">||</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">top_bumper</span><span class="p">)</span>
+		<span class="nx">Speed3</span><span class="p">.</span><span class="nx">stateCycle</span><span class="p">()</span>
+		<span class="k">for</span> <span class="nx">layer</span> <span class="k">in</span> <span class="nx">sideBumpers</span>
+			<span class="nx">hideBumpers</span><span class="p">(</span><span class="nx">layer</span><span class="p">)</span>
+
+	<span class="k">if</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">left_bumper</span><span class="p">)</span> <span class="o">||</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">right_bumper</span><span class="p">)</span>
+		<span class="nx">Position1</span><span class="p">.</span><span class="nx">stateCycle</span><span class="p">()</span>
+		<span class="k">for</span> <span class="nx">layer</span> <span class="k">in</span> <span class="nx">vertical_bumpers</span>
+			<span class="nx">hideBumpers</span><span class="p">(</span><span class="nx">layer</span><span class="p">)</span>
+
+	<span class="nv">trailSwitch = </span><span class="kc">true</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-40'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-40'>#</a>
+      </div>
+      <h3><span id="removecommands" href="removecommands"> removeCommands </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">removeCommands = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-41'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-41'>#</a>
+      </div>
+      <p>A wrapper to remove all of the commands sent to the CARLA car after a second</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">remove_all_commands</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-42'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-42'>#</a>
+      </div>
+      <h3><span id="touch-move-event" href="touch-move-event"> Touch Move Event </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">canvas</span><span class="p">.</span><span class="nx">on</span> <span class="nx">Events</span><span class="p">.</span><span class="nx">TouchMove</span><span class="p">,</span> <span class="nf">(e, layer) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-43'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-43'>#</a>
+      </div>
+      <p>On a touch move event, find where the user tapped and try to determine the intent of their action, before passing off to CARLA.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">touchEvent = </span><span class="nx">Events</span><span class="p">.</span><span class="nx">touchEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">speedDetect</span><span class="p">)</span>
+		<span class="nv">isSpeed = </span><span class="kc">true</span>
+		<span class="nv">isLane = </span><span class="kc">false</span>
+				
+	<span class="k">if</span> <span class="nx">wasTapIn</span><span class="p">(</span><span class="nx">laneDetect</span><span class="p">)</span>
+		<span class="nv">isSpeed = </span><span class="kc">false</span>
+		<span class="nv">isLane = </span><span class="kc">true</span>
+	<span class="nv">lastY = </span><span class="nx">tapY</span>
+	<span class="nv">lastX = </span><span class="nx">tapX</span>
+	<span class="nx">trackTaps</span><span class="p">(</span><span class="nx">touchEvent</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span>
+	<span class="nv">stretchY = </span><span class="nx">tapY</span> <span class="o">-</span> <span class="nx">trackingOffset</span> <span class="o">-</span> <span class="nx">layer</span><span class="p">.</span><span class="nx">y</span>
+	<span class="nv">stretchX = </span><span class="nx">tapX</span> <span class="o">-</span> <span class="nx">trackingOffset</span> <span class="o">-</span> <span class="nx">layer</span><span class="p">.</span><span class="nx">x</span>
+	<span class="k">if</span> <span class="nx">currentScreen</span> <span class="o">==</span> <span class="s">&quot;v2&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-44'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-44'>#</a>
+      </div>
+      <p>Find the distance between the move events</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>		<span class="nv">deltaX = </span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">tapX</span> <span class="o">-</span> <span class="nx">lastX</span><span class="p">)</span>
+		<span class="nv">deltaY = </span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">tapY</span> <span class="o">-</span> <span class="nx">lastY</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-45'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-45'>#</a>
+      </div>
+      <p>Calculating how much it takes to trigger an intent in a certain direction of the final interface</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>		<span class="nv">yDistanceDownThreshold = </span><span class="mi">80</span>
+		<span class="nv">yDistanceUpThreshold = </span><span class="mi">150</span>
+		<span class="nv">xDistanceThreshold = </span><span class="mi">50</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-46'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-46'>#</a>
+      </div>
+      <p>Case 1: Is this a lane adjustment</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>		<span class="k">if</span> <span class="nx">deltaX</span> <span class="o">&gt;</span> <span class="nx">deltaY</span> <span class="o">and</span> <span class="nx">deltaX</span> <span class="o">&gt;</span> <span class="nx">xDistanceThreshold</span> <span class="o">and</span> <span class="nx">isLane</span>
+			<span class="k">if</span> <span class="nx">tapX</span> <span class="o">&gt;</span> <span class="nx">lastX</span>
+				<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">move_right</span><span class="p">()</span>
+				<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">stop_moving_left</span><span class="p">()</span>
+			<span class="k">else</span>
+				<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">move_left</span><span class="p">()</span>
+				<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">stop_moving_right</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-47'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-47'>#</a>
+      </div>
+      <p>Case 2: Is this a speed up event</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>		<span class="k">else</span> <span class="k">if</span> <span class="nx">deltaY</span> <span class="o">&gt;</span> <span class="nx">yDistanceUpThreshold</span> <span class="o">and</span> <span class="nx">isSpeed</span> <span class="o">and</span> <span class="nx">deltaY</span> <span class="o">&gt;</span> <span class="nx">deltaX</span>
+			<span class="k">if</span> <span class="nx">tapY</span> <span class="o">&lt;</span> <span class="nx">lastY</span>
+				<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">speed_up</span><span class="p">()</span>
+				<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">stop_slowing_down</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-48'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-48'>#</a>
+      </div>
+      <p>Case 3: Is this a slow down event?</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>		<span class="k">else</span> <span class="k">if</span> <span class="nx">deltaY</span> <span class="o">&gt;</span> <span class="nx">yDistanceDownThreshold</span> <span class="o">and</span> <span class="nx">isSpeed</span> <span class="o">and</span> <span class="nx">deltaY</span> <span class="o">&gt;</span> <span class="nx">deltaX</span>
+			<span class="k">if</span> <span class="nx">tapY</span> <span class="o">&gt;</span> <span class="nx">lastY</span>
+				<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">slow_down</span><span class="p">()</span>
+				<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">stop_speeding_up</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-49'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-49'>#</a>
+      </div>
+      <p>Take the below case out for a convincing video     </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>		<span class="k">else</span>
+			<span class="nx">removeCommands</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-50'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-50'>#</a>
+      </div>
+      <p>Move the trails for visual feedback near the user&rsquo;s hand</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="nx">trailSwitch</span>
+		<span class="nx">moveToTap</span><span class="p">(</span><span class="nx">circles</span><span class="p">)</span>
+		<span class="nx">moveToTap</span><span class="p">(</span><span class="nx">trail</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-51'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-51'>#</a>
+      </div>
+      <p>Stretch the specific tapped bumper according to the user&rsquo;s hand Position1</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nx">bumperStretch</span><span class="p">(</span><span class="nx">bumperTapped</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-52'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-52'>#</a>
+      </div>
+      <p>Case on intention based on where the user initially began their movement</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="nx">bumperTapped</span> <span class="o">==</span> <span class="nx">bottom_bumper</span>
+		<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">stop_slowing_down</span><span class="p">()</span>
+		<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">speed_up</span><span class="p">()</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="nx">bumperTapped</span> <span class="o">==</span> <span class="nx">top_bumper</span>
+		<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">slow_down</span><span class="p">()</span>
+		<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">stop_speeding_up</span><span class="p">()</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="nx">bumperTapped</span> <span class="o">==</span> <span class="nx">left_bumper</span>
+		<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">stop_moving_left</span><span class="p">()</span>
+		<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">move_right</span><span class="p">()</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="nx">bumperTapped</span> <span class="o">==</span> <span class="nx">right_bumper</span>
+		<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">stop_moving_right</span><span class="p">()</span>
+		<span class="nx">CARLA_API</span><span class="p">.</span><span class="nx">move_left</span><span class="p">()</span>
+	<span class="nx">canvas</span><span class="p">.</span><span class="nx">bringToFront</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-53'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-53'>#</a>
+      </div>
+      <h3><span id="touch-end-event" href="touch-end-event"> Touch End Event</h3>
+<p></span></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">canvas</span><span class="p">.</span><span class="nx">on</span> <span class="nx">Events</span><span class="p">.</span><span class="nx">TouchEnd</span><span class="p">,</span> <span class="nf">() -&gt;</span>
+	<span class="nv">circles.visible  = </span><span class="kc">false</span>
+	<span class="nv">trail.visible = </span><span class="kc">false</span>
+	<span class="nv">trailSwitch = </span><span class="kc">false</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-54'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-54'>#</a>
+      </div>
+      <p>Return all of the bumpers to their original state</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">for</span> <span class="nx">layer</span> <span class="k">in</span> <span class="nx">bumpers</span>
+		<span class="nx">returnBumpers</span><span class="p">(</span><span class="nx">layer</span><span class="p">)</span>
+		
+	<span class="k">for</span> <span class="nx">layer</span> <span class="k">in</span> <span class="nx">sideBumpers</span>
+		<span class="nx">showBumpers</span><span class="p">(</span><span class="nx">layer</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">layer</span> <span class="k">in</span> <span class="nx">vertical_bumpers</span>
+		<span class="nx">showBumpers</span><span class="p">(</span><span class="nx">layer</span><span class="p">)</span>		
+	
+	<span class="nx">Speed3</span><span class="p">.</span><span class="nx">states</span><span class="p">.</span><span class="nx">switch</span> <span class="s">&quot;default&quot;</span>
+	<span class="nx">Position1</span><span class="p">.</span><span class="nx">states</span><span class="p">.</span><span class="nx">switch</span> <span class="s">&quot;default&quot;</span>
+	
+	<span class="k">if</span> <span class="nv">bumperTapped = </span><span class="nx">bottom_bumper</span>
+		<span class="nx">top_bumper</span><span class="p">.</span><span class="nx">stateCycle</span><span class="p">()</span>
+	<span class="nv">bumperTapped = </span><span class="kc">null</span>
+	<span class="nv">released = </span><span class="kc">true</span>
+	<span class="nx">removeCommands</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-55'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-55'>#</a>
+      </div>
+      <p>Allow the finger trails to be draggable</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">trail.draggable.enabled = </span><span class="kc">true</span>
+<span class="nv">trail.draggable.constraints = </span><span class="p">{</span>
+	<span class="nv">width: </span><span class="nx">Screen</span><span class="p">.</span><span class="nx">width</span>
+	<span class="nv">height: </span><span class="nx">Screen</span><span class="p">.</span><span class="nx">height</span>
+<span class="p">}</span>
+<span class="nv">trail.draggable.momentum = </span><span class="kc">false</span>
+<span class="nv">trail.bounce = </span><span class="kc">false</span>
+<span class="nv">trail.draggable.overdrag = </span><span class="kc">false</span>
+		
+<span class="nv">trail.states =</span>
+	<span class="k">in</span><span class="o">:</span>
+		<span class="nv">x: </span><span class="mi">219</span>
+		<span class="nv">y: </span><span class="mi">22</span>
+		<span class="nv">animationOptions:</span>
+			<span class="nv">curve: </span><span class="s">&quot;spring&quot;</span>
+	<span class="nv">default:</span>
+		<span class="nv">x: </span><span class="nx">Align</span><span class="p">.</span><span class="nx">center</span>
+		<span class="nv">y: </span><span class="nx">Align</span><span class="p">.</span><span class="nx">center</span><span class="p">()</span>
+
+<span class="nv">layerArray = </span><span class="p">[]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-56'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-56'>#</a>
+      </div>
+      <p>Set the finger trail positions based on the coordinates of the touch event</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">trail</span><span class="p">.</span><span class="nx">on</span> <span class="s">&quot;change:y&quot;</span><span class="p">,</span> <span class="nf">-&gt;</span>
+	<span class="k">if</span> <span class="nx">trailSwitch</span>
+		<span class="nv">trail1 = </span><span class="k">this</span><span class="p">.</span><span class="nx">copy</span><span class="p">()</span>
+		<span class="nv">trail1.visible = </span><span class="kc">true</span>
+		<span class="nv">trail2 = </span><span class="k">this</span><span class="p">.</span><span class="nx">copy</span><span class="p">()</span>
+		<span class="nv">trail2.visible = </span><span class="kc">true</span>
+		<span class="nv">trail1.y = </span><span class="p">(</span><span class="nx">trail1</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="nx">trail</span><span class="p">.</span><span class="nx">height</span> <span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+		<span class="nv">trail2.y = </span><span class="p">(</span><span class="nx">trail1</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span><span class="p">.</span><span class="mi">9</span><span class="p">)</span>
+		<span class="nx">trail2</span><span class="p">.</span><span class="nx">x</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">trail2</span><span class="p">.</span><span class="nx">width</span><span class="o">*</span><span class="mf">1.5</span><span class="p">)</span>
+		<span class="nx">trail1</span><span class="p">.</span><span class="nx">animate</span>
+			<span class="nv">properties: scale: </span><span class="mf">0.3</span><span class="p">,</span> <span class="nv">opacity: </span><span class="mi">0</span><span class="p">,</span> <span class="nv">backgroundColor: </span>					<span class="s">&quot;#D8D8D8&quot;</span> 
+			<span class="nv">delay: </span><span class="mf">0.3</span>
+			<span class="nv">time: </span><span class="mf">0.1</span>
+			
+		<span class="nx">trail2</span><span class="p">.</span><span class="nx">animate</span>
+			<span class="nv">properties: scale: </span><span class="mf">0.3</span><span class="p">,</span> <span class="nv">opacity: </span><span class="mi">0</span><span class="p">,</span> <span class="nv">backgroundColor: </span>					<span class="s">&quot;#D8D8D8&quot;</span> 
+			<span class="nv">delay: </span><span class="mf">0.3</span>
+			<span class="nv">time: </span><span class="mf">0.1</span>
+		<span class="nx">trail1</span><span class="p">.</span><span class="nx">onAnimationEnd</span> <span class="nf">-&gt;</span>
+			<span class="nx">trail1</span><span class="p">.</span><span class="nx">destroy</span><span class="p">()</span>	
+		
+		<span class="nx">trail2</span><span class="p">.</span><span class="nx">onAnimationEnd</span> <span class="nf">-&gt;</span>
+			<span class="nx">trail2</span><span class="p">.</span><span class="nx">destroy</span><span class="p">()</span>
+	
+<span class="nx">checkScreenSwitch</span><span class="p">()</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

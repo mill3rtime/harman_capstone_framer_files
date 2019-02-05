@@ -49,28 +49,28 @@
                       "inlineStyleRanges" : [
                         {
                           "style" : "COLOR:rgb(213, 240, 255)",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         },
                         {
                           "style" : "SIZE:60",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         },
                         {
                           "style" : "LETTERSPACING:10.0",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         },
                         {
                           "style" : "ALIGN:left",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         },
                         {
                           "style" : "FONT:ProximaNova-Regular",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         }
                       ],
                       "entityRanges" : [
@@ -160,28 +160,28 @@
                       "inlineStyleRanges" : [
                         {
                           "style" : "COLOR:rgb(213, 240, 255)",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         },
                         {
                           "style" : "SIZE:60",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         },
                         {
                           "style" : "LETTERSPACING:10.0",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         },
                         {
                           "style" : "ALIGN:left",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         },
                         {
                           "style" : "FONT:ProximaNova-Regular",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         }
                       ],
                       "entityRanges" : [
@@ -271,28 +271,28 @@
                       "inlineStyleRanges" : [
                         {
                           "style" : "COLOR:rgb(213, 240, 255)",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         },
                         {
                           "style" : "SIZE:60",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         },
                         {
                           "style" : "LETTERSPACING:10.0",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         },
                         {
                           "style" : "ALIGN:left",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         },
                         {
                           "style" : "FONT:ProximaNova-Regular",
-                          "length" : 13,
-                          "offset" : 0
+                          "offset" : 0,
+                          "length" : 13
                         }
                       ],
                       "entityRanges" : [

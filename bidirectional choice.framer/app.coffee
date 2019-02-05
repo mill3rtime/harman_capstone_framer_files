@@ -1,3 +1,7 @@
+# Import file "bidirectional choice"
+sketch = Framer.Importer.load("imported/bidirectional%20choice@1x", scale: 1)
+# Import file "bidirectional choice"
+
 # # Binary Decision UI
 # Here we define the interaction for the binary "go/don't go" decision in an AV. Sliding up results in performing the confirmation action, while sliding back results in the denial option.
 
@@ -7,7 +11,7 @@
 
 # Import Sketch file `bidirectional choice`
 SKETCH_IMPORT_SCALE = 1.1
-sketch = Framer.Importer.load("imported/bidirectional%20choice@1x", scale: SKETCH_IMPORT_SCALE)
+
 
 # Disable purple hints
 Framer.Extras.Hints.disable()
@@ -96,8 +100,9 @@ trackY = (touchEvent, layer, target) ->
 # === moveLayer ===
 moveLayer = (layer) ->
 	# Generic function to animate the given layer to the provided y point
+	sensitivity = 1.2
 	layer.animate
-		y: (layer.y + 2* (tapY2 - oldTapY2)/1.5)
+		y: (layer.y + 2* (tapY2 - oldTapY2)/sensitivity)
 		options:
 			time: 0
 			curve: Bezier.linear
@@ -115,7 +120,7 @@ confirmDeny = () ->
 	# Check that the user does, in fact, want to perform the deny action for this binary action
 	# TODO: Change back to 0 for the full curve effect
 	denyThresholdPx = 200
-	borderOffset = 600
+	borderOffset = 200
 	if yes_4.maxY < denyThresholdPx
 		offScreen = true
 		hideControl()
@@ -134,8 +139,9 @@ confirmDeny = () ->
 		Home.animate
 			opacity: 1
 			options:
-				time: 1
+				time: 2
 				curve: Bezier.easeInOut
+		
 
 	
 # === Touch Start Event ===

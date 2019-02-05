@@ -3,7 +3,7 @@
 
 if (!window.Framer && window._bridge) {window._bridge('runtime.error', {message:'[framer.js] Framer library missing or corrupt. Select File → Update Framer Library.'})}
 window.__imported__ = window.__imported__ || {};
-window.__imported__["Interactions7.1v2@1x/layers.json.js"] = [
+window.__imported__["Interactions7.1v2@2x/layers.json.js"] = [
 	{
 		"objectId": "22348E1C-7674-4057-BB06-969272D9D35C",
 		"kind": "artboard",
@@ -913,7 +913,7 @@ window.__imported__["Interactions7.1v2@1x/layers.json.js"] = [
 	}
 ]
 window.__imported__ = window.__imported__ || {};
-window.__imported__["Interactions7.1v2@2x/layers.json.js"] = [
+window.__imported__["Interactions7.1v2@1x/layers.json.js"] = [
 	{
 		"objectId": "22348E1C-7674-4057-BB06-969272D9D35C",
 		"kind": "artboard",
@@ -3073,10 +3073,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"originalName": "Speed",
 				"maskFrame": null,
 				"layerFrame": {
-					"x": 484,
-					"y": 890.0000000000001,
-					"width": 529,
-					"height": 251
+					"x": 478,
+					"y": 886.0000000000001,
+					"width": 559,
+					"height": 255
 				},
 				"visible": true,
 				"metadata": {
@@ -3085,10 +3085,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"image": {
 					"path": "images/Layer-Speed-m0yymkew.png",
 					"frame": {
-						"x": 484,
-						"y": 890.0000000000001,
-						"width": 529,
-						"height": 251
+						"x": 478,
+						"y": 886.0000000000001,
+						"width": 559,
+						"height": 255
 					}
 				},
 				"children": []
@@ -3127,10 +3127,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"originalName": "Speed",
 				"maskFrame": null,
 				"layerFrame": {
-					"x": 480,
-					"y": 890.0000000000001,
-					"width": 529,
-					"height": 251
+					"x": 474,
+					"y": 886.0000000000001,
+					"width": 559,
+					"height": 255
 				},
 				"visible": true,
 				"metadata": {
@@ -3139,10 +3139,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"image": {
 					"path": "images/Layer-Speed-nezboeyy.png",
 					"frame": {
-						"x": 480,
-						"y": 890.0000000000001,
-						"width": 529,
-						"height": 251
+						"x": 474,
+						"y": 886.0000000000001,
+						"width": 559,
+						"height": 255
 					}
 				},
 				"children": []
@@ -3262,10 +3262,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"originalName": "Position",
 				"maskFrame": null,
 				"layerFrame": {
-					"x": 296,
-					"y": 1524.0000000000002,
-					"width": 885,
-					"height": 250
+					"x": 294,
+					"y": 1520.0000000000002,
+					"width": 931,
+					"height": 254
 				},
 				"visible": true,
 				"metadata": {
@@ -3274,10 +3274,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"image": {
 					"path": "images/Layer-Position-njvgrtu3.png",
 					"frame": {
-						"x": 296,
-						"y": 1524.0000000000002,
-						"width": 885,
-						"height": 250
+						"x": 294,
+						"y": 1520.0000000000002,
+						"width": 931,
+						"height": 254
 					}
 				},
 				"children": []
@@ -3343,10 +3343,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"originalName": "Speed",
 				"maskFrame": null,
 				"layerFrame": {
-					"x": 481,
-					"y": 891.0000000000001,
-					"width": 529,
-					"height": 250
+					"x": 475,
+					"y": 887.0000000000001,
+					"width": 559,
+					"height": 254
 				},
 				"visible": true,
 				"metadata": {
@@ -3355,10 +3355,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"image": {
 					"path": "images/Layer-Speed-qta2qjjf.png",
 					"frame": {
-						"x": 481,
-						"y": 891.0000000000001,
-						"width": 529,
-						"height": 250
+						"x": 475,
+						"y": 887.0000000000001,
+						"width": 559,
+						"height": 254
 					}
 				},
 				"children": []
@@ -3424,10 +3424,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"originalName": "Position",
 				"maskFrame": null,
 				"layerFrame": {
-					"x": 295,
-					"y": 1524.0000000000002,
-					"width": 885,
-					"height": 250
+					"x": 293,
+					"y": 1520.0000000000002,
+					"width": 932,
+					"height": 254
 				},
 				"visible": true,
 				"metadata": {
@@ -3436,10 +3436,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"image": {
 					"path": "images/Layer-Position-mjg3nuu1.png",
 					"frame": {
-						"x": 295,
-						"y": 1524.0000000000002,
-						"width": 885,
-						"height": 250
+						"x": 293,
+						"y": 1520.0000000000002,
+						"width": 932,
+						"height": 254
 					}
 				},
 				"children": []
@@ -3532,10 +3532,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"originalName": "Turn",
 				"maskFrame": null,
 				"layerFrame": {
-					"x": 245,
-					"y": 1733.0000000000002,
-					"width": 993,
-					"height": 248
+					"x": 237,
+					"y": 1729.0000000000002,
+					"width": 1052,
+					"height": 252
 				},
 				"visible": true,
 				"metadata": {
@@ -3544,10 +3544,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"image": {
 					"path": "images/Layer-Turn-qkzbrkzd.png",
 					"frame": {
-						"x": 245,
-						"y": 1733.0000000000002,
-						"width": 993,
-						"height": 248
+						"x": 237,
+						"y": 1729.0000000000002,
+						"width": 1052,
+						"height": 252
 					}
 				},
 				"children": []
@@ -3640,10 +3640,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"originalName": "Turn",
 				"maskFrame": null,
 				"layerFrame": {
-					"x": 245,
-					"y": 1733.0000000000002,
-					"width": 993,
-					"height": 248
+					"x": 237,
+					"y": 1729.0000000000002,
+					"width": 1052,
+					"height": 252
 				},
 				"visible": true,
 				"metadata": {
@@ -3652,10 +3652,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"image": {
 					"path": "images/Layer-Turn-njdbnzmx.png",
 					"frame": {
-						"x": 245,
-						"y": 1733.0000000000002,
-						"width": 993,
-						"height": 248
+						"x": 237,
+						"y": 1729.0000000000002,
+						"width": 1052,
+						"height": 252
 					}
 				},
 				"children": []
@@ -3775,9 +3775,9 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"maskFrame": null,
 				"layerFrame": {
 					"x": 94.00000000000023,
-					"y": 1531,
+					"y": 1527,
 					"width": 1411,
-					"height": 251
+					"height": 255
 				},
 				"visible": true,
 				"metadata": {
@@ -3787,9 +3787,9 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 					"path": "images/Layer-Position-mkjgmdax.png",
 					"frame": {
 						"x": 94.00000000000023,
-						"y": 1531,
+						"y": 1527,
 						"width": 1411,
-						"height": 251
+						"height": 255
 					}
 				},
 				"children": []
@@ -3801,10 +3801,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"originalName": "Speed Copy",
 				"maskFrame": null,
 				"layerFrame": {
-					"x": 461.0000000000002,
-					"y": 1792,
-					"width": 529,
-					"height": 251
+					"x": 455.0000000000002,
+					"y": 1788,
+					"width": 559,
+					"height": 255
 				},
 				"visible": true,
 				"metadata": {
@@ -3813,10 +3813,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"image": {
 					"path": "images/Layer-Speed_Copy-otqwqtvd.png",
 					"frame": {
-						"x": 461.0000000000002,
-						"y": 1792,
-						"width": 529,
-						"height": 251
+						"x": 455.0000000000002,
+						"y": 1788,
+						"width": 559,
+						"height": 255
 					}
 				},
 				"children": []
@@ -3828,10 +3828,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"originalName": "Speed",
 				"maskFrame": null,
 				"layerFrame": {
-					"x": 461,
-					"y": -109.99999999999996,
-					"width": 529,
-					"height": 251
+					"x": 455,
+					"y": -113.99999999999996,
+					"width": 559,
+					"height": 255
 				},
 				"visible": true,
 				"metadata": {
@@ -3840,10 +3840,10 @@ window.__imported__["Interactions_ORIGINAL@1x/layers.json.js"] = [
 				"image": {
 					"path": "images/Layer-Speed-rufcoeu0.png",
 					"frame": {
-						"x": 461,
-						"y": -109.99999999999996,
-						"width": 529,
-						"height": 251
+						"x": 455,
+						"y": -113.99999999999996,
+						"width": 559,
+						"height": 255
 					}
 				},
 				"children": []

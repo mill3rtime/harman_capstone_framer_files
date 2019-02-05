@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>app.coffee</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>app.coffee</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <h3><span id="secondary-screen-socket-listener-framer-prototype" href="secondary-screen-socket-listener-framer-prototype"> Secondary Screen Socket Listener Framer Prototype </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Defining some constants for monitoring the imports of several sketch files, as well as adhering to screen size requirements.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">IPAD_HEIGHT = </span><span class="mi">2224</span>
+<span class="nv">IPAD_WIDTH = </span><span class="mi">1668</span>
+<span class="nv">SKETCH_IMPORT_SCALE = </span><span class="mi">1</span>
+
+<span class="nv">defaultWidth = </span><span class="nx">IPAD_WIDTH</span> <span class="o">*</span> <span class="nx">SKETCH_IMPORT_SCALE</span>
+<span class="nv">defaultHeight = </span><span class="nx">IPAD_HEIGHT</span> <span class="o">*</span> <span class="nx">SKETCH_IMPORT_SCALE</span>
+
+<span class="nv">screenWidth = </span><span class="nx">Framer</span><span class="p">.</span><span class="nx">Device</span><span class="p">.</span><span class="nx">screen</span><span class="p">.</span><span class="nx">width</span>
+<span class="nv">widthScale = </span><span class="nx">defaultWidth</span> <span class="o">/</span> <span class="nx">screenWidth</span>
+
+<span class="nx">Framer</span><span class="p">.</span><span class="nx">Device</span><span class="p">.</span><span class="nx">customize</span>
+	<span class="nv">devicePixelRatio: </span><span class="mi">1</span>
+	<span class="nv">screenWidth: </span><span class="nx">defaultWidth</span>
+	<span class="nv">screenHeight: </span><span class="nx">defaultHeight</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <h3><span id="importing-sketch-files" href="importing-sketch-files"> Importing Sketch Files </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>Import sketch file &ldquo;bus_only&rdquo;, which has just the pass the bus artboards</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">bus_sketch = </span><span class="nx">Framer</span><span class="p">.</span><span class="nx">Importer</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s">&quot;imported/bus_only@1x&quot;</span><span class="p">,</span> <span class="nv">scale: </span><span class="nx">SKETCH_IMPORT_SCALE</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>Import sketch file &ldquo;SecondScreen-7.20 Grouped&rdquo; which has all the other artboards</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">sketch = </span><span class="nx">Framer</span><span class="p">.</span><span class="nx">Importer</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s">&quot;imported/SecondScreen-7.20%20Grouped@1x&quot;</span><span class="p">,</span> <span class="nv">scale: </span><span class="nx">SKETCH_IMPORT_SCALE</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Defining the starting background board</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">mainBoard = </span><span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span>
+<span class="nv">mainBoard.x = </span><span class="mi">0</span>
+<span class="nv">mainBoard.y = </span><span class="mi">0</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <h3><span id="runcallback" href="runcallback"> runCallback </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">TIMEOUT_DELAY = </span><span class="mi">500</span> <span class="c1">#ms</span>
+<span class="nv">runCallback = </span><span class="nf">(screen, time) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>A timeout function which pushes the screen <code>screen</code> to the front after TIMEOUT_DELAY * time milliseconds</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">callback = </span><span class="nf">-&gt;</span> <span class="nx">screen_to_show</span> <span class="nx">screen</span>
+	<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">callback</span><span class="p">,</span> <span class="nx">TIMEOUT_DELAY</span> <span class="o">*</span> <span class="nx">time</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <h3><span id="concurrency" href="concurrency"> Concurrency </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>Because we consistently listen for sockets, we need to implement some form of concurrency control. Here we opt for the simple binary semaphore to do so, locking access to the screen until an animation is complete.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">isLocked = </span><span class="kc">false</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <h3><span id="unlock" href="unlock"> unlock </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">unlock = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>Reset our concurrency variables and push up the main mph screen.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">isLocked = </span><span class="kc">false</span>
+	<span class="nv">block = </span><span class="kc">false</span>
+	<span class="nv">mainBoard.visible = </span><span class="kc">false</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      <h3><span id="modifiedunlock" href="modifiedunlock"> modifiedUnlock </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">modifiedUnlock = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p>Unlock control of the screen without pushing the main mph screen back up. This was used during user testing.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">isLocked = </span><span class="kc">false</span>
+	<span class="nv">block = </span><span class="kc">false</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      <h3><span id="series_to_show" href="series_to_show"> series_to_show </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">series_to_show = </span><span class="nf">(screenList, hangAtEnd=false) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      <p>This function runs through a series of artboards defined as screenList and shows them one by one with a delay of TIMEOUT_DELAY milliseconds each</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">timenum = </span><span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-16'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-16'>#</a>
+      </div>
+      <p>Check to make sure we have access to the screen to update</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="o">not</span> <span class="nx">isLocked</span> <span class="o">and</span> <span class="o">not</span> <span class="nx">block</span>
+		<span class="nv">isLocked = </span><span class="kc">true</span>
+		<span class="k">for</span> <span class="nx">screen</span> <span class="k">in</span> <span class="nx">screenList</span>
+			<span class="nx">screen_to_show</span><span class="p">(</span><span class="nx">screen</span><span class="p">)</span>
+			<span class="nx">runCallback</span><span class="p">(</span><span class="nx">screen</span><span class="p">,</span> <span class="nx">timenum</span><span class="p">)</span>
+			<span class="nv">timenum = </span><span class="nx">timenum</span> <span class="o">+</span> <span class="mi">1</span>
+		<span class="k">if</span> <span class="nx">hangAtEnd</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-17'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-17'>#</a>
+      </div>
+      <p>For user testing, if we just want to show a blank screen at the end</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>			<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">modifiedUnlock</span><span class="p">,</span> <span class="nx">timenum</span> <span class="o">*</span> <span class="nx">TIMEOUT_DELAY</span><span class="p">)</span>
+		<span class="k">else</span>
+			<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">unlock</span><span class="p">,</span> <span class="nx">timenum</span> <span class="o">*</span> <span class="nx">TIMEOUT_DELAY</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-18'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-18'>#</a>
+      </div>
+      <p>Generic helper function that brings the desired layer to
+the forefront </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">screen_to_show = </span><span class="nf">(screen) -&gt;</span>
+	<span class="k">if</span> <span class="nx">screen</span>
+		<span class="nv">screen.x = </span><span class="mi">0</span>
+		<span class="nv">screen.y = </span><span class="mi">0</span>
+		<span class="nv">mainBoard.visible = </span><span class="kc">false</span>
+		<span class="nv">screen.visible = </span><span class="kc">true</span>
+		<span class="nv">mainBoard = </span><span class="nx">screen</span>
+		<span class="nx">screen</span><span class="p">.</span><span class="nx">bringToFront</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-19'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-19'>#</a>
+      </div>
+      <h3><span id="artboard-series" href="artboard-series"> Artboard Series </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-20'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-20'>#</a>
+      </div>
+      <p>For feedback we do not yet have animated, we create a series of artboards to walk through (in a slide show style) upon receiving a specific socket message</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">LEFT_SERIES = </span><span class="p">[</span><span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">lane_static</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">lane_left_1</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">lane_left_2</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">lane_left_3</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">]</span>
+
+<span class="nv">RIGHT_SERIES = </span><span class="p">[</span><span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">lane_static</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">lane_right_1</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">lane_right_2</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">lane_right_3</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">]</span>
+
+<span class="nv">BUS_STATIC_SERIES = </span><span class="p">[</span><span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_yes_1</span><span class="p">]</span>
+
+<span class="nv">BUS_CONFIRM_SERIES = </span><span class="p">[</span><span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_yes_1</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_yes_2</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_yes_3</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_yes_4</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_yes_5</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_yes_6</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_yes_7</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_yes_8</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_yes_9</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">]</span>
+
+<span class="nv">BUS_DENY_SERIES = </span><span class="p">[</span><span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_no_1</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_no_2</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_no_3</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_no_4</span><span class="p">,</span> <span class="nx">bus_sketch</span><span class="p">.</span><span class="nx">bus_no_5</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">]</span>
+
+<span class="nv">BINARY_CONFIRM_SERIES_A = </span><span class="p">[</span><span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_confirm_1</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_confirm_2</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_confirm_3</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_confirm_4</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_confirm_5</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_confirm_6</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_confirm_7</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_confirm_8</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_confirm_9</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">]</span>
+
+<span class="nv">BINARY_DENY_SERIES_B = </span><span class="p">[</span><span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_deny_1</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_deny_2</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_deny_3</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_deny_4</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">binary_deny_5</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-21'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-21'>#</a>
+      </div>
+      <p>Listen for a websocket event at the server specified at
+the bottom of <code>index.html</code></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-22'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-22'>#</a>
+      </div>
+      <h3><span id="begin-speed-up/down-animation" href="begin-speed-up/down-animation"> Begin Speed Up/Down Animation </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="p">{</span><span class="nx">TextLayer</span><span class="p">,</span> <span class="nx">convertTextLayers</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">&#39;TextLayer&#39;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-23'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-23'>#</a>
+      </div>
+      <p>Import a new sketch file, the second screen components for animation only</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">sketch = </span><span class="nx">Framer</span><span class="p">.</span><span class="nx">Importer</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s">&quot;imported/Sketch%20Imports%20Second%20Screen@1x&quot;</span><span class="p">,</span> <span class="nv">scale: </span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nx">Framer</span><span class="p">.</span><span class="nx">Extras</span><span class="p">.</span><span class="nx">Hints</span><span class="p">.</span><span class="nx">disable</span><span class="p">()</span>
+
+<span class="nx">Utils</span><span class="p">.</span><span class="nx">globalLayers</span><span class="p">(</span><span class="nx">sketch</span><span class="p">)</span>
+
+<span class="nv">speedArray = </span><span class="p">[</span><span class="nx">sketch</span><span class="p">.</span><span class="nx">Speed_Text</span><span class="p">,</span><span class="nx">sketch</span><span class="p">.</span><span class="nx">MPH</span><span class="p">,</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">Speed_Highlight</span><span class="p">]</span>
+
+<span class="nv">Top_Text = </span><span class="nx">sketch</span><span class="p">.</span><span class="nx">Top_Text</span><span class="p">.</span><span class="nx">convertToTextLayer</span><span class="p">()</span>
+<span class="nv">Bottom_Text = </span><span class="nx">sketch</span><span class="p">.</span><span class="nx">Bottom_Text</span><span class="p">.</span><span class="nx">convertToTextLayer</span><span class="p">()</span>
+<span class="nv">Speed_Text = </span><span class="nx">sketch</span><span class="p">.</span><span class="nx">Speed_Text</span><span class="p">.</span><span class="nx">convertToTextLayer</span><span class="p">()</span>
+
+
+<span class="nv">pulse = </span><span class="nx">sketch</span><span class="p">.</span><span class="nx">Speed_Highlight</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-24'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-24'>#</a>
+      </div>
+      <h3><span id="defining-speed-control-constants-for-animation" href="defining-speed-control-constants-for-animation"> Defining Speed Control Constants for Animation </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-25'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-25'>#</a>
+      </div>
+      <p>Additional Concurrency Control</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">done = </span><span class="kc">false</span>
+<span class="nv">block = </span><span class="kc">false</span>
+
+<span class="nv">stringStart = </span><span class="nx">Transition_String</span><span class="p">.</span><span class="nx">maxY</span>
+
+<span class="nv">startSpeed = </span><span class="mi">36</span>
+<span class="nv">downSpeed = </span><span class="mi">24</span>
+<span class="nv">upSpeed = </span><span class="mi">48</span>
+<span class="nv">stringCount = </span><span class="mi">0</span>
+<span class="nv">stringTime1 = </span><span class="mi">3</span>
+<span class="nv">fillTime1 = </span><span class="mi">6</span>
+<span class="nv">speed = </span><span class="kc">null</span>
+<span class="nv">newSpeed = </span><span class="mi">0</span>
+
+<span class="nv">rangeUp =</span>
+	<span class="nv">min: </span><span class="nx">startSpeed</span>
+	<span class="nv">max: </span><span class="nx">upSpeed</span>
+	
+<span class="nv">rangeDown =</span>
+	<span class="nv">min: </span><span class="nx">downSpeed</span>
+	<span class="nv">max: </span><span class="nx">startSpeed</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-26'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-26'>#</a>
+      </div>
+      <h3><span id="defining-states-for-animation-elements" href="defining-states-for-animation-elements"> Defining States for Animation Elements </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">sketch.Speed_Highlight.states =</span>
+	<span class="nv">big:</span>
+		<span class="nv">scale: </span><span class="mf">1.5</span>
+	<span class="nv">reg:</span>
+		<span class="nv">scale: </span><span class="mi">1</span>
+<span class="nv">sketch.Speed_Highlight.animationOptions = </span>
+	<span class="nv">curve: </span><span class="nx">Bezier</span><span class="p">.</span><span class="nx">linear</span>
+	<span class="nv">time: </span><span class="p">.</span><span class="mi">4</span>
+<span class="k">delete</span> <span class="nx">sketch</span><span class="p">.</span><span class="nx">Speed_Highlight</span><span class="p">.</span><span class="nx">states</span><span class="p">.</span><span class="nx">default</span>
+
+<span class="nv">Fill_Speed.states =</span>
+	<span class="nv">home:</span>
+		<span class="nv">width: </span><span class="mi">1668</span>
+		<span class="nv">height: </span><span class="mi">82</span>
+		<span class="nv">scaleY: </span><span class="mi">1</span>
+		<span class="nv">scaleX: </span><span class="mi">1</span>
+		<span class="nv">visible: </span><span class="kc">false</span>
+		<span class="nv">x: </span><span class="mi">0</span>
+		<span class="nv">y: </span><span class="mi">718</span>
+
+<span class="nv">Transition_String.states =</span>
+	<span class="nv">home:</span>
+		<span class="nv">width: </span><span class="mi">1668</span>
+		<span class="nv">height: </span><span class="mi">84</span>
+		<span class="nv">scaleY: </span><span class="mi">1</span>
+		<span class="nv">scaleX: </span><span class="mi">1</span>
+		<span class="nv">visible: </span><span class="kc">false</span>
+		<span class="nv">x: </span><span class="mi">0</span>
+		<span class="nv">y: </span><span class="mi">318</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-27'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-27'>#</a>
+      </div>
+      <h3><span id="setdefaultstate" href="setdefaultstate"> setDefaultState </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">setDefaultState = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-28'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-28'>#</a>
+      </div>
+      <p>Sets the canvas to be our static display showing the current driving speed</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">Top_Text.text = </span><span class="s">&quot;SELF DRIVING: ON&quot;</span>
+	<span class="nv">Bottom_Text.text = </span><span class="s">&quot;CURRENT SPEED&quot;</span>
+	<span class="nv">Bottom_Text.opacity = </span><span class="mi">1</span>
+	<span class="nv">Bottom_Text.visible = </span><span class="kc">true</span>
+	<span class="nv">Up_String.visible = </span><span class="kc">false</span>
+	<span class="nv">Transition_String.opacity = </span><span class="mi">0</span>
+	<span class="nv">Speed_Text.text = </span><span class="nx">startSpeed</span>
+	<span class="nv">done = </span><span class="kc">true</span>
+	<span class="nv">Fill_Speed.visible = </span><span class="kc">false</span>
+	<span class="nx">Straight_String</span><span class="p">.</span><span class="nx">animate</span>
+		<span class="nv">opacity: </span><span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-29'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-29'>#</a>
+      </div>
+      <h3><span id="setaccelstate" href="setaccelstate"> setAccelState </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">setAccelState = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-30'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-30'>#</a>
+      </div>
+      <p>Sets the canvas to be either speeding up or slowing down, based on the input change in speed in conjunction with various elements animating</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="nx">speed</span> <span class="o">==</span> <span class="s">&quot;up&quot;</span>
+		<span class="nv">Top_Text.text = </span><span class="s">&quot;SPEED: ACCELERATING&quot;</span>
+	<span class="k">if</span> <span class="nx">speed</span> <span class="o">==</span> <span class="s">&quot;down&quot;</span> 
+		<span class="nv">Top_Text.text = </span><span class="s">&quot;SPEED: DECELERATING&quot;</span>
+	<span class="nv">Bottom_Text.text = </span><span class="s">&quot;SETTING NEW SPEED&quot;</span>
+	<span class="nv">Up_String.visible = </span><span class="kc">false</span>
+	<span class="nv">Fill_Speed.visible = </span><span class="kc">true</span>
+	<span class="nv">sketch.Speed_Highlight.visible = </span><span class="kc">false</span>
+	<span class="nv">Straight_String.opacity = </span><span class="mi">0</span>
+	<span class="nx">Bottom_Text</span><span class="p">.</span><span class="nx">animate</span>
+		<span class="nv">opacity: </span><span class="mi">1</span>
+	<span class="nx">Top_Text</span><span class="p">.</span><span class="nx">animate</span>
+		<span class="nv">opacity: </span><span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-31'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-31'>#</a>
+      </div>
+      <h3><span id="stringtoaccel" href="stringtoaccel"> stringToAccel </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">stringToAccel = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-32'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-32'>#</a>
+      </div>
+      <p>Stretches the white line upward in conjunction with a speeding up event</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">Transition_String.visible = </span><span class="kc">true</span>
+	<span class="nx">Transition_String</span><span class="p">.</span> <span class="nv">opacity = </span><span class="mi">1</span>
+	<span class="nx">Transition_String</span><span class="p">.</span> <span class="nv">rotation = </span><span class="mi">0</span>
+	<span class="nx">sketch</span><span class="p">.</span><span class="nx">Transition_String</span><span class="p">.</span><span class="nx">animate</span>
+		<span class="nv">scaleY: </span><span class="mi">4</span>
+		<span class="nv">minY: </span><span class="mi">130</span>
+		<span class="nv">options:</span>
+			<span class="nv">time: </span><span class="nx">stringTime1</span>
+			<span class="nv">curve: </span><span class="nx">Bezier</span><span class="p">.</span><span class="nx">easeIn</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-33'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-33'>#</a>
+      </div>
+      <h3><span id="stringtodecel" href="stringtodecel"> stringToDecel </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">stringToDecel = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-34'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-34'>#</a>
+      </div>
+      <p>Stretches the white line downward in conjunction with a slowing down event</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">Transition_String.visible = </span><span class="kc">true</span>
+	<span class="nv">sketch.Transition_String.opacity = </span><span class="mi">1</span>
+	<span class="nx">Transition_String</span><span class="p">.</span> <span class="nv">rotation = </span><span class="mi">180</span>
+	<span class="nx">sketch</span><span class="p">.</span><span class="nx">Transition_String</span><span class="p">.</span><span class="nx">animate</span>
+		<span class="nv">scaleY: </span><span class="mi">4</span>
+		<span class="nv">minY: </span><span class="nx">Dividing_Bar</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="mi">220</span>
+		<span class="nv">options:</span>
+			<span class="nv">time: </span><span class="nx">stringTime1</span>
+			<span class="nv">curve: </span><span class="nx">Bezier</span><span class="p">.</span><span class="nx">easeIn</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-35'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-35'>#</a>
+      </div>
+      <h3><span id="filltoaccel" href="filltoaccel"> fillToAccel </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">fillToAccel = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-36'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-36'>#</a>
+      </div>
+      <p>Stretches the blue fill upwards in conjunction with a speeding up event or downwards in conjunction with a slowing down event</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">Fill_Speed.visible = </span><span class="kc">true</span>
+	<span class="k">if</span> <span class="nx">speed</span> <span class="o">==</span> <span class="s">&quot;down&quot;</span>
+		<span class="nv">Fill_Speed.y = </span><span class="mi">0</span>
+		<span class="nv">Fill_Speed.rotation = </span><span class="mi">180</span>
+		<span class="nx">Fill_Speed</span><span class="p">.</span><span class="nx">animate</span>
+			<span class="nv">scaleY: </span><span class="mi">6</span>
+			<span class="nv">scaleX: </span><span class="mf">1.15</span>
+			<span class="nv">y: </span><span class="nx">Transition_String</span><span class="p">.</span><span class="nx">maxY</span> <span class="o">+</span> <span class="mi">100</span>			
+			<span class="nv">options: </span>
+				<span class="nv">curve: </span><span class="nx">Bezier</span><span class="p">.</span><span class="nx">easeIn</span>
+				<span class="nv">time: </span><span class="nx">fillTime1</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="nx">speed</span> <span class="o">==</span> <span class="s">&quot;up&quot;</span>
+		<span class="nx">sketch</span><span class="p">.</span><span class="nx">Fill_Speed</span><span class="p">.</span><span class="nx">animate</span>
+			<span class="nv">scaleY: </span><span class="mf">5.8</span>
+			<span class="nv">scaleX: </span><span class="mf">1.15</span>
+			<span class="nv">maxY: </span><span class="nx">Transition_String</span><span class="p">.</span><span class="nx">maxY</span>
+			<span class="nv">y: </span><span class="mi">200</span>
+			<span class="nv">options: </span>
+				<span class="nv">curve: </span><span class="nx">Bezier</span><span class="p">.</span><span class="nx">easeIn</span>
+				<span class="nv">time: </span><span class="nx">fillTime1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-37'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-37'>#</a>
+      </div>
+      <h3><span id="pulseanimation" href="pulseanimation"> pulseAnimation </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">pulseAnimation = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-38'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-38'>#</a>
+      </div>
+      <p>Controlling two pulses of the white circle behind the number after an animation has completed involving it</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">pulse.visible = </span><span class="kc">true</span>
+	<span class="nx">pulse</span><span class="p">.</span><span class="nx">stateCycle</span> <span class="s">&quot;big&quot;</span>
+	<span class="nx">pulse</span><span class="p">.</span><span class="nx">onAnimationEnd</span> <span class="nf">-&gt;</span>
+		<span class="nx">pulse</span><span class="p">.</span><span class="nx">off</span> <span class="nx">Events</span><span class="p">.</span><span class="nx">AnimationEnd</span>
+		<span class="nx">pulse</span><span class="p">.</span><span class="nx">stateCycle</span> <span class="s">&quot;reg&quot;</span>
+		<span class="nx">pulse</span><span class="p">.</span><span class="nx">onAnimationEnd</span> <span class="nf">-&gt;</span>
+			<span class="nx">pulse</span><span class="p">.</span><span class="nx">off</span> <span class="nx">Events</span><span class="p">.</span><span class="nx">AnimationEnd</span>
+			<span class="nx">pulse</span><span class="p">.</span><span class="nx">stateCycle</span> <span class="s">&quot;big&quot;</span>
+			<span class="nx">pulse</span><span class="p">.</span><span class="nx">onAnimationEnd</span> <span class="nf">-&gt;</span>
+				<span class="nx">pulse</span><span class="p">.</span><span class="nx">off</span> <span class="nx">Events</span><span class="p">.</span><span class="nx">AnimationEnd</span>
+				<span class="nx">pulse</span><span class="p">.</span><span class="nx">stateCycle</span> <span class="s">&quot;reg&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-39'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-39'>#</a>
+      </div>
+      <h3><span id="countup" href="countup"> countUp </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">countUp = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-40'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-40'>#</a>
+      </div>
+      <p>Staggers time before moving the number up one to coordinate with the other animations as speed increases</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">time = </span><span class="p">(</span><span class="nx">stringTime1</span><span class="o">/</span><span class="p">(</span><span class="nx">upSpeed</span> <span class="o">-</span> <span class="nx">startSpeed</span><span class="p">))</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">..(</span><span class="nx">rangeUp</span><span class="p">.</span><span class="nx">max</span><span class="o">-</span><span class="nx">rangeUp</span><span class="p">.</span><span class="nx">min</span><span class="p">)]</span>
+		<span class="nx">do</span> <span class="nf">(i) -&gt;</span>
+			<span class="nx">Utils</span><span class="p">.</span><span class="nx">delay</span> <span class="nx">time</span> <span class="o">*</span><span class="nx">i</span><span class="p">,</span> <span class="nf">-&gt;</span>
+				<span class="nv">newSpeed = </span><span class="nx">startSpeed</span><span class="o">+</span><span class="nx">i</span>
+				<span class="nv">Speed_Text.text = </span><span class="nx">newSpeed</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-41'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-41'>#</a>
+      </div>
+      <h3><span id="countdown" href="countdown"> countDown </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">countDown = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-42'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-42'>#</a>
+      </div>
+      <p>Staggers time before moving the number down one to coordinate with the other animations as speed decreases</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nv">time = </span><span class="p">(</span><span class="nx">stringTime1</span><span class="o">/</span><span class="p">(</span><span class="nx">startSpeed</span> <span class="o">-</span> <span class="nx">downSpeed</span><span class="p">))</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">..(</span><span class="nx">rangeDown</span><span class="p">.</span><span class="nx">max</span><span class="o">-</span><span class="nx">rangeDown</span><span class="p">.</span><span class="nx">min</span><span class="p">)]</span>
+		<span class="nx">do</span> <span class="nf">(i) -&gt;</span>
+			<span class="nx">Utils</span><span class="p">.</span><span class="nx">delay</span> <span class="nx">time</span><span class="o">*</span><span class="nx">i</span><span class="p">,</span> <span class="nf">-&gt;</span>
+				<span class="nv">newSpeed = </span><span class="nx">startSpeed</span><span class="o">-</span><span class="nx">i</span>
+				<span class="nv">Speed_Text.text = </span><span class="nx">newSpeed</span>
+
+<span class="nx">setDefaultState</span><span class="p">()</span>
+<span class="nv">sketch.MPH.x = </span><span class="mi">160</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-43'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-43'>#</a>
+      </div>
+      <h3><span id="moveup" href="moveup"> moveUp </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">moveUp = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-44'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-44'>#</a>
+      </div>
+      <p>General chain of animations to run as speed increases</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nx">accel</span><span class="p">.</span><span class="nx">bringToFront</span><span class="p">()</span>
+	<span class="nv">mainBoard.visible = </span><span class="kc">false</span>
+	<span class="k">if</span> <span class="nx">block</span> <span class="o">==</span> <span class="kc">false</span>
+		<span class="nv">mainBoard.visible = </span><span class="kc">false</span>
+		<span class="nx">setDefaultState</span><span class="p">()</span>
+		<span class="nv">speed = </span><span class="s">&quot;up&quot;</span>
+		<span class="nx">setAccelState</span><span class="p">()</span>
+		<span class="nx">stringToAccel</span><span class="p">()</span>
+		<span class="nx">fillToAccel</span><span class="p">()</span>
+		<span class="nx">countUp</span><span class="p">()</span>
+		<span class="nv">done = </span><span class="kc">false</span>
+		<span class="nv">block = </span><span class="kc">true</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-45'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-45'>#</a>
+      </div>
+      <h3><span id="movedown" href="movedown"> moveDown </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">moveDown = </span><span class="nf">() -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-46'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-46'>#</a>
+      </div>
+      <p>General chain of animations to run as speed decreases</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nx">accel</span><span class="p">.</span><span class="nx">bringToFront</span><span class="p">()</span>
+	<span class="nv">mainBoard.visible = </span><span class="kc">false</span>
+	<span class="k">if</span> <span class="nx">block</span> <span class="o">==</span> <span class="kc">false</span>
+		<span class="nx">setDefaultState</span><span class="p">()</span>
+		<span class="nv">speed = </span><span class="s">&quot;down&quot;</span>
+		<span class="nx">setAccelState</span><span class="p">()</span>
+		<span class="nx">stringToDecel</span><span class="p">()</span>
+		<span class="nx">fillToAccel</span><span class="p">()</span>
+		<span class="nx">countDown</span><span class="p">()</span>
+		<span class="nv">done = </span><span class="kc">false</span>
+		<span class="nv">block = </span><span class="kc">true</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-47'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-47'>#</a>
+      </div>
+      <h3><span id="debug-buttons-for-animation" href="debug-buttons-for-animation"> DEBUG Buttons for Animation </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-48'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-48'>#</a>
+      </div>
+      <p>For the purposes of mimicing the socket calls we have two invisible buttons mimicing the incoming socket messages to speed up and slow down</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">button = </span><span class="k">new</span> <span class="nx">Layer</span>
+	<span class="nv">opacity: </span><span class="mi">0</span>
+
+<span class="nv">button2 = </span><span class="k">new</span> <span class="nx">Layer</span>
+	<span class="nv">opacity: </span><span class="mi">0</span>
+	<span class="nv">y: </span><span class="mi">305</span>
+	<span class="nv">x: </span><span class="o">-</span><span class="mi">31</span>
+	
+<span class="nx">button</span><span class="p">.</span><span class="nx">onClick</span> <span class="nf">-&gt;</span>
+	<span class="k">if</span> <span class="nx">block</span> <span class="o">==</span> <span class="kc">false</span>
+		<span class="nv">speed = </span><span class="s">&quot;up&quot;</span>
+		<span class="nx">setAccelState</span><span class="p">()</span>
+		<span class="nx">stringToAccel</span><span class="p">()</span>
+		<span class="nx">fillToAccel</span><span class="p">()</span>
+		<span class="nx">countUp</span><span class="p">()</span>
+		<span class="nv">done = </span><span class="kc">false</span>
+		<span class="nv">block = </span><span class="kc">true</span>
+
+<span class="nx">button2</span><span class="p">.</span><span class="nx">onClick</span> <span class="nf">-&gt;</span>
+	<span class="k">if</span> <span class="nx">block</span> <span class="o">==</span> <span class="kc">false</span>
+		<span class="nv">speed = </span><span class="s">&quot;down&quot;</span>
+		<span class="nx">setAccelState</span><span class="p">()</span>
+		<span class="nx">stringToDecel</span><span class="p">()</span>
+		<span class="nx">fillToAccel</span><span class="p">()</span>
+		<span class="nx">countDown</span><span class="p">()</span>
+		<span class="nv">done = </span><span class="kc">false</span>
+		<span class="nv">block = </span><span class="kc">true</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-49'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-49'>#</a>
+      </div>
+      <h3><span id="animation-ending-events" href="animation-ending-events"> Animation Ending Events </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">Transition_String</span><span class="p">.</span><span class="nx">onAnimationEnd</span> <span class="nf">-&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-50'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-50'>#</a>
+      </div>
+      <p>Set the white string back to a horizontal line</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="nx">stringCount</span> <span class="o">+=</span> <span class="mi">1</span>
+	<span class="k">if</span> <span class="nx">stringCount</span> <span class="o">==</span> <span class="mi">2</span>
+		<span class="nx">setDefaultState</span><span class="p">()</span>
+		<span class="nv">stringCount = </span><span class="mi">0</span>
+		<span class="nv">block = </span><span class="kc">false</span>
+
+<span class="nx">Fill_Speed</span><span class="p">.</span><span class="nx">onAnimationEnd</span> <span class="nf">-&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-51'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-51'>#</a>
+      </div>
+      <p>Set the blue fill back to a full-screen effect</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>	<span class="k">if</span> <span class="o">!</span><span class="nx">done</span>
+		<span class="nx">pulseAnimation</span><span class="p">()</span>
+		<span class="nv">done = </span><span class="kc">true</span> 
+		<span class="nx">Utils</span><span class="p">.</span><span class="nx">delay</span> <span class="mi">3</span><span class="p">,</span> <span class="nf">-&gt;</span>
+			<span class="nx">Fill_Speed</span><span class="p">.</span><span class="nx">states</span><span class="p">.</span><span class="nx">switchInstant</span> <span class="s">&quot;home&quot;</span>
+			<span class="nx">Transition_String</span><span class="p">.</span><span class="nx">states</span><span class="p">.</span><span class="nx">switch</span> <span class="s">&quot;home&quot;</span>			
+			<span class="nv">startSpeed = </span><span class="nx">newSpeed</span>
+			<span class="nv">upSpeed = </span><span class="nx">startSpeed</span> <span class="o">+</span> <span class="mi">12</span>
+			<span class="nv">downSpeed = </span><span class="nx">startSpeed</span> <span class="o">-</span> <span class="mi">12</span>
+			<span class="k">if</span> <span class="nx">startSpeed</span> <span class="o">&lt;</span> <span class="mi">10</span>
+				<span class="nv">startSpeed = </span><span class="mi">30</span>
+			<span class="k">if</span> <span class="nv">speed = </span><span class="s">&quot;down&quot;</span>
+				<span class="nv">Fill_Speed.rotation = </span><span class="mi">180</span>
+			<span class="k">if</span> <span class="nv">speed = </span><span class="s">&quot;up&quot;</span>
+				<span class="nv">Fill_Speed.rotation = </span><span class="mi">0</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-52'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-52'>#</a>
+      </div>
+      <h3><span id="socket-listener" href="socket-listener"> Socket Listener </span></h3>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nv">ws.onmessage = </span><span class="nf">(event) -&gt;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-53'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-53'>#</a>
+      </div>
+      <p>Run various animations/walkthroughs as different socket messages come through the express server</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre> <span class="k">switch</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span>
+   <span class="k">when</span> <span class="s">&#39;speed_up&#39;</span> <span class="k">then</span> <span class="nx">moveUp</span><span class="p">()</span>
+   <span class="k">when</span> <span class="s">&#39;slow_down&#39;</span> <span class="k">then</span> <span class="nx">moveDown</span><span class="p">()</span>
+   <span class="k">when</span> <span class="s">&#39;left&#39;</span> <span class="k">then</span> <span class="nx">series_to_show</span><span class="p">(</span><span class="nx">LEFT_SERIES</span><span class="p">)</span>
+   <span class="k">when</span> <span class="s">&#39;right&#39;</span> <span class="k">then</span> <span class="nx">series_to_show</span><span class="p">(</span><span class="nx">RIGHT_SERIES</span><span class="p">)</span>
+   <span class="k">when</span> <span class="s">&#39;turn_right&#39;</span> <span class="k">then</span> <span class="nx">series_to_show</span><span class="p">(</span><span class="nx">BINARY_CONFIRM_SERIES_A</span><span class="p">)</span>
+   <span class="k">when</span> <span class="s">&#39;no_turn_right&#39;</span> <span class="k">then</span> <span class="nx">series_to_show</span><span class="p">(</span><span class="nx">BINARY_DENY_SERIES_B</span><span class="p">)</span>
+   <span class="k">when</span> <span class="s">&#39;no_pass_bus&#39;</span> <span class="k">then</span> <span class="nx">series_to_show</span><span class="p">(</span><span class="nx">BUS_DENY_SERIES</span><span class="p">)</span>
+   <span class="k">when</span> <span class="s">&#39;pass_bus&#39;</span> <span class="k">then</span> <span class="nx">series_to_show</span><span class="p">(</span><span class="nx">BUS_CONFIRM_SERIES</span><span class="p">)</span>
+   <span class="k">when</span> <span class="s">&#39;static_bus&#39;</span> <span class="k">then</span> <span class="nx">series_to_show</span><span class="p">(</span><span class="nx">BUS_STATIC_SERIES</span><span class="p">,</span> <span class="nx">hangAtEnd</span><span class="o">=</span><span class="kc">true</span><span class="p">)</span>
+   <span class="k">else</span> <span class="nx">screen_to_show</span><span class="p">(</span><span class="nx">sketch</span><span class="p">.</span><span class="nx">start</span><span class="p">)</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

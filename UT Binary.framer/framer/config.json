@@ -2,12 +2,15 @@
   "orientation" : 0,
   "updateDelay" : 0.3,
   "designModeSelected" : 0,
-  "cachedDeviceHeight" : 0,
+  "cachedDeviceHeight" : 2048,
   "contentScale" : 1,
   "fullScreen" : false,
-  "cachedDeviceWidth" : 0,
+  "cachedDeviceWidth" : 1536,
   "deviceType" : "custom",
   "sharedPrototype" : true,
+  "propertyPanelToggleStates" : {
+
+  },
   "projectId" : "B22FD9F4-012A-424D-A24B-6046DB9C2C30",
   "deviceOrientation" : 0,
   "selectedHand" : "",
